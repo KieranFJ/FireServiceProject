@@ -1,0 +1,14 @@
+/* 
+    Document   : fire
+    Created on : 30-Oct-2012, 16:39:52
+    Author     : Kieran
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+label.error {
+    display: inline-block;
+    height: 9px;
+    padding: 4px 6px;
+    margin-bottom: 5px;
+}
