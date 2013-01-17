@@ -280,26 +280,7 @@ class sql
         
         
 }
-/**
-function clean($input)
-{
-    $text = $input;
-    $stripSearch = array(
-        '@]*?>.*?@si', // Strip out javascript
-        '@<[\/\!]*?[^]*?>@si', // Strip out HTML tags
-        '@]*?>.*?@siU', // Strip style tags properly
-        '@@' // Strip multi-line comments
-        );
-    
-    $text = trim($text);
-    //$text = preg_replace($stripSearch, '', $text);
-    $text = mysql_real_escape_string($text);
-    $text = strip_tags($text);
-    $text = htmlspecialchars($text, ENT_QUOTES);
-    
-    
-    return ($text);
-}*/
+
 /**
  * Error handler
  *

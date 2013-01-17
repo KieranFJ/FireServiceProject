@@ -42,7 +42,7 @@ $results = sqlhandler::getDB()->select($query);
 ?>
 
 <label>Bag Number</label>
-<input type="text" class="input-xlarge" name="bagNumber" value="<?php echo $missing[0]; ?>">
+<input type="text" name="bagNumber" value="<?php echo $missing[0]; ?>">
 <div class="row">
     <div class="span3">
         <form action="" method="post">

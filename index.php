@@ -22,12 +22,24 @@
         <p>Do not worry about breaking anything as development happens in a separated
         development development environment</p>
         <h2>Updates</h2>
-        <h3>16/2/13</h3>
+        <h3>17/1/13</h3>
         <p>Database - New table added, bagcontents, will solve a data repetition issue when
             adding items to a bag.</p>
         <p>Item - Added query to automatically add all new items to the 'bag' designated as 'store',
         will make it easier/quicker to query the database for all items not in a physical bag</p>            
-        <p>Item - </p>
+        <p>Bag - Started on the bag creation interface. </p>
+        <p>Bag - When a bag level is selected the database is queried for existing bags of that level, 
+            and sees if there is any sequential bags missing. This is to avoid having ever ascending bag
+            numbers over time. For example:</p>
+            Level One Bags
+            <p>1, 2, 3, 4, 5  <-- Next bag created would be 6</p>
+            <p>1, 2, 4, 5, 6  <-- Next bag created would be 3</p>
+            As opposed to
+            <p>1, 2, 4, 5, 6  <-- Next bag created would be 7</p>
+            <p>Bag - Basic implementation of a multi-selectthat allows movement between two select boxes
+            allowing you to add items to a 'bag', or remove them back to the 'stores'</p>
+           <p>BUG - Moving items between select boxes keeps items move selected, could cause problems when
+           moving back and forth between boxes.</p>
         <h3>10/1/13</h3>
         <p>Item - Added CCN input (Add and Update)</p>
         <p>Item - Added Next Test Date input (Add and Update)</p>
