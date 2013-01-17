@@ -19,9 +19,7 @@ $result = sqlHandler::getDB()->select($query);
             }?>            
         </select>        
     </form>
-    <form action="" method="post" id="form2">
         <div id="upForm">
             
-        </div>
-    </form>
+        </div>  
 </div>
