@@ -8,8 +8,8 @@ $result = sqlHandler::getDB()->select($query);
 $query = "SELECT Name FROM itemcategories WHERE deprecated <> 1;";
 
 $itemTypeResult = sqlHandler::getDB()->select($query);
-?>
 
+?>
 <div class="container"> 
     <h1>Create Bag</h1>
     <div class="row">        
@@ -44,13 +44,16 @@ $itemTypeResult = sqlHandler::getDB()->select($query);
         </div>
     </div>
     <div class="row">
+        
         <div class="span3">
             <div id="upForm">
             </div>
         </div>
-        <div class="span2">    
-            <button id="add" class="btn btn-inverse btn-large"><i class="icon-arrow-left icon-white"></i></button>
+        <div class="span2" style="margin-top: 220px;">   
+            
+            <button id="add" class="btn btn-inverse btn-large" style="margin-left: 20px;"><i class="icon-arrow-left icon-white"></i></button>
             <button id="remove" class="btn btn-inverse btn-large"><i class="icon-arrow-right icon-white"></i></button>          
+            
         </div>
         <div class="span3">
             <div id="upFormType">

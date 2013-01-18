@@ -45,7 +45,7 @@ $results = sqlhandler::getDB()->select($query);
 ?>
 
 <label>Bag Number</label>
-<input type="text" name="bagNumber" value="//<?php echo $missing[0]; ?>">
+<input type="text" name="bagNumber" value="<?php echo $missing[0]; ?>">
 <div class="row">
     <form action="php/bagCreate/add_bag.php" method="post">
         <div class="span3">        
@@ -57,8 +57,8 @@ $results = sqlhandler::getDB()->select($query);
                 <button id="add" class="btn btn-inverse btn-large"><i class="icon-arrow-left icon-white"></i></button>
                 <button id="remove" class="btn btn-inverse btn-large"><i class="icon-arrow-right icon-white"></i></button>          
         </div>
-        <div class="span3">  
-                <label>Items in Store</label>            
+        <div class="span3">  <div style="margin-top: 50px;"></div>
+                <label >Items in Store</label>            
                 <select id="select1" class="input-large" multiple="multiple" size="20" >
                     <?php
                         foreach($results as $row)

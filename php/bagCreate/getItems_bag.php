@@ -13,7 +13,8 @@ $query = "SELECT SerialNo FROM items
 
 $results = sqlhandler::getDB()->select($query);
 ?>
-<label>Items in Store</label>            
+
+<label style="margin-top: 63px;">Items in Store</label>            
 <select id="select1" class="input-large" multiple="multiple" size="20" >
     <?php
         foreach($results as $row)
