@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 require_once($_SERVER['DOCUMENT_ROOT'].'/fire/FireServiceProject/php/class.sqlHandler.php');
 
@@ -31,10 +31,13 @@ else
     $missing[0] = $missing[0] + 1; 
 }
 
-$query = "SELECT * FROM items
-            LEFT OUTER JOIN bagcontents
+$query = "SELECT SerialNo FROM items
+            LEFT JOIN bagcontents
             ON items.ItemID = bagcontents.ItemID
-            WHERE bagcontents.BagID = '0';";
+            LEFT OUTER JOIN itemcategories
+            ON items.ItemTypeID = itemcategories.ItemTypeID
+            WHERE bagcontents.BagID = '0'
+            AND itemcategories.ItemTypeID = '2';";
 
 $results = sqlhandler::getDB()->select($query);
 
@@ -42,46 +45,45 @@ $results = sqlhandler::getDB()->select($query);
 ?>
 
 <label>Bag Number</label>
-<input type="text" name="bagNumber" value="<?php echo $missing[0]; ?>">
+<input type="text" name="bagNumber" value="//<?php echo $missing[0]; ?>">
 <div class="row">
-    <div class="span3">
-        <form action="" method="post">
-            <label>Items in Bag</label>
-            <select id="select2" class="input-xlarge" multiple="multiple" size="20">
-
-            </select>
-        </form>
-    </div>
-    <div class="span2">
-        <ul class="pager">
-        <button id="add" class="btn btn-inverse btn-large"><i class="icon-arrow-left icon-white"></i></button>
-        <button id="remove" class="btn btn-inverse btn-large"><i class="icon-arrow-right icon-white"></i></button>
-        </ul>
-    </div>
-    <div class="span3">        
-        <form action="" method="post">
-            <label>Items in Store</label>            
-            <select id="select1" class="input-xlarge" multiple="multiple" size="20" >
-                <?php
-                    foreach($results as $row)
-                    {?>
-                <option><?php echo $row['SerialNo'];?></option>
+    <form action="php/bagCreate/add_bag.php" method="post">
+        <div class="span3">        
+                <label>Items in Bag</label>
+                <select id="select2" class="input-large" multiple="multiple" size="20">
+                </select>        
+        </div>
+        <div class="span2">            
+                <button id="add" class="btn btn-inverse btn-large"><i class="icon-arrow-left icon-white"></i></button>
+                <button id="remove" class="btn btn-inverse btn-large"><i class="icon-arrow-right icon-white"></i></button>          
+        </div>
+        <div class="span3">  
+                <label>Items in Store</label>            
+                <select id="select1" class="input-large" multiple="multiple" size="20" >
                     <?php
-                    }
-                ?>
-            </select>            
-        </form>
-    </div>
+                        foreach($results as $row)
+                        {?>
+                    <option>//<?php echo $row['SerialNo'];?></option>
+                        <?php
+                        }
+                    ?>
+                </select> 
+        </div>
 </div>
+<div class="form-actions">
+    <button class="btn btn-primary btn-large">Create Bag</button>
+</div>
+</form>
+
 <script type="text/javascript">
     $().ready(function() {  
 
      $('#add').click(function() {  
-         console.log("add");
+         //console.log("add");
       return !$('#select1 option:selected').remove().appendTo('#select2');  
      });  
      $('#remove').click(function() {  
-         console.log("remove");
+         //console.log("remove");
       return !$('#select2 option:selected').remove().appendTo('#select1');  
      });  
     });
