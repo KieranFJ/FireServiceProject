@@ -1,4 +1,7 @@
 <?php
+
+//@TODO validation for number, letters causes mysql error
+
 require_once($_SERVER['DOCUMENT_ROOT'].'/fire/FireServiceProject/php/class.sqlHandler.php');
 
 
@@ -34,25 +37,27 @@ $result = sqlHandler::getDB()->select($query);
                 </div>
             </form> 
         </div>
-        <div class="tab-pane" id="addNew"> 
+        <div class="tab-pane" id="addNew">            
             <form class="validate" action="php/station/add_station.php" method="post" id="form2">
-                <h2>Add Station</h2>
-                <label>Contact Name</label>                
-                <input class="required" name="contactName" type="text" placeholder="Name of Item">   
-                <label>Contact Number</label>
-                <input class="required" name="contactNo" type="text" placeholder="Contact Number"></input>
-                <label>Address</label>                
-                <textarea class="required" rows="3" name="address" placeholder="Address"></textarea>
-                <div class="message">
-                    
+              <div class="row">     
+                  <div class="span3">
+                    <h2>Add Station</h2>
+                    <label>Contact Name</label>                
+                    <input class="required" name="contactName" type="text" placeholder="Name of Item">   
+                    <label>Contact Number</label>
+                    <input class="required" name="contactNo" type="text" placeholder="Contact Number"></input>
+                    <label>Address</label>                
+                    <textarea class="required" rows="3" name="address" placeholder="Address"></textarea>
                 </div>
-                <div class="form-actions">
-                    <button class="btn btn-primary btn-large" type="submit">Add Station</button>
+                  <div class="span2">
+                    <div class="message">
+                    </div>    
                 </div>
+            </div>
+            <div class="form-actions">
+                <button class="btn btn-primary btn-large" type="submit">Add Station</button>
+            </div>
             </form>
         </div>
     </div>
-    
-    
-    
 </div>

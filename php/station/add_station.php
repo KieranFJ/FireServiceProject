@@ -1,41 +1,44 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'].'/fire/FireServiceProject/php/class.sqlHandler.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/fire/FireServiceProject/php/class.functionLib.php');
 
-$_POST = array_map('trim', $_POST);
-$_POST = array_map('stripslashes', $_POST);
+$input = array_map('trim', $_POST);
+$input = array_map('stripslashes', $input);
 
 $query = "SELECT * FROM station WHERE 
-                Address = '".$_POST['address']."';";
+                Address = '".$input['address']."';";
 
 $results = sqlHandler::getDB()->select($query);
 
-if($_POST['address'] == "" || $_POST['contactName'] == "" || $_POST['contactNo'] == "")
+if($input['address'] == "" || $input['contactName'] == "" || $input['contactNo'] == "")
 {
     echo "Blank/Invalid Entry Not Accepted";
 }
 elseif($results)
 {
     foreach($results as $row)
-    if($row['Address'] == $_POST['address'])
+    if($row['Address'] == $input['address'])
     {
-        echo "Address already Exists</br>";
+        alert("Address already Exists", 0);
     }
-    if($row['Contact'] == $_POST['contactName'])
+    if($row['Contact'] == $input['contactName'])
     {
-        echo "Contact Already Exists</br>";
+        alert("Contact Already Exists", 0);
     }    
-    if($row['ContactNo'] == $_POST['contactNo'])
+    if($row['ContactNo'] == $input['contactNo'])
     {
-        echo "Contact Number Already Exists";
+        alert("Contact Number Already Exists", 0);
     }
 }
 else 
 {                                        
     $query = "INSERT INTO station (Contact, ContactNo, Address)
-    VALUES ('".$_POST['contactName']."','".$_POST['contactNo']."','".$_POST['address']."');";
+    VALUES ('".$input['contactName']."','".$input['contactNo']."','".$input['address']."');";
         
     $results = sqlHandler::getDB()->insert($query);
     
-    echo "Entry Created";    
+    
+    alert("Entry Created", 1);
+    //echo "Entry Created";    
 }
 ?>
