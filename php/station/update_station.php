@@ -1,22 +1,25 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'].'/fire/FireServiceProject/php/class.sqlHandler.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/fire/FireServiceProject/php/class.functionLib.php');
+
+$in = $_POST;
+
+$input = clean($in);
+
+//$input = array_map('trim', $input);
+//$input = array_map('stripslashes', $input);
 
 
-
-$_POST = array_map('trim', $_POST);
-$_POST = array_map('stripslashes', $_POST);
-
-
-if($_POST['address'] == "" || $_POST['contactName'] == "" || $_POST['contactNo'] == "")
+if($input['address'] == "" || $input['contactName'] == "" || $input['contactNo'] == "")
 {
-    echo "Blank/Invalid Entry - No Changes";
+    alert("Blank/Invalid Entry - No Changes", 0);
 }
 else
 {
     $query = "SELECT * FROM station WHERE
-                Contact = '".$_POST['contactName']."'
-            OR  Address = '".$_POST['address']."'
-            OR  ContactNo = '".$_POST['contactNo']."';";
+                Contact = '".$input['contactName']."'
+            OR  Address = '".$input['address']."'
+            OR  ContactNo = '".$input['contactNo']."';";
     
     $results = sqlHandler::getDB()->select($query);
    
@@ -25,19 +28,19 @@ else
     {
         foreach($results as $row)
         {
-            if($row['astationID'] != $_POST['stationID'])
+            if($row['StationID'] != $input['stationID'])
             {
-                if($row['Address'] == $_POST['address'])
+                if($row['Contact'] == $input['contactName'])
                 {
-                    echo "Address Already Exists!</br>";                
+                    alert("Contact Name Already Exists", 0);
                 }
-                if($row['Contact'] == $_POST['contactName'])
+                if($row['Address'] == $input['address'])
                 {
-                    echo "Contact Name Already Exists.";
-                }
-                if($row['ContactNo'] == $_POST['contactNo'])
+                    alert("Address Already Exists", 0);                
+                }                
+                if($row['ContactNo'] == $input['contactNo'])
                 {
-                    echo "Contact Number Already Exists";
+                    alert("Contact Number Already Exists", 0);
                 }
             }
             
@@ -46,13 +49,20 @@ else
     else
     {
         $query = "UPDATE station SET 
-                Contact = '".$_POST['contactName']."',
-                ContactNo = '".$_POST['contactNo']."',
-                Address = '".$_POST['address']."'    
-                WHERE StationID = '".$_POST['stationID']."';";
+                Contact = '".$input['contactName']."',
+                ContactNo = '".$input['contactNo']."',
+                Address = '".$input['address']."'    
+                WHERE StationID = '".$input['stationID']."';";
 
         $results = sqlHandler::getDB()->update($query);
-        echo $results." Entries Updated";
+        if($results == 0)
+        {
+            alert("No Changes Made.</br> No Entries Updated", 1);
+        }
+        else
+        {
+            alert($results." Entries Updated", 1);
+        }
     }
     
 }

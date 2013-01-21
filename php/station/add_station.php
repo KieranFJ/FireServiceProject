@@ -17,17 +17,19 @@ if($input['address'] == "" || $input['contactName'] == "" || $input['contactNo']
 elseif($results)
 {
     foreach($results as $row)
-    if($row['Address'] == $input['address'])
-    {
-        alert("Address already Exists", 0);
-    }
-    if($row['Contact'] == $input['contactName'])
-    {
-        alert("Contact Already Exists", 0);
-    }    
-    if($row['ContactNo'] == $input['contactNo'])
-    {
-        alert("Contact Number Already Exists", 0);
+    {        
+        if($row['Contact'] == $input['contactName'])
+        {
+            alert("Contact Already Exists", 0);
+        }    
+        if($row['Address'] == $input['address'])
+        {
+            alert("Address already Exists", 0);
+        }
+        if($row['ContactNo'] == $input['contactNo'])
+        {
+            alert("Contact Number Already Exists", 0);
+        }    
     }
 }
 else 
@@ -38,7 +40,6 @@ else
     $results = sqlHandler::getDB()->insert($query);
     
     
-    alert("Entry Created", 1);
-    //echo "Entry Created";    
+    alert("Entry Created", 1);        
 }
 ?>

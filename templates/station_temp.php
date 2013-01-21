@@ -32,16 +32,16 @@ $result = sqlHandler::getDB()->select($query);
                         ?>
                 </select>
             </form>
-            <form class="validate" action="php/station/update_station.php" method="post" id="form1">
+            <form class="validate" action="php/station/update_station.php" method="post" id="form1">                
                 <div id="upForm">
-                </div>
+                </div>      
             </form> 
         </div>
         <div class="tab-pane" id="addNew">            
-            <form class="validate" action="php/station/add_station.php" method="post" id="form2">
-              <div class="row">     
-                  <div class="span3">
-                    <h2>Add Station</h2>
+            <form class="validate" action="php/station/add_station.php" method="post" id="form2">                              
+            <h2>Add Station</h2>
+            <div class="row">
+                <div class="span3">
                     <label>Contact Name</label>                
                     <input class="required" name="contactName" type="text" placeholder="Name of Item">   
                     <label>Contact Number</label>
@@ -49,9 +49,9 @@ $result = sqlHandler::getDB()->select($query);
                     <label>Address</label>                
                     <textarea class="required" rows="3" name="address" placeholder="Address"></textarea>
                 </div>
-                  <div class="span2">
+                <div class="span2">
                     <div class="message">
-                    </div>    
+                    </div>                     
                 </div>
             </div>
             <div class="form-actions">
