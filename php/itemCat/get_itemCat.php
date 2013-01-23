@@ -3,8 +3,7 @@
 require_once($_SERVER['DOCUMENT_ROOT'].'/fire/FireServiceProject/php/class.sqlHandler.php');
 
 $query = 'SELECT * FROM itemcategories
-            WHERE name = "'.$_POST['name'].'"
-            AND   deprecated <> 1;';
+            WHERE name = "'.$_POST['name'].'";';
 
 $result = sqlHandler::getDB()->select($query);
 
@@ -24,9 +23,3 @@ $result = sqlHandler::getDB()->select($query);
 <label>Address</label>                
 <textarea class="required" rows="3" name="address" placeholder="Address"><?php echo $result[0]['Address']; ?></textarea>
 <input type="hidden" name="itemTypeID" value="<?php echo $result[0]['ItemTypeID']; ?>">
-<div class="message">
-
-</div>
-<div class="form-actions">
-    <button class="btn btn-primary btn-large" type="submit">Update Category</button>
-</div>

@@ -17,14 +17,8 @@ $result = sqlHandler::getDB()->select($query);
 <label>Description</label>
 <textarea rows="4" name="description" class="required"><?php echo $result[0]['Description']; ?></textarea><label></label>
 <input type="hidden" name="levelID" value="<?php echo $result[0]['LevelID']; ?>">
-<div class="message">
-</div>
-<div class="form-actions">
-    <button class="btn btn-primary btn-large">Update Entry</button>
-    <a href="#removeModal" role="button" class="btn btn-danger btn-large pull-right" data-toggle="modal">Remove Entry</a>
-    
-</div>
-<div class="modal hide fade" id="removeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+<!-- @TODO REMOVE <div class="modal hide fade" id="removeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h3>Entry Removal</h3>
@@ -43,6 +37,6 @@ $result = sqlHandler::getDB()->select($query);
             console.log("stuff");
            $("#modalMessage").load('php/level/remove_level.php', $(this).parents('form').serialize());
         });
-    </script>
+    </script>-->
 </div>
 

@@ -33,8 +33,17 @@ $result = sqlHandler::getDB()->select($query);
                 </select>
             </form>
             <form class="validate" action="php/station/update_station.php" method="post" id="form1">                
-                <div id="upForm">
-                </div>      
+            <div class="row">
+                <div id="upForm" class="span3">
+                </div>  
+                <div class="span2">
+                    <div class="message">
+                    </div>
+                </div>
+            </div>
+            <div class="form-actions">
+                <button class="btn btn-primary btn-large">Update Entry</button>
+            </div>
             </form> 
         </div>
         <div class="tab-pane" id="addNew">            

@@ -1,21 +1,20 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'].'/fire/FireServiceProject/php/class.sqlHandler.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/fire/FireServiceProject/php/class.functionLib.php');
 
+$in = $_POST;
 
+$input = clean($in);
 
-$_POST = array_map('trim', $_POST);
-$_POST = array_map('stripslashes', $_POST);
-
-
-if($_POST['level'] == "" || $_POST['description'] == "" || $_POST['noItems'] == "")
+if($input['level'] == "" || $input['description'] == "" || $input['noItems'] == "")
 {
-    echo "Blank/Invalid Entry - No Changes";
+    alert("Blank/Invalid Entry - No Changes", 0);
 }
 else
 {
     $query = "SELECT * FROM level WHERE
-                Level = '".$_POST['level']."'
-            OR  Description = '".$_POST['description']."';";
+                Level = '".$input['level']."'
+            OR  Description = '".$input['description']."';";
     
     $results = sqlHandler::getDB()->select($query);
    
@@ -24,15 +23,15 @@ else
     {
         foreach($results as $row)
         {
-            if($row['LevelID'] != $_POST['levelID'])
+            if($row['LevelID'] != $input['levelID'])
             {
-                if($row['Level'] == $_POST['level'])
+                if($row['Level'] == $input['level'])
                 {
-                    echo "Level Already Exists!</br>";                
+                    alert("Level Already Exists!", 0);                
                 }
-                if($row['Description'] == $_POST['description'])
+                if($row['Description'] == $input['description'])
                 {
-                    echo "Description Alread Exists. Bag Level: ".$row['Level'];
+                    alert("Description Already Exists. Bag Level: ".$row['Level'], 0);
                 }                
             }
             
@@ -41,13 +40,13 @@ else
     else
     {
         $query = "UPDATE level SET 
-                Description = '".$_POST['description']."',
-                Level = '".$_POST['level']."',
-                NoItems= '".$_POST['noItems']."'
-                WHERE LevelID = '".$_POST['levelID']."';";
+                Description = '".$input['description']."',
+                Level = '".$input['level']."',
+                NoItems= '".$input['noItems']."'
+                WHERE LevelID = '".$input['levelID']."';";
 
         $results = sqlHandler::getDB()->update($query);
-        echo $results." Entries Updated";
+        alert($results." Entries Updated", 1);
     }
     
 }

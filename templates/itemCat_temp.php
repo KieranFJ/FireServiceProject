@@ -7,9 +7,9 @@ $query = "SELECT Name FROM itemcategories WHERE deprecated <> 1";
 $result = sqlHandler::getDB()->select($query);
 
 ?>
+
 <div class="container">
-    <h1>Item Category</h1>
-    
+    <h1>Item Category</h1>    
     <ul id="myTab" class="nav nav-tabs">
         <li class="active"><a href="#update" data-toggle="tab">Update</a></li>
         <li class><a href="#addNew" data-toggle="tab">Add New</a></li>
@@ -30,7 +30,14 @@ $result = sqlHandler::getDB()->select($query);
                 </select>
             </form>
             <form class="validate" action="php/itemCat/update_itemCat.php" method="post" id="form1">
-                <div id="upForm">
+                <div class="row">
+                    <div id="upForm" class="span3">
+                    </div>
+                    <div class="message span2">
+                    </div>
+                </div>  
+                <div class="form-actions">
+                    <button class="btn btn-primary btn-large" type="submit">Update Entry</button>
                 </div>
             </form> 
         </div>
