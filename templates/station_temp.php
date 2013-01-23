@@ -34,7 +34,7 @@ $result = sqlHandler::getDB()->select($query);
             </form>
             <form class="validate" action="php/station/update_station.php" method="post" id="form1">                
             <div class="row">
-                <div id="upForm" class="span3">
+                <div id="upForm" class="span4">
                 </div>  
                 <div class="span2">
                     <div class="message">
@@ -50,7 +50,7 @@ $result = sqlHandler::getDB()->select($query);
             <form class="validate" action="php/station/add_station.php" method="post" id="form2">                              
             <h2>Add Station</h2>
             <div class="row">
-                <div class="span3">
+                <div class="span4">
                     <label>Contact Name</label>                
                     <input class="required" name="contactName" type="text" placeholder="Name of Item">   
                     <label>Contact Number</label>

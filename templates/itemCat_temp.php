@@ -2,7 +2,7 @@
 require_once($_SERVER['DOCUMENT_ROOT'].'/fire/FireServiceProject/php/class.sqlHandler.php');
 
 
-$query = "SELECT Name FROM itemcategories WHERE deprecated <> 1";
+$query = "SELECT Name FROM itemcategories";
 
 $result = sqlHandler::getDB()->select($query);
 
@@ -31,7 +31,7 @@ $result = sqlHandler::getDB()->select($query);
             </form>
             <form class="validate" action="php/itemCat/update_itemCat.php" method="post" id="form1">
                 <div class="row">
-                    <div id="upForm" class="span3">
+                    <div id="upForm" class="span4">
                     </div>
                     <div class="message span2">
                     </div>
@@ -44,20 +44,23 @@ $result = sqlHandler::getDB()->select($query);
         <div class="tab-pane" id="addNew"> 
             <form class="validate" action="php/itemCat/add_itemCat.php" method="post" id="form2">
                 <h2>Add Category</h2>
-                <label>Name</label>                
-                <input class="required" name="name" type="text" placeholder="Name of Item">              
-                <label>Description</label>
-                <textarea class="required" rows="3" name="description" placeholder="Description of Item"></textarea>
-                <label>Make/Model</label>
-                <input class="required" type="text" name="model" placeholder="Make/Model"></input>
-                <label>Manufacturer</label>
-                <input class="required" name="manufacturer" type="text" placeholder="Manufacturer"></input>
-                <label>Contact Number</label>
-                <input class="required" name="contactNo" type="text" placeholder="Contact Number"></input>
-                <label>Address</label>                
-                <textarea class="required" rows="3" name="address" placeholder="Address"></textarea>
-                <div class="message">
-                    
+                <div class="row">
+                    <div class="span4">
+                        <label>Name</label>                
+                        <input class="required" name="name" type="text" placeholder="Name of Item">              
+                        <label>Description</label>
+                        <textarea class="required" rows="3" name="description" placeholder="Description of Item"></textarea>
+                        <label>Make/Model</label>
+                        <input class="required" type="text" name="model" placeholder="Make/Model"></input>
+                        <label>Manufacturer</label>
+                        <input class="required" name="manufacturer" type="text" placeholder="Manufacturer"></input>
+                        <label>Contact Number</label>
+                        <input class="required" name="contactNo" type="text" placeholder="Contact Number"></input>
+                        <label>Address</label>                
+                        <textarea class="required" rows="3" name="address" placeholder="Address"></textarea>
+                    </div>
+                    <div class="span2 message">
+                    </div>
                 </div>
                 <div class="form-actions">
                     <button class="btn btn-primary btn-large" type="submit">Add Category</button>
@@ -65,7 +68,4 @@ $result = sqlHandler::getDB()->select($query);
             </form>
         </div>
     </div>
-    
-    
-    
 </div>

@@ -1,7 +1,7 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'].'/fire/FireServiceProject/php/class.sqlHandler.php');
 
-$query = "SELECT Name FROM itemcategories WHERE deprecated <> 1";
+$query = "SELECT Name FROM itemcategories";
 
 $result = sqlHandler::getDB()->select($query);
 ?>
@@ -37,47 +37,32 @@ $result = sqlHandler::getDB()->select($query);
                     </form>                          
                     
                 </div>
-                <div class="span4">
-                    <?php 
-                    require($_SERVER['DOCUMENT_ROOT'].'/fire/FireServiceProject/php/item/item_instruct.php');
-                    ?>    
-                </div>
             </div>
         </div>
         <div class="tab-pane active" id="add">
-            <div class="row">
-                <div class="span8">
-                    <h2>Add Item</h2>                
-                    <form action="php/item/get_itemCat.php" method="post" id="form3">
-                       <label>Item Type</label>
-                       <select id="target" class="get" name="itemName">
-                           <?php 
-                           foreach($result as $row)
-                           {?>
-                               <option><?php echo $row['Name']; ?></option>
-                           <?php 
-                           }?>
-                       </select>
-                    </form> 
-                    <form class="validate" action="php/item/add_item.php" method="post" id="form2">
-                        <div class="row">
-                            <div id="upForm">
-
-                            </div>  
-                            <div class="message span4">
-                            </div>                           
-                            <div class="form-actions span6">
-                                <button class="btn btn-primary btn-large" type="submit">Add Item</button>
-                            </div>
-                        </div>      
-                    </form>
-                </div>
-                <div class="span4">
+            <h2>Add Item</h2>                                               
+            <form action="php/item/get_itemCat.php" method="post" id="form3">
+                <label>Item Type</label>
+                <select id="target" class="get" name="itemName">
                     <?php 
-                    require($_SERVER['DOCUMENT_ROOT'].'/fire/FireServiceProject/php/item/item_instruct.php');
-                    ?>    
+                    foreach($result as $row)
+                    {?>
+                        <option><?php echo $row['Name']; ?></option>
+                    <?php 
+                    }?>
+                </select>
+            </form> 
+            <form class="validate" action="php/item/add_item.php" method="post" id="form2">
+                <div class="row">
+                    <div id="upForm">
+                    </div>  
+                    <div class="message span4">
+                    </div>                           
                 </div>
-            </div>
+                <div class="form-actions">
+                    <button class="btn btn-primary btn-large" type="submit">Add Item</button>
+                </div>      
+            </form>     
         </div>
     </div>          
 </div>  
