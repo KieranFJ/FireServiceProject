@@ -59,5 +59,13 @@ function clean($arr)
     //$arr = preg_replace(,$replacement,$arr);
     return $arr;
 }
-?>
+
+//function map_date_format($input)
+//{
+//    $date = new DateTime($input['purchDate']);
+//    $output = $date->format("y/m/d");
+//    
+//    return $input;
+//}
+//?>
 

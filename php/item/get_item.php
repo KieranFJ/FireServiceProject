@@ -1,11 +1,12 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'].'/fire/FireServiceProject/php/class.sqlHandler.php');
+ require_once($_SERVER['DOCUMENT_ROOT'].'/fire/FireServiceProject/php/class.functionLib.php');
 
+$in = $_POST;
 
-$_POST = array_map('trim', $_POST);
-$_POST = array_map('stripslashes', $_POST);
+$input = clean($in);
 
-if(isset($_POST))
+if(isset($input))
 {
     $query = 'SELECT *, 
                 DATE_FORMAT(ManuDate, \'%d-%m-%Y\') AS ManuDate, 
@@ -14,9 +15,9 @@ if(isset($_POST))
                 DATE_FORMAT(NextTestDate, \'%d-%m-%Y\') AS NextTestDate,
                 DATE_FORMAT(FirstUseDate, \'%d-%m-%Y\') AS FirstUseDate
                 FROM items
-                WHERE SerialNo = "'.$_POST['search'].'"
+                WHERE SerialNo = "'.$input['search'].'"
                 OR
-                ItemID = "'.$_POST['search'].'"
+                ItemID = "'.$input['search'].'"
                 AND   retired <> 1;';
 
     $results = sqlHandler::getDB()->select($query);
@@ -63,7 +64,7 @@ if(isset($_POST))
     }
     else
     {
-        echo "<div class=\"span4\">Invalid Search</div>";
+        alert("Invalid Search", 0);
     }
 }
 ?>

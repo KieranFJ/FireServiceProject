@@ -1,73 +1,117 @@
 <?php
-
 require_once($_SERVER['DOCUMENT_ROOT'].'/fire/FireServiceProject/php/class.sqlHandler.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/fire/FireServiceProject/php/class.functionLib.php');
 
-$_POST = array_map('trim', $_POST);
-$_POST = array_map('stripslashes', $_POST);
+$in = $_POST;
 
-if(empty($_POST))
+$input = clean($in);
+
+if(empty($input))
 {
-    echo "Blank/Invalid Entry - No Changes";
+    alert("Blank/Invalid Entry - No Changes", 0);
 }
 else
 {
     $query = "SELECT * FROM items WHERE
-                SerialNo = '".$_POST['serialNumber']."'
-            OR  ItemID = '".$_POST['itemID']."';";
+                SerialNo = '".$input['serialNumber']."'
+            OR  ItemID = '".$input['itemID']."';";
     
     $results = sqlHandler::getDB()->select($query);
    
-    //if results return and levelid is wrong return error level/desc exists
+    //if more theres a duplicate serial number, error message duplicate
     if(count($results) > 1)
     {
         foreach($results as $row)
         {
-            if($row['ItemID'] != $_POST['itemID'])
+            if($row['ItemID'] != $input['itemID'])
             {
-                if($row['SerialNo'] == $_POST['serialNumber'])
+                if($row['SerialNo'] == $input['serialNumber'])
                 {
-                    echo "Serial Number Already Exists!</br>";                
+                    alert("Duplicate Serial Number already exists. No changes made", 0);                
                 }
-                if($row['Model'] == $_POST['model'])
-                {
-                    echo "Item ID Already Exists!";
-                }
+//                if($row['Model'] == $input['model'])
+//                {
+//                    alert("Item ID already exists. No changes made", 0);
+//                }
             }
             
         }
     }
-    else
+    elseif(count($results == 1)) //if only one result then check if any changes are actually made
     {
-        $date = new DateTime($_POST['purchDate']);
-        $_POST['purchDate'] = $date->format("y/m/d");
-
-        $date = new DateTime($_POST['manuDate']);
-        $_POST['manuDate'] = $date->format("y/m/d");
-
-        $date = new DateTime($_POST['endLifeDate']);
-        $_POST['endLifeDate'] = $date->format("y/m/d");
-
-        $date = new DateTime($_POST['firstUseDate']);
-        $_POST['firstUseDate'] = $date->format("y/m/d");
-
-        $date = new DateTime($_POST['nextTestDate']);
-        $_POST['nextTestDate'] = $date->format("y/m/d");
+        unset($results[0]['Retired']);
+        unset($results[0]['ItemTypeID']);
+        unset($input['itemCat']);
         
-        $query = "UPDATE items SET
-                    PurchDate = '".$_POST['purchDate']."',
-                    ManuDate = '".$_POST['manuDate']."',
-                    EndLifeDate = '".$_POST['endLifeDate']."',
-                    SerialNo = '".$_POST['serialNumber']."',
-                    FirstUseDate = '".$_POST['firstUseDate']."',
-                    NextTestDate = '".$_POST['nextTestDate']."',
-                    CCN = '".$_POST['ccn']."',
-                    Comments = '".$_POST['comments']."'                                        
-                WHERE SerialNo = '".$_POST['serialNumber']."'
-                AND ItemID = '".$_POST['itemID']."';";
+        //@TODO Better way to do this? Research!
+        
+        $date = new DateTime($input['purchDate']);
+        $input['purchDate'] = $date->format("y/m/d");
 
-        $results = sqlHandler::getDB()->update($query);
-        echo $results." Entries Updated";
+        $date = new DateTime($input['manuDate']);
+        $input['manuDate'] = $date->format("y/m/d");
+
+        $date = new DateTime($input['endLifeDate']);
+        $input['endLifeDate'] = $date->format("y/m/d");
+
+        $date = new DateTime($input['firstUseDate']);
+        $input['firstUseDate'] = $date->format("y/m/d");
+
+        $date = new DateTime($input['nextTestDate']);
+        $input['nextTestDate'] = $date->format("y/m/d");
+        
+        $date = new DateTime($results[0]['PurchDate']);
+        $results[0]['PurchDate'] = $results[0]['PurchDate'] = $date->format("y/m/d");
+        
+        $date = new DateTime($results[0]['ManuDate']);
+        $results[0]['ManuDate'] = $results[0]['ManuDate'] = $date->format("y/m/d");
+        
+        $date = new DateTime($results[0]['EndLifeDate']);
+        $results[0]['EndLifeDate'] = $results[0]['EndLifeDate'] = $date->format("y/m/d");
+        
+        $date = new DateTime($results[0]['FirstUseDate']);
+        $results[0]['FirstUseDate'] = $results[0]['FirstUseDate'] = $date->format("y/m/d");
+        
+        $date = new DateTime($results[0]['NextTestDate']);
+        $results[0]['NextTestDate'] = $results[0]['NextTestDate'] = $date->format("y/m/d");
+        
+        
+        $a = array_keys($results[0]);
+        $a = array_map('strtolower', $a);
+        $b = array_values($results[0]);
+        
+        $res = array_combine($a, $b);        
+        
+        $c = array_keys($input);
+        $c = array_map('strtolower', $c);
+        $d = array_values($input);
+        
+        $inp = array_combine($c, $d);
+        
+        $diff = array_diff($res, $inp);
+        
+        if(count($diff) == 0)
+        {
+            alert("No changes made", 1);
+        }
+        else
+        {            
+
+            $query = "UPDATE items SET
+                        PurchDate = '".$input['purchDate']."',
+                        ManuDate = '".$input['manuDate']."',
+                        EndLifeDate = '".$input['endLifeDate']."',
+                        SerialNo = '".$input['serialNumber']."',
+                        FirstUseDate = '".$input['firstUseDate']."',
+                        NextTestDate = '".$input['nextTestDate']."',
+                        CCN = '".$input['ccn']."',
+                        Comments = '".$input['comments']."'                                        
+                    WHERE
+                     ItemID = '".$input['itemID']."';";
+//WHERE SerialNo = '".$input['serialNumber']."'
+            $results = sqlHandler::getDB()->update($query);
+            alert("Entry updated", 1);
+        }  
     }
-    
 }
 ?>

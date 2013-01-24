@@ -20,13 +20,13 @@ $results = sqlHandler::getDB()->select($query);
 </div>
 <div class="span4">
     <label>First Use Date</label>
-    <input class="datepicker required" id="dp4" type="text" name="firstUseDate" placeholder="Date of First Use">
+    <input class="datepicker required" id="dp1" type="text" name="firstUseDate" placeholder="Date of First Use">
     <label>Purchase Date</label>
-    <input class="datepicker required" id="dp1" type="text" name="purchDate" placeholder="Date of Item Purchase">
+    <input class="datepicker required" id="dp2" type="text" name="purchDate" placeholder="Date of Item Purchase">
     <label>Manufacture Date</label>
-    <input class="datepicker required" id="dp2" type="text" name="manuDate" placeholder="Date of Item Manufacture">
+    <input class="datepicker required" id="dp3" type="text" name="manuDate" placeholder="Date of Item Manufacture">
     <label>End of Life Date</label>
-    <input class="datepicker required" id="dp3" type="text" name="endLifeDate" placeholder="Date of Item End Life">
+    <input class="datepicker required" id="dp4" type="text" name="endLifeDate" placeholder="Date of Item End Life">
     <label>Next Test Date</label>
     <input class="datepicker required" id="dp5" type="text" name="nextTestDate" placeholder="Date of Next Test">
 </div>

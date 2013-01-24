@@ -1,17 +1,21 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'].'/fire/FireServiceProject/php/class.sqlHandler.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/fire/FireServiceProject/php/class.functionLib.php');
 
-if (isset($_POST['query']))
+$in = $_POST;
+
+$input = clean($in);
+if (isset($input['query']))
 {
     $query = "SELECT SerialNo AS result 
         FROM items 
         WHERE SerialNo 
-        LIKE '%".$_POST['query']."%'
+        LIKE '%".$input['query']."%'
         UNION
         SELECT ItemID AS result
         FROM items
         WHERE ItemID
-        LIKE '%".$_POST['query']."%'";
+        LIKE '%".$input['query']."%'";
     
     $results = sqlHandler::getDB()->select($query);
     

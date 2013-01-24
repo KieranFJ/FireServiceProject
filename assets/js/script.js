@@ -36,7 +36,7 @@ $(document).ready(function(){
     $("#form").validate();
     
     //actually checks for validity
-    $("form").submit(function(e){        
+    $("form").submit(function(e){  
         e.preventDefault();
         var id=$(this).attr('id'),
             action=$(this).attr('action');
