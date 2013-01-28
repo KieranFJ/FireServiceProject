@@ -36,7 +36,7 @@
             <p>1, 2, 4, 5, 6  <-- Next bag created would be 3</p>
             As opposed to
             <p>1, 2, 4, 5, 6  <-- Next bag created would be 7</p>
-            <p>Bag - Basic implementation of a multi-selectthat allows movement between two select boxes
+            <p>Bag - Basic implementation of a multi-select that allows movement between two select boxes
             allowing you to add items to a 'bag', or remove them back to the 'stores'</p>
            <p>BUG - Moving items between select boxes keeps items move selected, could cause problems when
            moving back and forth between boxes.</p>

@@ -30,16 +30,45 @@ else
 {
     $missing[0] = $missing[0] + 1; 
 }
-
 ?>
-
 <label>Bag Number</label>
-<input type="text" name="bagNumber" value="<?php echo $missing[0]; ?>">
+<form action="php/bagCreate/getContents_bag.php" method="post">
 
+<select id="target" class="getContents" name="bagNumber">
 
-            
-<label>Items in Bag</label>
-<select id="select2" class="input-large" multiple="multiple" size="20">
+<?php 
+if(isset($results))
+{
+    sort($results);
+
+    $resCount = count($results);
+    $i = 0;
+    $c = 0;    
+
+    do
+    {
+        echo "<option>".$results[$i]['BagNumber']."</option>";       
+
+        if(isset($missing[$c]))
+        {
+            if($results[$i]['BagNumber'] == ($missing[$c] - 1))
+            {
+                echo "<option class=\"text-error\">".$missing[$c]."</option>";
+                $c++;
+            }  
+        }            
+        $i++;
+    }
+    while ($i < $resCount);
+    echo "<option class=\"text-error\">".($results[$i - 1]['BagNumber'] + 1)."</option>";
+}
+else
+{
+    echo "<option class=\"text-error\">1</option>";
+}
+?>       
 </select>        
+</form>
+
 
     

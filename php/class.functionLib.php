@@ -67,5 +67,29 @@ function clean($arr)
 //    
 //    return $input;
 //}
-//?>
+//
+
+
+function safe($var, $type = 'string')
+{
+    switch ($type)
+    { 
+    case 'string':
+            return "'".mysql_escape_string($var)."'";
+            break;
+
+    case 'int':
+            return (int)$var;
+            break;
+
+    case 'float':
+            return (float)$var;
+            break; 
+
+    default:
+            return "'".mysql_escape_string($var)."'";
+            break;
+    } 
+}
+?>
 

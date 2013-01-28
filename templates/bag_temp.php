@@ -1,11 +1,11 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'].'/fire/FireServiceProject/php/class.sqlHandler.php');
 
-$query = "SELECT Level FROM level WHERE deprecated <> 1;";
+$query = "SELECT Level FROM level;";
 
 $result = sqlHandler::getDB()->select($query);
 
-$query = "SELECT Name FROM itemcategories WHERE deprecated <> 1;";
+$query = "SELECT Name FROM itemcategories;";
 
 $itemTypeResult = sqlHandler::getDB()->select($query);
 
@@ -43,21 +43,23 @@ $itemTypeResult = sqlHandler::getDB()->select($query);
             </form>            
         </div>
     </div>
-    <div class="row">
-        
+    <div class="row">        
         <div class="span3">
             <div id="upForm">
             </div>
+            <div id="upFormContents">                
+            </div>
         </div>
-        <div class="span2" style="margin-top: 220px;">   
-            
+        <div class="span2" style="margin-top: 220px;">               
             <button id="add" class="btn btn-inverse btn-large" style="margin-left: 20px;"><i class="icon-arrow-left icon-white"></i></button>
-            <button id="remove" class="btn btn-inverse btn-large"><i class="icon-arrow-right icon-white"></i></button>          
-            
+            <button id="remove" class="btn btn-inverse btn-large"><i class="icon-arrow-right icon-white"></i></button> 
         </div>
         <div class="span3">
             <div id="upFormType">
             </div>
+        </div>
+        <div class="message span2">
+            
         </div>
     </div>
     <div class="form-actions">

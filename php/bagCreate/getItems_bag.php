@@ -1,5 +1,6 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'].'/fire/FireServiceProject/php/class.sqlHandler.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/fire/FireServiceProject/php/class.functionLib.php');
 
 $in = $_POST;
 
@@ -12,6 +13,9 @@ $query = "SELECT SerialNo FROM items
             AND itemcategories.Name = '".$in['itemName']."';";
 
 $results = sqlhandler::getDB()->select($query);
+
+if(isset($results))
+{
 ?>
 
 <label style="margin-top: 63px;">Items in Store</label>            
@@ -24,3 +28,12 @@ $results = sqlhandler::getDB()->select($query);
         }
     ?>
 </select> 
+
+<?php 
+}
+else
+{
+    echo "<label style=\"margin-top: 63px;\">Items in Store</label><select id=\"select1\" class=\"input-large\" multiple=\"multiple\" size=\"20\" ></select>";
+    
+}
+?>
