@@ -105,11 +105,26 @@ else
                         FirstUseDate = '".$input['firstUseDate']."',
                         NextTestDate = '".$input['nextTestDate']."',
                         CCN = '".$input['ccn']."',
-                        Comments = '".$input['comments']."'                                        
+                        Comments = '".$input['comments']."',
+                        Flag = '".$input['flag']."',
+                        Points = '".$input['points']."'
                     WHERE
                      ItemID = '".$input['itemID']."';";
 //WHERE SerialNo = '".$input['serialNumber']."'
-            $results = sqlHandler::getDB()->update($query);
+            sqlHandler::getDB()->update($query);
+            
+            $query = "SELECT bag.StationID, items.BagID, items.IssueDate FROM items                
+                JOIN bag ON bag.BagID = items.BagID
+                WHERE items.ItemID = '".$input['itemID']."';";
+            
+            $results = sqlHandler::getDB()->select($query);
+            
+            $query = "INSERT INTO itemhistory (ItemID, StationID, BagID, ItemFlag, TestID, Points, IssueBagDate)
+                VALUES ('".$input['itemID']."', '".$results[0]['StationID']."', 
+                    '".$results[0]['StationID']."', '".$input['flag']."', 0, '".$input['points']."', '".$results[0]['IssueDate']."');";
+            
+            sqlHandler::getDB()->insert($query);
+            
             alert("Entry updated", 1);
         }  
     }

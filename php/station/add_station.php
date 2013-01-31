@@ -28,16 +28,20 @@ try {
             {
                 alert("Address already Exists", 0);
             }
-            if($row['ContactNo'] == $input['contactNo'])
+            if($row['StationNo'] == $input['stationNo'])
             {
-                alert("Contact Number Already Exists", 0);
-            }    
+                alert("Station Contact Number Already Exists", 0);
+            }  
+            if($row['MobileNo'] == $input['mobileNo'])
+            {
+                alert("Mobile Contact Number Already Exists", 0);
+            }   
         }
     }
     else 
     {                                        
-        $query = "INSERT INTO station (Contact, ContactNo, Address)
-        VALUES ('".$input['contactName']."','".$input['contactNo']."','".$input['address']."');";
+        $query = "INSERT INTO station (Contact, StationNo, Address, MobileNo)
+        VALUES ('".$input['contactName']."','".$input['stationNo']."','".$input['address']."', '".$input['mobileNo']."');";
 
         $results = sqlHandler::getDB()->insert($query);
 

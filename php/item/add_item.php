@@ -47,7 +47,7 @@
             $date = new DateTime($inputs['nextTestDate']);
             $inputs['nextTestDate'] = $date->format("y/m/d");
 
-            $query = "INSERT INTO items (ItemTypeID, SerialNo, Comments, PurchDate, ManuDate, EndLifeDate, FirstUseDate, NextTestDate, CCN)
+            $query = "INSERT INTO items (ItemTypeID, SerialNo, Comments, PurchDate, ManuDate, EndLifeDate, FirstUseDate, NextTestDate, CCN, IssueDate, Flag, Points)
                        VALUES ('".$inputs['itemTypeID']."',
                                '".$inputs['serialNumber']."',
                                '".$inputs['comments']."',
@@ -56,13 +56,17 @@
                                '".$inputs['endLifeDate']."',
                                '".$inputs['firstUseDate']."',
                                '".$inputs['nextTestDate']."',
-                               '".$inputs['ccn']."');";
+                               '".$inputs['ccn']."',
+                                NOW(),
+                               '".$inputs['flag']."',
+                               '".$inputs['points']."');";
 
             sqlHandler::getDB()->insert($query);
 
-            $query = "INSERT INTO bagcontents (ItemID, BagID)
-                       VALUES(LAST_INSERT_ID(), '0');";
-
+            
+            $query = "INSERT INTO itemhistory (ItemID, StationID, BagID, ItemFlag, TestID, Points, IssueBagDate)
+                        VALUES(LAST_INSERT_ID(), 0, 0, '".$inputs['flag']."', 0, '".$inputs['points']."', NOW());";
+            
             sqlHandler::getDB()->insert($query);
 
             alert("Entry Created", 1);

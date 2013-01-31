@@ -5,7 +5,7 @@
 require_once($_SERVER['DOCUMENT_ROOT'].'/fire/FireServiceProject/php/class.sqlHandler.php');
 
 
-$query = "SELECT Contact FROM station WHERE deprecated <> 1";
+$query = "SELECT Contact FROM station;";
 
 $result = sqlHandler::getDB()->select($query);
 
@@ -52,9 +52,11 @@ $result = sqlHandler::getDB()->select($query);
             <div class="row">
                 <div class="span4">
                     <label>Contact Name</label>                
-                    <input class="required" name="contactName" type="text" placeholder="Name of Item">   
-                    <label>Contact Number</label>
-                    <input class="required" name="contactNo" type="text" placeholder="Contact Number"></input>
+                    <input class="required" name="contactName" type="text" placeholder="Contact Name">   
+                    <label>Station Contact Number</label>
+                    <input class="required" name="stationNo" type="text" placeholder="Station Contact Number"></input>
+                    <label>Mobile Contact Number</label>
+                    <input class="required" name="stationNo" type="text" placeholder="Mobile Contact Number"></input>
                     <label>Address</label>                
                     <textarea class="required" rows="3" name="address" placeholder="Address"></textarea>
                 </div>

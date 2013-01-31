@@ -3,8 +3,7 @@
 require_once($_SERVER['DOCUMENT_ROOT'].'/fire/FireServiceProject/php/class.sqlHandler.php');
 
 $query = 'SELECT * FROM level 
-            WHERE level = "'.$_POST['levelSelect'].'"
-            AND   deprecated <> 1;';
+            WHERE level = "'.$_POST['levelSelect'].'";';
 
 $result = sqlHandler::getDB()->select($query);
 

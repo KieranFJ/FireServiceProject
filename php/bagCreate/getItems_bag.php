@@ -1,15 +1,13 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'].'/fire/FireServiceProject/php/class.sqlHandler.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/fire/FireServiceProject/php/class.functionLib.php');
-
+// @TODO only display serial numbers that are not condemned or quarentined
 $in = $_POST;
 
-$query = "SELECT SerialNo FROM items
-            LEFT JOIN bagcontents
-            ON items.ItemID = bagcontents.ItemID
-            LEFT OUTER JOIN itemcategories
+$query = "SELECT SerialNo FROM items            
+            LEFT JOIN itemcategories
             ON items.ItemTypeID = itemcategories.ItemTypeID
-            WHERE bagcontents.BagID = '0'
+            WHERE items.BagID = '0'
             AND itemcategories.Name = '".$in['itemName']."';";
 
 $results = sqlhandler::getDB()->select($query);

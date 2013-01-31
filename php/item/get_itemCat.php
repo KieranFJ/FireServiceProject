@@ -12,7 +12,21 @@ $results = sqlHandler::getDB()->select($query);
     <input type="hidden" name="itemTypeID" value="<?php echo $results[0]['ItemTypeID']; ?>">
     <label>Serial Number</label>
     <input class="required" type="text" name="serialNumber" placeholder="Item Serial Number">
-
+    <div class="row">
+        <div class="span1">
+            <label>Flag</label>
+            <select class="input-mini" name="flag">
+                <option selected=\"selected\">S</option><option>Q</option><option>C</option>
+                
+            </select>
+        </div>
+        <div class="span1">
+            <label>Points</label>
+            <select class="input-mini" name="points">
+                <option selected=\"selected\">0</option><option>5</option><option>10</option><option>15</option>                
+            </select>
+        </div>
+    </div>
     <label>Conformity Certificate Number</label>
     <input class="required" type="text" name="ccn" placeholder="Conformity Certificate Number">
     <label>Comments</label>

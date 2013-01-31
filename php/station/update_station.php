@@ -7,7 +7,7 @@ $in = $_POST;
 $input = clean($in);
 
 try {
-    if($input['address'] == "" || $input['contactName'] == "" || $input['contactNo'] == "")
+    if($input['address'] == "" || $input['contactName'] == "" || $input['stationNo'] == "")
     {
         alert("Blank/Invalid Entry - No Changes", 0);
     }
@@ -16,7 +16,8 @@ try {
         $query = "SELECT * FROM station WHERE
                     Contact = '".$input['contactName']."'
                 OR  Address = '".$input['address']."'
-                OR  ContactNo = '".$input['contactNo']."';";
+                OR  StationNo = '".$input['stationNo']."'
+                OR  MobileNo = '".$input['mobileNo']."';";
 
         $results = sqlHandler::getDB()->select($query);
 
@@ -35,26 +36,30 @@ try {
                     {
                         alert("Address Already Exists", 0);                
                     }                
-                    if($row['ContactNo'] == $input['contactNo'])
+                    if($row['StationNo'] == $input['stationNo'])
                     {
-                        alert("Contact Number Already Exists", 0);
+                        alert("Station Contact Number Already Exists", 0);
+                    }
+                    if($row['MobileNo'] == $input['mobileNo'])
+                    {
+                        alert("Mobile Contact Number Already Exists", 0);
                     }
                 }
-
             }
         }
         else
         {
             $query = "UPDATE station SET 
                     Contact = '".$input['contactName']."',
-                    ContactNo = '".$input['contactNo']."',
+                    StationNo = '".$input['stationNo']."',
+                    MobileNo = '".$input['mobileNo']."',
                     Address = '".$input['address']."'    
                     WHERE StationID = '".$input['stationID']."';";
 
             $results = sqlHandler::getDB()->update($query);
             if($results == 0)
             {
-                alert("No Changes Made.</br> No Entries Updated", 1);
+                alert("No Changes Made. No Entries Updated", 1);
             }
             else
             {

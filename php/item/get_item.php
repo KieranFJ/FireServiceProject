@@ -17,8 +17,7 @@ if(isset($input))
                 FROM items
                 WHERE SerialNo = "'.$input['search'].'"
                 OR
-                ItemID = "'.$input['search'].'"
-                AND   retired <> 1;';
+                ItemID = "'.$input['search'].'";';
 
     $results = sqlHandler::getDB()->select($query);
     if(isset($results))
@@ -34,6 +33,50 @@ if(isset($input))
             <input class="required" type="text" name="itemCat" value="<?php echo $itemCatResults[0]['Name']; ?>">
             <label>Serial Number</label>
             <input class="required" type="text" name="serialNumber" value="<?php echo $results[0]['SerialNo']; ?>">
+            <div class="row">
+                <div class="span1">
+                    <label>Flag</label>
+                    <select class="input-mini" name="flag" value="<?php echo $results[0]['Flag']?>">
+                        <?php 
+                        if($results[0]['Flag'] == 'S')
+                        {
+                            echo "<option selected=\"selected\">S</option><option>Q</option><option>C</option>";
+                        }
+                        elseif($results[0]['Flag'] == 'Q')
+                        {
+                            echo "<option>S</option><option selected=\"selected\">Q</option><option>C</option>";
+                        }
+                        elseif($results[0]['Flag'] == 'C')
+                        {
+                            echo "<option>S</option><option>Q</option><option selected=\"selected\">C</option>";
+                        }
+                        ?>
+                    </select>
+                </div>
+                <div class="span1">
+                    <label>Points</label>
+                    <select class="input-mini" name="points" value="<?php echo $results[0]['Points']?>">
+                        <?php
+                        if($results[0]['Points'] == '0')
+                        {
+                            echo "<option selected=\"selected\">0</option><option>5</option><option>10</option><option>15</option>";
+                        }
+                        elseif($results[0]['Points'] == '5')
+                        {
+                            echo "<option>0</option><option selected=\"selected\">5</option><option>10</option><option>15</option>";
+                        }
+                        elseif($results[0]['Points'] == '10')
+                        {
+                            echo "<option>0</option><option>5</option><option selected=\"selected\">10</option><option>15</option>";
+                        }
+                        elseif($results[0]['Points'] == '15')
+                        {
+                            echo "<option>0</option><option>5</option><option>10</option><option selected=\"selected\">15</option>";
+                        }
+                        ?>
+                    </select>
+                </div>
+            </div>
             <label>Conformity Certificate Number</label>
             <input class="required" type="text" name="ccn" value="<?php echo $results[0]['CCN']?>">
             <label>Comments</label>
