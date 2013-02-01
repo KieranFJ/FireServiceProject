@@ -62,7 +62,4 @@ $itemTypeResult = sqlHandler::getDB()->select($query);
             
         </div>
     </div>
-    <div class="form-actions">
-        <button class="btn btn-primary btn-large">Create Bag</button>
-    </div>
 </div>

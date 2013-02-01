@@ -74,6 +74,8 @@ $(function() {
     $('#add').click(function() {  
         
         var bagID = $('select#bag').parent().find('#bagID').val();
+        var levelID = $('select#bag').parent().find('#levelID').val();
+        var bagNumber = $('select#bag').parent().find('#bagNumber').val();
         var serials = new Array();
         
         $('#store option:selected').each(function(i){
@@ -83,7 +85,9 @@ $(function() {
         $.ajax({
            
            data: {  serialArr : serials,
-                    bagID : bagID },
+                    bagID : bagID,
+                    levelID : levelID,
+                    bagNumber : bagNumber},
            type: $('select#bag').parent().attr('method'),
            url: $('select#bag').parent().attr('action'),
            success: function(returnData) {

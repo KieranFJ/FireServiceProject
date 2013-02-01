@@ -6,7 +6,7 @@ $in = $_POST;
 
 
 
-if($in['serialArr'])
+if(array_key_exists('serialArr', $in))
 {
     $input = clean($in['serialArr']);
     
@@ -31,10 +31,10 @@ if($in['serialArr'])
         
         sqlHandler::getDB()->insert($query);
     }
-    alert("Bag updated", 1);
+    alert("Items moved to Store", 1);
 }
 else 
 {
-    alert("Update Failed", 0);
+    alert("Store Update Failed", 0);
 }
 ?>
