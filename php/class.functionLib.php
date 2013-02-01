@@ -60,14 +60,7 @@ function clean($arr)
     return $arr;
 }
 
-//function map_date_format($input)
-//{
-//    $date = new DateTime($input['purchDate']);
-//    $output = $date->format("y/m/d");
-//    
-//    return $input;
-//}
-//
+
 
 
 function safe($var, $type = 'string')

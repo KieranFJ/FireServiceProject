@@ -32,6 +32,19 @@ $(document).ready(function(){
         $('#upFormType').load(action, $('select.getType').parent().serializeArray());
     }
     
+//    $('select.getContents').ready(function() {
+//        var action = $('select.getContents').parent().attr('action');        
+//        fillContents(action)
+//    });
+//
+//    $('select.getContents').change(function() {        
+//        var action = $('select.getContents').parent().attr('action');        
+//        fillContents(action)
+//    });
+//    function fillContents(action)
+//    {        
+//        $('#upFormContents').load(action, $('select.getContents').parent().serializeArray());
+//    }
     //sets up validation for the forms
     $("#form").validate();
     
@@ -72,8 +85,7 @@ $(function() {
 $(function() {  
 
     $('#add').click(function() {  
-        
-        var bagID = $('select#bag').parent().find('#bagID').val();
+
         var serials = new Array();
         
         $('#store option:selected').each(function(i){
@@ -81,9 +93,7 @@ $(function() {
         });
                 
         $.ajax({
-           
-           data: {  serialArr : serials,
-                    bagID : bagID },
+           data: { serialArr : serials},
            type: $('select#bag').parent().attr('method'),
            url: $('select#bag').parent().attr('action'),
            success: function(returnData) {
@@ -101,8 +111,7 @@ $(function() {
         });
 
         $.ajax({
-           data: {  serialArr : serials,
-                    bagID : 0},
+           data: { serialArr : serials},
            type: $('select#store').parent().attr('method'),
            url: $('select#store').parent().attr('action'),
            success: function(returnData) {
@@ -120,6 +129,27 @@ $(document).on("change", "select.getContents", function(){
     
 });
 
+//$(document).on("ready", "select.getContents", function(){
+//    var action = $('select.getContents').parent().attr('action');        
+//    fillContents(action);
+//});
+
+//        $('select.getContents').ready(function() {
+//        var action = $('select.getContents').parent().attr('action');        
+//        fillContents(action)
+//    });
+//    $('select.getContents').change(function() {        
+//        var action = $('select.getContents').parent().attr('action');        
+//        fillContents(action)
+    
+//});
+
+
+
+//function loadBagContents(){
+//    var action = $('select.getContents').parent().attr('action');        
+//    fillContents(action)
+//}
 function fillContents(action)
 {        
     $('#upFormContents').load(action, $('select.getContents').parent().serializeArray());
