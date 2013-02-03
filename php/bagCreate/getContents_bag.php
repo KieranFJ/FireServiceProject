@@ -17,9 +17,11 @@ $levelID = sqlHandler::getDB()->select($query);
 //select all items with that level
 if($bagID)
 {
-    $query = "SELECT SerialNo FROM items 
+    $query = "SELECT SerialNo, itemcategories.Name FROM items 
                 LEFT JOIN bag
                 ON bag.BagID = items.BagID
+                LEFT OUTER JOIN itemcategories
+                ON items.ItemTypeID = itemcategories.ItemTypeID
                 WHERE bag.BagID = '".$bagID[0]['BagID']."';";
     
     $results = sqlHandler::getDB()->select($query);
@@ -66,9 +68,23 @@ if(isset($results))
     
     if(isset($results))
     {
+        sort($results, SORT_REGULAR);
+        $oldName = "";
         foreach($results as $row)
         {
-            echo "<option>".$row['SerialNo']."</option>";
+            $newName = $row['Name'];
+            
+            if($newName != $oldName)
+            {
+                echo "<optgroup label=\"".$row['Name']."\">";
+                echo "<option>".$row['SerialNo']."</option>";   
+                $oldName = $newName;
+            }
+            else
+            {
+                echo "<option>".$row['SerialNo']."</option>";   
+                $oldName = $newName;
+            }
         }
     }
     ?>
@@ -82,3 +98,7 @@ else
 }
 ?>
 </form>
+
+<!--<script type="text/javascript">
+    $(document).ready(function() { $("#bag").select2(); });
+    </script>-->

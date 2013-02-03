@@ -16,7 +16,7 @@ if(isset($results))
 {
 ?>
 <form id="storeBag" action="php/bagCreate/update_store.php" method="post">
-<label style="margin-top: 63px;">Items in Store</label>            
+<label style="margin-top: 83px;">Items in Store</label>            
 <select id="store" class="input-large" multiple="multiple" size="20" >
     <?php
         foreach($results as $row)
@@ -31,7 +31,7 @@ if(isset($results))
 }
 else
 {
-    echo "<label style=\"margin-top: 63px;\">Items in Store</label><select id=\"store\" class=\"input-large\" multiple=\"multiple\" size=\"20\" ></select>";
+    echo "<label style=\"margin-top: 83px;\">Items in Store</label><select id=\"store\" class=\"input-large\" multiple=\"multiple\" size=\"20\" ></select>";
     
 }
 ?>
