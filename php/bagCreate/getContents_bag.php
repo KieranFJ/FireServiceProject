@@ -1,5 +1,6 @@
 <?php 
 require_once($_SERVER['DOCUMENT_ROOT'].'/fire/FireServiceProject/php/class.sqlHandler.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/fire/FireServiceProject/php/class.functionLib.php');
 
 
 $query = "SELECT bag.BagID FROM bag
@@ -68,7 +69,7 @@ if(isset($results))
     
     if(isset($results))
     {
-        sort($results, SORT_REGULAR);
+        aasort($results, "Name");
         $oldName = "";
         foreach($results as $row)
         {
