@@ -50,16 +50,20 @@ $itemTypeResult = sqlHandler::getDB()->select($query);
             <div id="upFormContents">                
             </div>
         </div>
-        <div class="span2" style="margin-top: 220px;">               
-            <button id="add" class="btn btn-inverse btn-large" style="margin-left: 20px;"><i class="icon-arrow-left icon-white"></i></button>
-            <button id="remove" class="btn btn-inverse btn-large"><i class="icon-arrow-right icon-white"></i></button> 
+        <div class="span2" style="margin-top: 180px;">
+            <div id="bagAmount">
+                20/20 Items in Bag
+            </div>
+            <div style="margin-top: 40px">               
+                <button id="add" class="btn btn-inverse btn-large"><i class="icon-arrow-left icon-white"></i></button>
+                <button id="remove" class="btn btn-inverse btn-large"><i class="icon-arrow-right icon-white"></i></button>             
+            </div>
         </div>
         <div class="span3">
             <div id="upFormType">
             </div>
         </div>
-        <div class="message span2">
-            
+        <div class="message span2">            
         </div>
     </div>
 </div>

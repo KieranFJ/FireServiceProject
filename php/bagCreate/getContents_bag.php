@@ -3,7 +3,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/fire/FireServiceProject/php/class.sqlHa
 require_once($_SERVER['DOCUMENT_ROOT'].'/fire/FireServiceProject/php/class.functionLib.php');
 
 
-$query = "SELECT bag.BagID FROM bag
+$query = "SELECT bag.BagID, level.NoItems FROM bag
             LEFT JOIN level
             ON bag.LevelID = level.LevelID
             WHERE level.Level = '".$_POST['level']."'
@@ -99,7 +99,6 @@ else
 }
 ?>
 </form>
-
-<!--<script type="text/javascript">
-    $(document).ready(function() { $("#bag").select2(); });
-    </script>-->
+<script type="text/javascript">
+    $('#bagAmount').text("<?php echo count($results)."/".$bagID[0]['NoItems']?> Items in Bag")
+</script>
