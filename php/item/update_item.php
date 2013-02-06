@@ -29,10 +29,6 @@ else
                 {
                     alert("Duplicate Serial Number already exists. No changes made", 0);                
                 }
-//                if($row['Model'] == $input['model'])
-//                {
-//                    alert("Item ID already exists. No changes made", 0);
-//                }
             }
             
         }

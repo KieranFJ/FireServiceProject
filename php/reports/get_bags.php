@@ -44,6 +44,7 @@ if(isset($results))
 </select>        
 </form>
 </div>
+    <!-- @TODO create the printable version of the bag contents report -->
 <div class="span2 offset6">
             <a class="btn btn-success btn-large" href="php/reports/print_bag_contents.php&BagID=">Print Report <i class="icon-print icon-white"></i></a>
         </div>
