@@ -28,8 +28,8 @@ if(isset($input))
     {        
         ?>
         
-        <div class="span4">
-            <table class="table">
+        <div class="span5">
+            <table class="table table-bordered">
                 <tr>
                     <th>Serial Number</th><th>Item Type</th>
                 </tr>
