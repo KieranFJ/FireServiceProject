@@ -3,33 +3,77 @@
 @include_once 'templates/header_temp.php';
 @include_once 'templates/navigation_temp.php'; 
 
+require_once($_SERVER['DOCUMENT_ROOT'].'/fire/FireServiceProject/php/class.sqlHandler.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/fire/FireServiceProject/php/class.functionLib.php');
+
+$query = "SELECT SerialNo, NextTestDate FROM items 
+            WHERE NextTestDate BETWEEN CURDATE()
+            AND  CURDATE()+30";
+
+$results = sqlHandler::getDB()->select($query);
+
+usort($results, 'date_compare');
 ?>
 
 <div class="container">
-    <div class="span5">
-        <h2>Quick Item Search</h2>
-        
-            <form class=".form-search" action="php/item/search_item.php" method="post" >
-                <input autocomplete="off" class="input-large search-query searchGet" type="text" id="typeahead" data-provide="typeahead" name="search" placeholder="Serial Number or Item Number">
-                <button type="submit" class="btn btn-danger" onclick="fillSearchForm('php/reports/quick_item_search.php')">Search</button>
-            </form>            
-                <div class="row">
-                    <div id="searchUpForm">
-                    </div>       
-                    <div class="message span4"> 
-                    </div>                            
-                </div>
+    <div class="row">
+        <div class="span5">
+            <h3>Quick Item Search</h3>
+                <form class=".form-search" action="php/item/search_item.php" method="post" >
+                    <input autocomplete="off" class="input-large search-query searchGet" type="text" id="typeahead" data-provide="typeahead" name="search" placeholder="Serial Number">
+                    <button type="submit" class="btn btn-danger" onclick="fillSearchForm('php/reports/quick_item_search.php')">Search</button>
+                </form>            
+                    <div class="row">
+                        <div id="searchUpForm">
+                        </div>       
+                        <div class="message span4"> 
+                        </div>                            
+                    </div>
+        </div>
+
+        <div class="span5">
+            <h3>Upcoming Tests (30 Days)</h3>
+            <table class="table table-bordered">
+                <tr>
+                    <th>Serial Number</th><th>Next Test Date</th>
+                </tr>
+                <tr>
+                    <?php 
+                    foreach($results as $row)
+                    {
+                        $date = strtotime($row['NextTestDate']);
+                        
+                        if($date < strtotime('+7days'))
+                        {
+                            echo "<tr class=\"error\"><td>".$row['SerialNo']."</td><td>".$row['NextTestDate']."</td></tr>";
+                        }
+                        elseif($date > strtotime('+7days') && $date < strtotime('+14days'))
+                        {
+                            echo "<tr class=\"warning\"><td>".$row['SerialNo']."</td><td>".$row['NextTestDate']."</td></tr>";
+                        }
+                        elseif($date > strtotime('+14days') && $date < strtotime('+21days'))
+                        {
+                            echo "<tr class=\"info\"><td>".$row['SerialNo']."</td><td>".$row['NextTestDate']."</td></tr>";
+                        }
+                        else
+                        {
+                            echo "<tr><td>".$row['SerialNo']."</td><td>".$row['NextTestDate']."</td></tr>";
+                        }
+                        
+                        //if 7 days red
+                        
+                        //else if 14 days yellow
+                        
+                        //else if 21 green
+                        
+                        //else white
+                    }
+                    ?>
+                    
+                </tr>
+            </table>
+        </div>    
     </div>
-    
-    <div class="span5">
-     <h1>Temp Menu</h1>
-     
-     <a href="level.php"><h4>Add/Update/Remove Bag Level</h4></a>
-     <a href="itemCategories.php"><h4>Item Categories</h4></a>
-     <a href="station.php"><h4>Station</h4></a>
-     <a href="bag.php"><h4>Bag</h4></a> 
-     <a href="item.php"><h4>Item</h4></a>
-    </div>    
 </div> <!-- /container -->
     
 <?php

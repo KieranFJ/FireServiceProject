@@ -31,7 +31,7 @@ $itemTypeResult = sqlHandler::getDB()->select($query);
         </div>
         <div class="span3">
             <h2>Select Item Type</h2>
-            <form action="php/bagCreate/getItems_bag.php" method="post" id="form2">
+            <form action="php/bagCreate/get_Store_Items_bag.php" method="post" id="form2">
                 <select id="target" class="getType" name="itemName">
                     <?php
                     foreach($itemTypeResult as $row)

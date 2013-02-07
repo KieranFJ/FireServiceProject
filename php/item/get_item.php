@@ -15,9 +15,7 @@ if(isset($input))
                 DATE_FORMAT(NextTestDate, \'%d-%m-%Y\') AS NextTestDate,
                 DATE_FORMAT(FirstUseDate, \'%d-%m-%Y\') AS FirstUseDate
                 FROM items
-                WHERE SerialNo = "'.$input['search'].'"
-                OR
-                ItemID = "'.$input['search'].'";';
+                WHERE SerialNo = "'.$input['search'].'";';
 
     $results = sqlHandler::getDB()->select($query);
     if(isset($results))

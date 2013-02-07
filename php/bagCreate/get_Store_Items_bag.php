@@ -8,7 +8,8 @@ $query = "SELECT SerialNo FROM items
             LEFT JOIN itemcategories
             ON items.ItemTypeID = itemcategories.ItemTypeID
             WHERE items.BagID = '0'
-            AND itemcategories.Name = '".$in['itemName']."';";
+            AND itemcategories.Name = '".$in['itemName']."'
+            AND items.Flag = 'S';";
 
 $results = sqlhandler::getDB()->select($query);
 

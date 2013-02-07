@@ -10,11 +10,6 @@ if (isset($input['query']))
     $query = "SELECT SerialNo AS result 
         FROM items 
         WHERE SerialNo 
-        LIKE '%".$input['query']."%'
-        UNION
-        SELECT ItemID AS result
-        FROM items
-        WHERE ItemID
         LIKE '%".$input['query']."%'";
     
     $results = sqlHandler::getDB()->select($query);

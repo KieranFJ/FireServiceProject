@@ -100,5 +100,11 @@ function safe($var, $type = 'string')
     $array=$ret;
 }
 
+function date_compare($a, $b)
+{
+    $t1 = strtotime($a['NextTestDate']);
+    $t2 = strtotime($b['NextTestDate']);
+    return $t1 - $t2;
+}    
 ?>
 
