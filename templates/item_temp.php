@@ -36,7 +36,7 @@ $result = sqlHandler::getDB()->select($query);
             <h2>Add Item</h2>                                               
             <form action="php/item/get_itemCat.php" method="post">
                 <label>Item Type</label>
-                <select id="target" class="get" name="itemName">
+                <select id="target" data-target="upForm" class="get" name="itemName">
                     <?php 
                     foreach($result as $row)
                     {?>

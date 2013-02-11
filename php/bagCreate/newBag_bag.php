@@ -34,7 +34,7 @@ else
 <label>Bag Number</label>
 <form action="php/bagCreate/getContents_bag.php" method="post">
 <input type="hidden" name="level" value="<?php echo $_POST['bagLevel'];?>">
-<select id="target" class="getContents" name="bagNumber">
+<select id="target3"class="getContents" name="bagNumber">
 
 <?php 
 if(isset($results))

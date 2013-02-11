@@ -14,7 +14,7 @@ $result = sqlHandler::getDB()->select($query);
         <div class="span3">
             <form action="php/reports/get_bags.php" method="post" id="form1">
                 <h2>Select Level</h2>
-                <select id="target" class="get" name="bagLevel">
+                <select id="target" data-target="upForm" class="get" name="bagLevel">
                     <?php
                     foreach($result as $row)            
                     {?>

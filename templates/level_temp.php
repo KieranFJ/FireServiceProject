@@ -19,7 +19,7 @@ $result = sqlHandler::getDB()->select($query);
             <form action="php/level/get_level.php" method="post">
                 <h2>Update Level</h2>
                 <label>Select Bag Level</label>
-                <select id="target" class="get" name="levelSelect">
+                <select id="target" data-target="upForm" class="get" name="levelSelect">
                     <?php
                     foreach($result as $row)
                     {?>

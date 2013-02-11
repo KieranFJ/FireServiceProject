@@ -19,7 +19,7 @@ $result = sqlHandler::getDB()->select($query);
             <form action="php/itemCat/get_itemCat.php" method="post">
                 <h2>Update Item Categories</h2>
                 <label>Select Item Type</label>
-                <select id="target" class="get" name="name">
+                <select id="target" data-target="upForm" class="get" name="name">
                     <?php
                         foreach($result as $row)
                         {?>

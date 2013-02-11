@@ -1,7 +1,7 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'].'/fire/FireServiceProject/php/class.sqlHandler.php');
 
-$query = "SELECT Level FROM level;";
+$query = "SELECT Level FROM level LIMIT 1,18446744073709551615;";
 
 $result = sqlHandler::getDB()->select($query);
 
@@ -11,12 +11,12 @@ $itemTypeResult = sqlHandler::getDB()->select($query);
 
 ?>
 <div class="container"> 
-    <h1>Create Bag</h1>
+    <h1>Bag Management</h1>
     <div class="row">        
         <div class="span3">        
             <form action="php/bagCreate/newBag_bag.php" method="post" id="form1">
                 <h2>Select Bag Level</h2>
-                <select id="target" class="get" name="bagLevel">
+                <select id="target" data-target="upForm" class="get" name="bagLevel">
                     <?php
                     foreach($result as $row)            
                     {?>
@@ -32,7 +32,7 @@ $itemTypeResult = sqlHandler::getDB()->select($query);
         <div class="span3">
             <h2>Select Item Type</h2>
             <form action="php/bagCreate/get_Store_Items_bag.php" method="post" id="form2">
-                <select id="target" class="getType" name="itemName">
+                <select id="target2" data-target="upFormType" class="get" name="itemName">
                     <?php
                     foreach($itemTypeResult as $row)
                     {?>

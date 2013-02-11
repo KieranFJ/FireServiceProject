@@ -22,7 +22,7 @@ $result = sqlHandler::getDB()->select($query);
             <form action="php/station/get_station.php" method="post">
                 <h2>Update Stations</h2>
                 <label>Select Item Type</label>
-                <select id="target" class="get" name="contactSelect">
+                <select id="target" data-target="upForm" class="get" name="contactSelect">
                     <?php
                         foreach($result as $row)
                         {?>

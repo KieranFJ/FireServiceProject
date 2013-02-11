@@ -1,37 +1,5 @@
 $(document).ready(function(){
-
-    $('select.get').ready(function() {
-        var action = $('select.get').parent().attr('action');        
-        fillForm(action)
-    });
-    
-    $('select.get').change(function() {
-        var action = $('select.get').parent().attr('action');        
-        fillForm(action)
-    });
-        
-    function fillForm(action)
-    {          
-            $('#upForm').load(action, $('select.get').parent().serializeArray());
-    }
-    
-    $('select.getType').ready(function() {
-        var action = $('select.getType').parent().attr('action');        
-        fillType(action)
-    });
-    
-    $('select.getType').change(function() {
-        
-        var action = $('select.getType').parent().attr('action');        
-        fillType(action)
-    });
-    
-    function fillType(action)
-    {
-        
-        $('#upFormType').load(action, $('select.getType').parent().serializeArray());
-    }
-    
+   
     //sets up validation for the forms
     $("#form").validate();
     
@@ -47,10 +15,14 @@ $(document).ready(function(){
     });
 });
 
-function fillSearchForm(action)
-{          
-    $('#searchUpForm').load(action, $('.searchGet').serializeArray());
-}
+$('select.get').on().change(function() {
+        
+      var action = $(this).parent().attr('action');  
+      var target = $(this).data('target');  
+      $('#'+target).load(action, $(this).parent().serializeArray());      
+
+  }).change();
+
 
 $(function() {
             $("#typeahead").typeahead({

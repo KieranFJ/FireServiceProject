@@ -27,7 +27,6 @@ if(isset($input))
     if(isset($results))
     {        
         ?>
-        
         <div class="span5">
             <table class="table table-bordered">
                 <tr>
