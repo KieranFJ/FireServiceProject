@@ -12,7 +12,9 @@ $query = "SELECT * FROM station WHERE
 $results = sqlHandler::getDB()->select($query);
 
 try {
-    if($input['address'] == "" || $input['contactName'] == "" || $input['contactNo'] == "")
+    if($input['stationName'] == "" || $input['address'] == "" || 
+            $input['contactName'] == "" || $input['mobileNo'] == "" ||
+            $input['stationNo'] == "")
     {
         alert("Blank/Invalid Entry Not Accepted", 0);
     }
@@ -20,6 +22,10 @@ try {
     {
         foreach($results as $row)
         {        
+            if($row['Name'] == $input['stationName'])
+            {
+                alert("Station Name Already Exists", 0);
+            }    
             if($row['Contact'] == $input['contactName'])
             {
                 alert("Contact Already Exists", 0);
@@ -40,8 +46,8 @@ try {
     }
     else 
     {                                        
-        $query = "INSERT INTO station (Contact, StationNo, Address, MobileNo)
-        VALUES ('".$input['contactName']."','".$input['stationNo']."','".$input['address']."', '".$input['mobileNo']."');";
+        $query = "INSERT INTO station (Name, Contact, StationNo, Address, MobileNo)
+        VALUES ('".$input['stationName']."','".$input['contactName']."','".$input['stationNo']."','".$input['address']."', '".$input['mobileNo']."');";
 
         $results = sqlHandler::getDB()->insert($query);
 

@@ -15,8 +15,8 @@
                   <ul class="dropdown-menu" role="menu" aria-labelledby="drop2">
                       <li><a href="bag_contents_report.php">Bag Contents</a></li>                      
                   </ul>                  
-              <li>
-              <a href="bag.php">Bag Management</a></li>
+              <li><a href="bag.php">Bag Management</a></li>
+              <li><a href="bag_station_allocation.php">Allocate Bag</a></li>
               <li class="dropdown">
                   <a id="drop2" role="button "class="dropdown-toggle" data-toggle="dropdown" href="#">Add/Update</a>
                   <ul class="dropdown-menu" role="menu" aria-labelledby="drop2">

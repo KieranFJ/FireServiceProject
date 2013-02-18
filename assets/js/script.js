@@ -1,7 +1,7 @@
 $(document).ready(function(){
    
     //sets up validation for the forms
-    $("#form").validate();
+    $("form").validate();
     
     //actually checks for validity
     $("form").submit(function(e){  
@@ -11,9 +11,16 @@ $(document).ready(function(){
         
         if($("#"+id).valid()){
             $('#'+id).find('div.message').load(action, $('#'+id).serializeArray());
-        }        
+            console.log("valid");
+        }    
+        //.message needs to be inside the form that is being submitted otherwise it wont find it
     });
 });
+
+function fillSearchForm(action)
+{          
+    $('#searchUpForm').load(action, $('.searchGet').serializeArray());
+}
 
 $('select.get').on().change(function() {
         
@@ -21,8 +28,8 @@ $('select.get').on().change(function() {
       var target = $(this).data('target');  
       $('#'+target).load(action, $(this).parent().serializeArray());      
 
-  }).change();
-
+  }).change(); 
+        
 
 $(function() {
             $("#typeahead").typeahead({

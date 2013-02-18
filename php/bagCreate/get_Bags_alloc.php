@@ -10,10 +10,10 @@ $query = "SELECT BagNumber FROM bag
 $results = sqlHandler::getDB()->select($query);
 
 ?>
-<label>Bag Number</label>
-<form action="php/bagCreate/getContents_bag.php" method="post">
+<h3>Select Bag Number</h3>
+<form action="php/bagCreate/getContents_allocbag.php" method="post" id="form4">
 <input type="hidden" name="level" value="<?php echo $_POST['bagLevel'];?>">
-<select id="target3" class="get" name="bagNumber">
+<select id="target3" class="getContents" name="bagNumber">
 
 <?php 
 

@@ -5,7 +5,7 @@
 require_once($_SERVER['DOCUMENT_ROOT'].'/fire/FireServiceProject/php/class.sqlHandler.php');
 
 
-$query = "SELECT Contact FROM station;";
+$query = "SELECT Name FROM station;";
 
 $result = sqlHandler::getDB()->select($query);
 
@@ -21,12 +21,12 @@ $result = sqlHandler::getDB()->select($query);
         <div class="tab-pane active" id="update">
             <form action="php/station/get_station.php" method="post">
                 <h2>Update Stations</h2>
-                <label>Select Item Type</label>
+                <label>Select Station</label>
                 <select id="target" data-target="upForm" class="get" name="contactSelect">
                     <?php
                         foreach($result as $row)
                         {?>
-                            <option><?php echo $row['Contact'] ?></option>
+                            <option><?php echo $row['Name'] ?></option>
                         <?php
                         }
                         ?>
@@ -51,12 +51,14 @@ $result = sqlHandler::getDB()->select($query);
             <h2>Add Station</h2>
             <div class="row">
                 <div class="span4">
+                    <label>Station Name</label>
+                    <input class="required" name="stationName" type="text" placeholder="Station Name"> 
                     <label>Contact Name</label>                
                     <input class="required" name="contactName" type="text" placeholder="Contact Name">   
                     <label>Station Contact Number</label>
                     <input class="required" name="stationNo" type="text" placeholder="Station Contact Number"></input>
                     <label>Mobile Contact Number</label>
-                    <input class="required" name="stationNo" type="text" placeholder="Mobile Contact Number"></input>
+                    <input class="required" name="mobileNo" type="text" placeholder="Mobile Contact Number"></input>
                     <label>Address</label>                
                     <textarea class="required" rows="3" name="address" placeholder="Address"></textarea>
                 </div>

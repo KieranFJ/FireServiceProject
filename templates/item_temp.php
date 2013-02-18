@@ -16,7 +16,7 @@ $result = sqlHandler::getDB()->select($query);
         <div class="tab-pane" id="update">
             <h2>Update Item</h2>
             <h2>Search</h2>
-            <form class=".form-search" action="php/item/search_item.php" method="post" >
+            <form class=".form-search" action="php/item/search_item.php" method="post" id="form3" >
                 <input autocomplete="off" class="input-large search-query searchGet" type="text" id="typeahead" data-provide="typeahead" name="search" placeholder="Serial Number or Item Number">
                 <button type="submit" class="btn btn-danger" onclick="fillSearchForm('php/item/get_item.php')">Search</button>
             </form> 
