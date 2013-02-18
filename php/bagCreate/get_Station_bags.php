@@ -55,6 +55,7 @@ if($results)
 }
 else
 {
+    echo "<input type=\"hidden\" name=\"stationName\" value=\"".$in['stationName']."\">";
     alert("No Bags at this station", 0);
 }
     ?>

@@ -35,7 +35,7 @@ $stationResults = sqlHandler::getDB()->select($query);
         <div class="span3">
             <h3>Select Station</h3>
             <form action="php/bagCreate/get_Station_bags.php" method="post" id="form2">                
-                <select id="target" data-target="upStationBags" class="get" name="stationName">
+                <select id="triggerTarget" data-target="upStationBags" class="get" name="stationName">
                     <?php
                         foreach($stationResults as $row)
                         {?>
