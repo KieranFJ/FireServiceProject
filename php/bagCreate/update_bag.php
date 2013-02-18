@@ -38,8 +38,8 @@ if(array_key_exists('serialArr', $in))
 
         $results = sqlHandler::getDB()->select($query);
 
-        $query = "INSERT INTO itemhistory (ItemID, StationID, BagID, ItemFlag, TestID, Points, IssueBagDate)
-        VALUES ('".$results[0]['ItemID']."', '".$stationID[0]['StationID']."', '".$in['bagID']."', '".$results[0]['Flag']."', '0', '".$results[0]['Points']."', NOW());";
+        $query = "INSERT INTO itemhistory (ItemID, StationID, BagID, ItemFlag, TestID, Points, IssueBagDate, HistoryType)
+        VALUES ('".$results[0]['ItemID']."', '".$stationID[0]['StationID']."', '".$in['bagID']."', '".$results[0]['Flag']."', '0', '".$results[0]['Points']."', NOW(), 'Bag Allocation');";
 
         sqlHandler::getDB()->insert($query);
     }

@@ -69,7 +69,7 @@ if(isset($results))
 {
 ?>
 
-<select id="bag" class="input-large" multiple="multiple" size="20">
+<select id="bag" class="input-large uneditable-input" multiple="multiple" size="20">
     <?php
     
     if(isset($results))

@@ -115,9 +115,9 @@ else
             
             $results = sqlHandler::getDB()->select($query);
             
-            $query = "INSERT INTO itemhistory (ItemID, StationID, BagID, ItemFlag, TestID, Points, IssueBagDate)
+            $query = "INSERT INTO itemhistory (ItemID, StationID, BagID, ItemFlag, TestID, Points, IssueBagDate, HistoryType)
                 VALUES ('".$input['itemID']."', '".$results[0]['StationID']."', 
-                    '".$results[0]['StationID']."', '".$input['flag']."', 0, '".$input['points']."', '".$results[0]['IssueDate']."');";
+                    '".$results[0]['StationID']."', '".$input['flag']."', 0, '".$input['points']."', '".$results[0]['IssueDate']."', 'Item Updated');";
             
             sqlHandler::getDB()->insert($query);
             

@@ -23,7 +23,7 @@ if($results)
     ?>
     <input type="hidden" name="stationName" value="<?php echo $in['stationName'] ?>">
     <label>Bags at Station</label>
-    <select class="input-large" multiple="multiple" size="20"><?php
+    <select class="input-large uneditable-input" multiple="multiple" size="20"><?php
     
     
     if(isset($results))

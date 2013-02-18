@@ -23,14 +23,15 @@ $items = sqlHandler::getDB()->select($query);
 
 foreach($items as $row)
 {
-    $query = "INSERT INTO itemhistory (ItemID, StationID, BagID, ItemFlag, TestID, Points, IssueBagDate)
+    $query = "INSERT INTO itemhistory (ItemID, StationID, BagID, ItemFlag, TestID, Points, IssueBagDate, HistoryType)
                 VALUES ('".$row['ItemID']."', 
                         (SELECT StationID FROM station WHERE Name = '".$input['stationName']."'),
                         '".$input['bagID']."',
                         '".$row['Flag']."',
                         0,
                         '".$row['Points']."',
-                        NOW())";
+                        NOW(),
+                        'Station Changed')";
     
     $items = sqlHandler::getDB()->insert($query);
 }

@@ -64,8 +64,8 @@
             sqlHandler::getDB()->insert($query);
 
             
-            $query = "INSERT INTO itemhistory (ItemID, StationID, BagID, ItemFlag, TestID, Points, IssueBagDate)
-                        VALUES(LAST_INSERT_ID(), 0, 0, '".$inputs['flag']."', 0, '".$inputs['points']."', NOW());";
+            $query = "INSERT INTO itemhistory (ItemID, StationID, BagID, ItemFlag, TestID, Points, IssueBagDate, HistoryType)
+                        VALUES(LAST_INSERT_ID(), 0, 0, '".$inputs['flag']."', 0, '".$inputs['points']."', NOW(), 'Item Added');";
             
             sqlHandler::getDB()->insert($query);
 
