@@ -10,7 +10,7 @@ if (isset($input['query']))
     $query = "SELECT SerialNo AS result 
         FROM items 
         WHERE SerialNo 
-        LIKE '%".$input['query']."%'";
+        LIKE '%".$input['query']."%' LIMIT 10";
     
     $results = sqlHandler::getDB()->select($query);
     

@@ -7,7 +7,7 @@ $in = $_POST;
 $input = clean($in);
 
 try {
-    if($input['address'] == "" || $input['contactName'] == "" || $input['stationNo'] == "")
+    if($input['stationNumber'] == "" || $input['address'] == "" || $input['contactName'] == "" || $input['stationNo'] == "")
     {
         alert("Blank/Invalid Entry - No Changes", 0);
     }
@@ -15,6 +15,7 @@ try {
     {
         $query = "SELECT * FROM station WHERE
                     Contact = '".$input['contactName']."'
+                OR  StationNumber = '".$input['stationNumber']."'                
                 OR  Address = '".$input['address']."'
                 OR  StationNo = '".$input['stationNo']."'
                 OR  Name = '".$input['stationName']."'
@@ -29,6 +30,10 @@ try {
             {
                 if($row['StationID'] != $input['stationID'])
                 {
+                    if($row['StationNumber'] == $input['stationNumber'])
+                    {
+                        alert("Station Number Already Exists", 0);
+                    }
                     if($row['Contact'] == $input['contactName'])
                     {
                         alert("Contact Name Already Exists", 0);
@@ -55,6 +60,8 @@ try {
         else
         {
             $query = "UPDATE station SET 
+                    StationNumber = '".$input['stationNumber']."',
+                    StationLevel = '".$input['stationLevel']."',
                     Name = '".$input['stationName']."',
                     Contact = '".$input['contactName']."',
                     StationNo = '".$input['stationNo']."',

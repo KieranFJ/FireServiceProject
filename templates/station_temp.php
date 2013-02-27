@@ -34,7 +34,7 @@ $result = sqlHandler::getDB()->select($query);
             </form>
             <form class="validate" action="php/station/update_station.php" method="post" id="form1">                
             <div class="row">
-                <div id="upForm" class="span4">
+                <div id="upForm">
                 </div>  
                 <div class="span2">
                     <div class="message">
@@ -51,16 +51,22 @@ $result = sqlHandler::getDB()->select($query);
             <h2>Add Station</h2>
             <div class="row">
                 <div class="span4">
+                    <label>Station Number</label>
+                    <input class="required" name="stationNumber" type="text" placeholder="Station Number">   
                     <label>Station Name</label>
                     <input class="required" name="stationName" type="text" placeholder="Station Name"> 
+                    <label>Station Level</label>
+                    <input class="required" name="stationLevel" type="text" placeholder="Station Level">                     
+                    <label>Address</label>                
+                    <textarea class="required" rows="3" name="address" placeholder="Address"></textarea>
+                </div>
+                <div class="span4">
                     <label>Contact Name</label>                
                     <input class="required" name="contactName" type="text" placeholder="Contact Name">   
                     <label>Station Contact Number</label>
                     <input class="required" name="stationNo" type="text" placeholder="Station Contact Number"></input>
                     <label>Mobile Contact Number</label>
-                    <input class="required" name="mobileNo" type="text" placeholder="Mobile Contact Number"></input>
-                    <label>Address</label>                
-                    <textarea class="required" rows="3" name="address" placeholder="Address"></textarea>
+                    <input class="required" name="mobileNo" type="text" placeholder="Mobile Contact Number"></input>                    
                 </div>
                 <div class="span2">
                     <div class="message">

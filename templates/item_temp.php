@@ -18,7 +18,7 @@ $result = sqlHandler::getDB()->select($query);
             <h2>Search</h2>
             <form class=".form-search" action="php/item/search_item.php" method="post" id="form3" >
                 <input autocomplete="off" class="input-large search-query searchGet" type="text" id="typeahead" data-provide="typeahead" name="search" placeholder="Serial Number or Item Number">
-                <button type="submit" class="btn btn-danger" onclick="fillSearchForm('php/item/get_item.php')">Search</button>
+                <button id="type-submit" type="submit" class="btn btn-danger" onclick="fillSearchForm('php/item/get_item.php')">Search</button>
             </form> 
             <form class="validate" action="php/item/update_item.php" method="post" id="form1">
                 <div class="row">

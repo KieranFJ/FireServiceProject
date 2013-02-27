@@ -21,7 +21,11 @@ try {
     elseif($results)
     {
         foreach($results as $row)
-        {        
+        {     
+            if($row['StationNumber'] == $input['stationNumber'])
+            {
+                alert("Station Name Already Exists", 0);
+            }    
             if($row['Name'] == $input['stationName'])
             {
                 alert("Station Name Already Exists", 0);
@@ -46,8 +50,10 @@ try {
     }
     else 
     {                                        
-        $query = "INSERT INTO station (Name, Contact, StationNo, Address, MobileNo)
-        VALUES ('".$input['stationName']."','".$input['contactName']."','".$input['stationNo']."','".$input['address']."', '".$input['mobileNo']."');";
+        $query = "INSERT INTO station (Name, Contact, StationNo, Address, MobileNo, StationNumber, StationLevel)
+        VALUES ('".$input['stationName']."','".$input['contactName']."',
+                '".$input['stationNo']."','".$input['address']."', 
+                '".$input['mobileNo']."','".$input['stationNumber']."','".$input['stationLevel']."');";
 
         $results = sqlHandler::getDB()->insert($query);
 

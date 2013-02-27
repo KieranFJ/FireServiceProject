@@ -16,18 +16,24 @@ $result = sqlHandler::getDB()->select($query);
 
 
 ?>
-
-<label>Station Name</label>
-<input type="text" class="required" minlength="1" name="stationName" value="<?php echo $result[0]['Name']; ?>"></input>
-<label>Contact Name</label>
-<input type="text" class="required" minlength="1" name="contactName" value="<?php echo $result[0]['Contact']; ?>"></input>
-<label>Station Contact Number</label>
-<input type="text" class="required" minlength="1" name="stationNo" value="<?php echo $result[0]['StationNo']; ?>"></input>
-<label>Mobile Contact Number</label>
-<input type="text" class="required" minlength="1" name="mobileNo" value="<?php echo $result[0]['MobileNo']; ?>"></input>
-<label>Address</label>
-<textarea rows="4" name="address" class="required"><?php echo $result[0]['Address']; ?></textarea><label></label>
+<div class="span4">
+    <label>Station Number</label>
+    <input class="required" name="stationNumber" type="text" value="<?php echo $result[0]['StationNumber']; ?>">                      
+    <label>Station Name</label>
+    <input type="text" class="required" minlength="1" name="stationName" value="<?php echo $result[0]['Name']; ?>"></input>
+    <label>Station Level</label>
+    <input class="required" name="stationLevel" type="text" value="<?php echo $result[0]['StationLevel']; ?>">                                   
+    <label>Address</label>
+<textarea rows="4" name="address" class="required"><?php echo $result[0]['Address']; ?></textarea>  
+</div>
+<div class="span4">
+    <label>Contact Name</label>
+    <input type="text" class="required" minlength="1" name="contactName" value="<?php echo $result[0]['Contact']; ?>"></input>
+    <label>Station Contact Number</label>
+    <input type="text" class="required" minlength="1" name="stationNo" value="<?php echo $result[0]['StationNo']; ?>"></input>
+    <label>Mobile Contact Number</label>
+    <input type="text" class="required" minlength="1" name="mobileNo" value="<?php echo $result[0]['MobileNo']; ?>"></input>
+</div>
 <input type="hidden" name="stationID" value="<?php echo $result[0]['StationID']; ?>">
 
-</div>
 

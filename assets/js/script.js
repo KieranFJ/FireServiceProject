@@ -10,8 +10,7 @@ $(document).ready(function(){
             action=$(this).attr('action');
         
         if($("#"+id).valid()){
-            $('#'+id).find('div.message').load(action, $('#'+id).serializeArray());
-            console.log("valid");
+            $('#'+id).find('div.message').load(action, $('#'+id).serializeArray());            
         }    
         //.message needs to be inside the form that is being submitted otherwise it wont find it
     });
@@ -44,9 +43,13 @@ $(function() {
                             process(data);
                         }
                     });
-                }
+                }                
             });
         });
+
+//$('#typeahead').change(function() {    
+//    $('#type-submit').click();
+//});
 
 $(function() {  
 

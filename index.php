@@ -7,8 +7,8 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/fire/FireServiceProject/php/class.sqlHa
 require_once($_SERVER['DOCUMENT_ROOT'].'/fire/FireServiceProject/php/class.functionLib.php');
 
 $query = "SELECT SerialNo, NextTestDate FROM items 
-            WHERE NextTestDate BETWEEN CURDATE()-120
-            AND CURDATE()+30";
+            WHERE NextTestDate BETWEEN (DATE_SUB(CURDATE(), INTERVAL 2 MONTH))
+            AND (DATE_ADD(CURDATE(), INTERVAL 1 MONTH))";
 
 $results = sqlHandler::getDB()->select($query);
 
@@ -19,16 +19,16 @@ usort($results, 'date_compare');
     <div class="row">
         <div class="span5">
             <h3>Quick Item Search</h3>
-                <form class=".form-search" action="php/item/search_item.php" method="post" id="form1">
-                    <input autocomplete="off" class="input-large search-query searchGet" type="text" id="typeahead" data-provide="typeahead" name="search" placeholder="Serial Number">
-                    <button type="submit" class="btn btn-danger" onclick="fillSearchForm('php/reports/quick_item_search.php')">Search</button>
-                </form>            
-                    <div class="row">
-                        <div id="searchUpForm">
-                        </div>       
-                        <div class="message span4"> 
-                        </div>                            
-                    </div>
+            <form class=".form-search" action="php/item/search_item.php" method="post" id="form-typeahead">
+                <input autocomplete="off" class="input-large search-query searchGet" type="text" id="typeahead" data-provide="typeahead" name="search" placeholder="Serial Number">
+                <button id="type-submit" type="submit" class="btn btn-danger" onclick="fillSearchForm('php/reports/quick_item_search.php')">Search</button>
+            </form>            
+            <div class="row">
+                <div id="searchUpForm">
+                </div>       
+                <div class="message span4"> 
+                </div>                            
+            </div>
         </div>
 
         <div class="span5">
