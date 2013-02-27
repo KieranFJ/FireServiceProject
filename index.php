@@ -1,4 +1,10 @@
 <?php
+session_start();
+
+if (isset($_SESSION['username']))
+{
+     header("Location: front.php");
+}
 
 @include_once 'templates/header_temp.php';
 @include_once 'templates/navigation_temp.php'; 
@@ -6,75 +12,34 @@
 require_once($_SERVER['DOCUMENT_ROOT'].'/fire/FireServiceProject/php/class.sqlHandler.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/fire/FireServiceProject/php/class.functionLib.php');
 
-$query = "SELECT SerialNo, NextTestDate FROM items 
-            WHERE NextTestDate BETWEEN (DATE_SUB(CURDATE(), INTERVAL 2 MONTH))
-            AND (DATE_ADD(CURDATE(), INTERVAL 1 MONTH))";
-
-$results = sqlHandler::getDB()->select($query);
-
-usort($results, 'date_compare');
 ?>
-
 <div class="container">
+    <h2>Inventory System Login</h2>
     <div class="row">
-        <div class="span5">
-            <h3>Quick Item Search</h3>
-            <form class=".form-search" action="php/item/search_item.php" method="post" id="form-typeahead">
-                <input autocomplete="off" class="input-large search-query searchGet" type="text" id="typeahead" data-provide="typeahead" name="search" placeholder="Serial Number">
-                <button id="type-submit" type="submit" class="btn btn-danger" onclick="fillSearchForm('php/reports/quick_item_search.php')">Search</button>
-            </form>            
-            <div class="row">
-                <div id="searchUpForm">
-                </div>       
-                <div class="message span4"> 
-                </div>                            
+        <form class="form-horizontal" action="php/login.php" method="post" id="form1">
+            <div class="span6">            
+                <div class="control-group">
+                    <label class="control-label" for="Username">Username</label>
+                    <div class="controls">
+                        <input class="required" type="text" name="username" placeholder="Username">
+                    </div>
+                </div> 
+                <div class="control-group">
+                    <label class="control-label" for="Password">Password</label>
+                    <div class="controls">
+                        <input class="required" type="text" name="password" placeholder="Password">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="controls">
+                    <button type="submit" class="btn btn-primary">Sign In</button>
+                    </div>
+                </div>  
             </div>
-        </div>
-
-        <div class="span5">
-            <h3>Upcoming Tests (30 Days)</h3>
-            <table class="table table-bordered">
-                <tr>
-                    <th>Serial Number</th><th>Next Test Date</th>
-                </tr>
-                <tr>
-                    <?php 
-                    foreach($results as $row)
-                    {
-                        $date = strtotime($row['NextTestDate']);
-                        
-                        if($date < strtotime('+7days'))
-                        {
-                            echo "<tr class=\"error\"><td>".$row['SerialNo']."</td><td>".$row['NextTestDate']."</td></tr>";
-                        }
-                        elseif($date > strtotime('+7days') && $date < strtotime('+14days'))
-                        {
-                            echo "<tr class=\"warning\"><td>".$row['SerialNo']."</td><td>".$row['NextTestDate']."</td></tr>";
-                        }
-                        elseif($date > strtotime('+14days') && $date < strtotime('+21days'))
-                        {
-                            echo "<tr class=\"info\"><td>".$row['SerialNo']."</td><td>".$row['NextTestDate']."</td></tr>";
-                        }
-                        else
-                        {
-                            echo "<tr><td>".$row['SerialNo']."</td><td>".$row['NextTestDate']."</td></tr>";
-                        }
-                        
-                        //if 7 days red
-                        
-                        //else if 14 days yellow
-                        
-                        //else if 21 green
-                        
-                        //else white
-                    }
-                    ?>
-                    
-                </tr>
-            </table>
-        </div>    
+        <div class="message"></div>
+        </form>
     </div>
-</div> <!-- /container -->
+</div>
     
 <?php
 

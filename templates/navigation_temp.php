@@ -6,10 +6,10 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="index.php">Inventory System</a>
+          <a class="brand" href="front.php">Inventory System</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li class="active"><a href="index.php">Main Page</a></li>
+              <li class="active"><a href="front.php">Main Page</a></li>
               <li class="dropdown">
                   <a id="drop2" role="button "class="dropdown-toggle" data-toggle="dropdown" href="#">Reports</a>
                   <ul class="dropdown-menu" role="menu" aria-labelledby="drop2">
@@ -26,6 +26,7 @@
                       <li><a href="station.php">Station</a></li>
                   </ul>                  
               </li>
+              <li><a href="php/logout.php">Logout</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>

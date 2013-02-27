@@ -72,7 +72,7 @@ $stations = sqlHandler::getDB()->select($query);
         <textarea class="required" type="text" name="comments" rows="3" placeholder="Testing Comment"></textarea>
     </div>
     <div class="span3">
-        <label>Station</label>
+        <label>Station of Origin</label>
         <select class="" name="station">
             <?php 
                 foreach($stations as $row)
