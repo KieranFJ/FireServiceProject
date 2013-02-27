@@ -4,19 +4,20 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/fire/FireServiceProject/php/class.funct
 
 $in = $_POST;
 
-$query = "SELECT * FROM items WHERE SerialNo = '".$in['search']."';";
 
-$result = sqlHandler::getDB()->select($query);
+if(isset($in))
+{
+    $query = "SELECT * FROM items WHERE SerialNo = '".$in['search']."';";
 
-$query = "SELECT Name FROM station;";
+    $result = sqlHandler::getDB()->select($query);
 
-$stations = sqlHandler::getDB()->select($query);
+    $query = "SELECT Name FROM station;";
 
-?>
-
-<form action="php/testing/submit_test.php" method="post" id="form1">
-<div class="row">
-    <div class="span3">    
+    $stations = sqlHandler::getDB()->select($query);
+    
+    if(isset($result))
+    {?>     
+    <div class="span4">    
         <input type="hidden" name="itemID" value="<?php echo $result[0]['ItemID'] ?>">
         <label>Name of Tester</label>
         <input class="required" type="text" name="tester" placeholder="Name of Tester">
@@ -71,7 +72,7 @@ $stations = sqlHandler::getDB()->select($query);
         <label>Testing Comment</label>
         <textarea class="required" type="text" name="comments" rows="3" placeholder="Testing Comment"></textarea>
     </div>
-    <div class="span3">
+    <div class="span4">
         <label>Station of Origin</label>
         <select class="" name="station">
             <?php 
@@ -81,6 +82,27 @@ $stations = sqlHandler::getDB()->select($query);
                 }
             ?>
         </select>
+        <label>Originator</label>
+        <input class="required" type="text" name="originator" placeholder="Person who requested Test">
+        <label>Next Test Date</label>
+        <input class="datepicker required" id="dp1" type="text" name="nextTestDate" placeholder="Date of Next Test">                
     </div>
-</div>
-</form>
+        
+    <script type="text/javascript">
+        $('.datepicker').datepicker({
+            format: 'dd-mm-yyyy',
+            todayHighlight: 'true',
+            todayBtn: 'linked',
+            forceParse: 'true'
+        });
+    </script>  
+    <?php
+        
+    }
+    else
+    {
+        alert('Invalid Search', 0);
+    }
+}
+?>
+

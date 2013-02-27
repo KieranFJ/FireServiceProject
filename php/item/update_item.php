@@ -106,7 +106,6 @@ else
                         Points = '".$input['points']."'
                     WHERE
                      ItemID = '".$input['itemID']."';";
-//WHERE SerialNo = '".$input['serialNumber']."'
             sqlHandler::getDB()->update($query);
             
             $query = "SELECT bag.StationID, items.BagID, items.IssueDate FROM items                

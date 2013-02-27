@@ -26,6 +26,7 @@
                       <li><a href="station.php">Station</a></li>
                   </ul>                  
               </li>
+              <li><a href="test.php">Item Testing</a></li>
               <li><a href="php/logout.php">Logout</a></li>
             </ul>
           </div><!--/.nav-collapse -->

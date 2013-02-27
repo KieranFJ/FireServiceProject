@@ -15,6 +15,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/fire/FireServiceProject/php/class.funct
 ?>
 <div class="container">
     <h2>Inventory System Login</h2>
+    <h3>Temp Username: fire Password: pass</h3>
     <div class="row">
         <form class="form-horizontal" action="php/login.php" method="post" id="form1">
             <div class="span6">            
