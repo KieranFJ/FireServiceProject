@@ -25,7 +25,7 @@ usort($results, 'date_compare');
     <div class="row">
         <div class="span5">
             <h3>Quick Item Search</h3>
-            <form class=".form-search" action="php/item/search_item.php" method="post" id="form-typeahead">
+            <form class=".form-search" method="post" id="form-typeahead">
                 <input autocomplete="off" class="input-large search-query searchGet" type="text" id="typeahead" data-provide="typeahead" name="search" placeholder="Serial Number">
                 <button id="type-submit" type="submit" class="btn btn-danger" onclick="fillSearchForm('php/reports/quick_item_search.php')">Search</button>
             </form>            

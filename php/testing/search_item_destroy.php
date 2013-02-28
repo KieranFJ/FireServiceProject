@@ -19,8 +19,8 @@ if(isset($in))
     {?>     
     <div class="span3">    
         <input type="hidden" name="itemID" value="<?php echo $result[0]['ItemID'] ?>">
-        <label>Name of Tester</label>
-        <input class="required" type="text" name="tester" placeholder="Name of Tester">
+        <label>Name of Destroyer</label>
+        <input class="required" type="text" name="destroyer" placeholder="Name of Destroyer">
         <div class="row">
             <div class="span1">
                 <label>Flag</label>
@@ -40,37 +40,14 @@ if(isset($in))
                     }
                     ?>
                 </select>
-            </div>
-            <div class="span1">
-                <label>Points</label>
-                <select class="input-mini" name="points" value="<?php echo $result[0]['Points']?>">
-                    <?php
-                    if($result[0]['Points'] == '0')
-                    {
-                        echo "<option selected=\"selected\">0</option><option>5</option><option>10</option><option>15</option>";
-                    }
-                    elseif($result[0]['Points'] == '5')
-                    {
-                        echo "<option>0</option><option selected=\"selected\">5</option><option>10</option><option>15</option>";
-                    }
-                    elseif($result[0]['Points'] == '10')
-                    {
-                        echo "<option>0</option><option>5</option><option selected=\"selected\">10</option><option>15</option>";
-                    }
-                    elseif($result[0]['Points'] == '15')
-                    {
-                        echo "<option>0</option><option>5</option><option>10</option><option selected=\"selected\">15</option>";
-                    }
-                    ?>
-                </select>
-            </div>
+            </div>            
         </div>
-        <label>Test Type</label>
-        <select class="" name="testType">
-            <option>Checkup</option><option>Wear and Tear</option><option>Damages</option><option>Other</option>
+        <label>Destruction Type</label>
+        <select name="destructType">
+            <option>End of Life</option><option>Damage</option><option>Loss</option><option>Other</option>
         </select>
-        <label>Testing Comment</label>
-        <textarea class="required" type="text" name="comments" rows="3" placeholder="Testing Comment"></textarea>
+        <label>Reason for Destruction</label>
+        <textarea class="required" type="text" name="comments" rows="3" placeholder="Destruction Comment"></textarea>
     </div>
     <div class="span3">
         <label>Station of Origin</label>
@@ -83,9 +60,9 @@ if(isset($in))
             ?>
         </select>
         <label>Originator</label>
-        <input class="required" type="text" name="originator" placeholder="Person who requested Test">
-        <label>Next Test Date</label>
-        <input class="datepicker required" id="dp1" type="text" name="nextTestDate" placeholder="Date of Next Test">                
+        <input class="required" type="text" name="originator" placeholder="Person who Requested Destruction">
+        <label>Destruction Date</label>
+        <input class="datepicker required" id="dp1" type="text" name="destructionDate" value="<?php print(Date("d-m-Y"));?>">                
     </div>
         
     <script type="text/javascript">
@@ -96,6 +73,23 @@ if(isset($in))
             forceParse: 'true'
         });
     </script>  
+    <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h3 id="myModalLabel">Are You Sure?</h3>
+        </div>
+        <div class="modal-body">
+          <p>Destruction of this item will disallow any future updates or reversals to this item</p>
+          <h4>Item Details</h4>
+          item type
+          item serial
+
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-success" data-dismiss="modal" aria-hidden="true">Go Back</button>
+          <button class="btn btn-danger">Destroy Item</button>
+        </div>
+    </div>
     <?php
         
     }

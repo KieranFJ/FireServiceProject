@@ -8,7 +8,7 @@ $query = 'SELECT * FROM itemcategories
 $results = sqlHandler::getDB()->select($query);
 ?>
 
-<div class="span4">
+<div class="span3">
     <input type="hidden" name="itemTypeID" value="<?php echo $results[0]['ItemTypeID']; ?>">
     <label>Serial Number</label>
     <input class="required" type="text" name="serialNumber" placeholder="Item Serial Number">
@@ -32,7 +32,7 @@ $results = sqlHandler::getDB()->select($query);
     <label>Comments</label>
     <textarea class="" rows="3" type="text" name="comments" placeholder="Comments"></textarea>
 </div>
-<div class="span4">
+<div class="span3">
     <label>First Use Date</label>
     <input class="datepicker required" id="dp1" type="text" name="firstUseDate" placeholder="Date of First Use">
     <label>Purchase Date</label>

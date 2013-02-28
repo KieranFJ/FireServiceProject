@@ -45,7 +45,7 @@ $result = sqlHandler::getDB()->select($query);
             <form class="validate" action="php/level/add_level.php" id="form2">
             <h2>New Level</h2> 
             <div class="row">                         
-                <div class="span4">                          
+                <div class="span3">                          
                 <label>Level</label>
                 <input class="required" maxlength="10" minlength="1" type="text" name="level" placeholder="Level">
                 <label>Number of Items</label>

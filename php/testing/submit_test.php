@@ -65,6 +65,8 @@ if($input)
                 sqlHandler::getDB()->update($query);
                 
                 alert('Test Entry created', 1);
+                
+                //@TODO history update when an item is removed from bag when flag is changed (Entry reason - flag change)
                 if($itemRes[0]['Flag'] != $input['flag'] || $itemRes[0]['Points'] != $input['points'] )
                 {
                     if( $input['flag'] == 'S')
@@ -73,12 +75,16 @@ if($input)
                                 Flag = '".$input['flag']."', 
                                 Points = '".$input['points']."'
                                 WHERE ItemID = '".$input['itemID']."';";
-
+                        
+                        sqlHandler::getDB()->update($query);     
+                        
                         alert('Flag \''.$itemRes[0]['Flag'].'\' to \''.$input['flag'].'\'</br>
                             Points \''.$itemRes[0]['Points'].'\' to \''.$input['points'].'\'</br>
                             Item servicable, not removed from Bag.</br> Bag Level: '
                             .$itemRes[0]['Level'].' </br>Bag Number: '
                             .$itemRes[0]['BagNumber'], 1);
+                        
+                        
                     }
                     else
                     {
@@ -87,14 +93,41 @@ if($input)
                                 Flag = '".$input['flag']."', 
                                 Points = '".$input['points']."'
                                 WHERE ItemID = '".$input['itemID']."';";
-
+                         
+                         sqlHandler::getDB()->update($query);
+                         
+                         //bag change
+                         $query = "INSERT INTO itemhistory (ItemID, StationID, BagID, ItemFlag, TestID, Points, IssueBagDate, HistoryType)
+                                    VALUES ('".$input['itemID']."',
+                                    (SELECT StationID FROM station WHERE Name = '".$input['station']."'),
+                                    (SELECT BagID FROM items WHERE ItemID = '".$input['itemID']."'),
+                                    '".$input['flag']."',
+                                    '".$sqlRes."',
+                                    '".$input['points']."',
+                                    NOW(),
+                                    'Test Bag Change');";
+                         sqlHandler::getDB()->insert($query);
+                         
+                         
+                         
                          alert('Flag \''.$itemRes[0]['Flag'].'\' to \''.$input['flag'].'\'</br>
                              Points \''.$itemRes[0]['Points'].'\' to \''.$input['points'].'\'</br>
                             Item removed from Bag.</br> Bag Level: '
                             .$itemRes[0]['Level'].' </br>Bag Number: '
-                            .$itemRes[0]['BagNumber'], 1);
+                            .$itemRes[0]['BagNumber'], 1); 
                     }              
-                    sqlHandler::getDB()->select($query);   
+                    // flag change
+                    $query = "INSERT INTO itemhistory (ItemID, StationID, BagID, ItemFlag, TestID, Points, IssueBagDate, HistoryType)
+                               VALUES ('".$input['itemID']."',
+                               (SELECT StationID FROM station WHERE Name = '".$input['station']."'),
+                               (SELECT BagID FROM items WHERE ItemID = '".$input['itemID']."'),
+                               '".$input['flag']."',
+                               '".$sqlRes."',
+                               '".$input['points']."',
+                               NOW(),
+                               'Flag Change');";
+                    
+                    sqlHandler::getDB()->insert($query);  
                 }            
             }   
         }

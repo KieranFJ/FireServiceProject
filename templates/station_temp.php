@@ -50,7 +50,7 @@ $result = sqlHandler::getDB()->select($query);
             <form class="validate" action="php/station/add_station.php" method="post" id="form2">                              
             <h2>Add Station</h2>
             <div class="row">
-                <div class="span4">
+                <div class="span3">
                     <label>Station Number</label>
                     <input class="required" name="stationNumber" type="text" placeholder="Station Number">   
                     <label>Station Name</label>
@@ -60,7 +60,7 @@ $result = sqlHandler::getDB()->select($query);
                     <label>Address</label>                
                     <textarea class="required" rows="3" name="address" placeholder="Address"></textarea>
                 </div>
-                <div class="span4">
+                <div class="span3">
                     <label>Contact Name</label>                
                     <input class="required" name="contactName" type="text" placeholder="Contact Name">   
                     <label>Station Contact Number</label>

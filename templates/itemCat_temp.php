@@ -31,7 +31,7 @@ $result = sqlHandler::getDB()->select($query);
             </form>
             <form class="validate" action="php/itemCat/update_itemCat.php" method="post" id="form1">
                 <div class="row">
-                    <div id="upForm" class="span4">
+                    <div id="upForm">
                     </div>
                     <div class="message span2">
                     </div>
@@ -45,20 +45,22 @@ $result = sqlHandler::getDB()->select($query);
             <form class="validate" action="php/itemCat/add_itemCat.php" method="post" id="form2">
                 <h2>Add Category</h2>
                 <div class="row">
-                    <div class="span4">
+                    <div class="span3">
                         <label>Name</label>                
                         <input class="required" name="name" type="text" placeholder="Name of Item">              
                         <label>Description</label>
                         <textarea class="required" rows="3" name="description" placeholder="Description of Item"></textarea>
                         <label>Make/Model</label>
                         <input class="required" type="text" name="model" placeholder="Make/Model"></input>
+                        
+                    </div>
+                    <div class="span3">
                         <label>Manufacturer</label>
                         <input class="required" name="manufacturer" type="text" placeholder="Manufacturer"></input>
                         <label>Contact Number</label>
                         <input class="required" name="contactNo" type="text" placeholder="Contact Number"></input>
                         <label>Address</label>                
-                        <textarea class="required" rows="3" name="address" placeholder="Address"></textarea>
-                    </div>
+                        <textarea class="required" rows="3" name="address" placeholder="Address"></textarea></div>
                     <div class="span2 message">
                     </div>
                 </div>

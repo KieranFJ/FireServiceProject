@@ -25,7 +25,7 @@ if(isset($input))
 
         $itemCatResults = sqlHandler::getDB()->select($query);
         ?>
-        <div class="span4">
+        <div class="span3">
             <input type="hidden" name="itemID" value="<?php echo $results[0]['ItemID']; ?>">
             <label>Item Type</label>
             <input class="required" type="text" name="itemCat" value="<?php echo $itemCatResults[0]['Name']; ?>">
@@ -80,7 +80,7 @@ if(isset($input))
             <label>Comments</label>
             <textarea class="" rows="3" type="text" name="comments"><?php echo $results[0]['Comments']; ?></textarea>           
         </div>
-        <div class="span4">
+        <div class="span3">
             <label>First Use Date</label>
             <input class="datepicker required" id="dp4" type="text" name="firstUseDate" value="<?php echo $results[0]['FirstUseDate']; ?>">   
             <label>Purchase Date</label>
