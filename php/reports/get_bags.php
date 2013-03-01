@@ -46,9 +46,33 @@ if(isset($results))
 </div>
     <!-- @TODO create the printable version of the bag contents report -->
 <div class="span2 offset6">
-            <a class="btn btn-success btn-large" href="php/reports/print_bag_contents.php&BagID=">Print Report <i class="icon-print icon-white"></i></a>
+    <form class="validate" action="php/print/print_bag_contents_report.php" method="get">
+        <input id="bagid" type="hidden" name="BagID" value="">
+        <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h3 id="myModalLabel">Are You Sure?</h3>
+            </div>
+            <div class="modal-body">
+                <label>Vehicle Fleet</label>
+                <input class="required" type="text" name="vehicleFleet" placeholder="Vehicle Fleet">
+                <label>Competent Person</label>
+                <input class="required" type="text" name="competentPerson" placeholder="Competent Person">   
+                <label>Brigade Number</label>
+                <input class="required" type="text" name="brigadeNo" placeholder="Brigade Number">
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-success" data-dismiss="modal" aria-hidden="true">Go Back</button>
+              <button class="btn btn-primary">Next</button>
+            </div>
         </div>
+    
+        <a class="btn btn-success btn-large" role="button" data-toggle="modal" href="#myModal">Print Report <i class="icon-print icon-white"></i></a>
+        <div class="message"></div>
+    </form>    
+</div>
 <script type="text/javascript">
+    $("form").validate();
 $('.getContents').trigger('change');    
 </script>
 </div>

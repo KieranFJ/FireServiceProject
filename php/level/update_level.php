@@ -10,7 +10,7 @@ if($input['level'] == "" || $input['description'] == "" || $input['noItems'] == 
 {
     alert("Blank/Invalid Entry - No Changes", 0);
 }
-elseif(!is_int($input['noItems']))
+elseif(!is_numeric($input['noItems']))
 {
     alert("Number of Items should be a number!", 0);
 }

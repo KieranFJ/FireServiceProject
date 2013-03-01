@@ -28,7 +28,11 @@ $results = sqlHandler::getDB()->select($query);
 
 //Station Name, Station Contact, Item Type, Item Serials, Test Date, Bag Number, Bag Level
 ?>
-
+<script type="text/javascript">
+    $('#bagid').each(function() {  
+        $(this).attr('value', '<?php echo $bagID[0]['BagID']; ?>')
+    })
+    </script>
 
 <table class="table">
     <tr>        

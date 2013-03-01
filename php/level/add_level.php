@@ -20,7 +20,7 @@ try
     {
         alert("Blank/Invalid Entry Not Accepted", 0);
     }
-    elseif(!is_int($input['noItems']))
+    elseif(!is_numeric($input['noItems']))
     {
         alert("Number of Items should be a number!", 0);
     }    

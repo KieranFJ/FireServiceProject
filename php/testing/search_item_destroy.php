@@ -73,23 +73,23 @@ if(isset($in))
             forceParse: 'true'
         });
     </script>  
-    <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-          <h3 id="myModalLabel">Are You Sure?</h3>
-        </div>
-        <div class="modal-body">
-          <p>Destruction of this item will disallow any future updates or reversals to this item</p>
-          <h4>Item Details</h4>
-          item type
-          item serial
+        <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h3 id="myModalLabel">Are You Sure?</h3>
+            </div>
+            <div class="modal-body">
+              <p>Destruction of this item will disallow any future updates or reversals to this item</p>
+              <h4>Item Details</h4>
+              item type
+              item serial
 
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-success" data-dismiss="modal" aria-hidden="true">Go Back</button>
+              <button class="btn btn-danger">Destroy Item</button>
+            </div>
         </div>
-        <div class="modal-footer">
-          <button class="btn btn-success" data-dismiss="modal" aria-hidden="true">Go Back</button>
-          <button class="btn btn-danger">Destroy Item</button>
-        </div>
-    </div>
     <?php
         
     }
