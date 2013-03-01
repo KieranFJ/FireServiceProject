@@ -10,6 +10,10 @@ if($input['level'] == "" || $input['description'] == "" || $input['noItems'] == 
 {
     alert("Blank/Invalid Entry - No Changes", 0);
 }
+elseif(!is_int($input['noItems']))
+{
+    alert("Number of Items should be a number!", 0);
+}
 else
 {
     $query = "SELECT * FROM level WHERE

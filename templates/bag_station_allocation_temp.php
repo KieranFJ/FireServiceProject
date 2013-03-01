@@ -52,7 +52,7 @@ $stationResults = sqlHandler::getDB()->select($query);
         <div id="upFormContents" class="span3">
 
         </div>        
-        <div id="upStationBags" class="span3">
+        <div id="upStationBags" >
             
         </div><div class="span2">
         <div class="message">

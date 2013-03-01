@@ -1,9 +1,5 @@
 <?php
 
-/**
- * @TODO Error when number of items is not an int
- * @TODO Change JS validation to only allow ints
- */
 
 require_once($_SERVER['DOCUMENT_ROOT'].'/fire/FireServiceProject/php/class.sqlHandler.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/fire/FireServiceProject/php/class.functionLib.php');
@@ -24,6 +20,10 @@ try
     {
         alert("Blank/Invalid Entry Not Accepted", 0);
     }
+    elseif(!is_int($input['noItems']))
+    {
+        alert("Number of Items should be a number!", 0);
+    }    
     elseif($results)
     {
         foreach($results as $row)

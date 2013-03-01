@@ -6,8 +6,13 @@ $in = $_POST;
 
 $input = clean($in);
 
-$query = "SELECT * FROM station WHERE 
-                Address = '".$input['address']."';";
+$query = "SELECT * FROM station WHERE
+                    Contact = '".$input['contactName']."'
+                OR  StationNumber = '".$input['stationNumber']."'                
+                OR  Address = '".$input['address']."'
+                OR  StationNo = '".$input['stationNo']."'
+                OR  Name = '".$input['stationName']."'
+                OR  MobileNo = '".$input['mobileNo']."';";
 
 $results = sqlHandler::getDB()->select($query);
 
@@ -24,7 +29,7 @@ try {
         {     
             if($row['StationNumber'] == $input['stationNumber'])
             {
-                alert("Station Name Already Exists", 0);
+                alert("Station Number Already Exists", 0);
             }    
             if($row['Name'] == $input['stationName'])
             {

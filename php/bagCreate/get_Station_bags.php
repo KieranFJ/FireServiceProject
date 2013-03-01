@@ -1,9 +1,5 @@
 <?php
 
-/*
- * @TODO alert posts the message off center when astation is selected which as no bags
- * 
- */
 require_once($_SERVER['DOCUMENT_ROOT'].'/fire/FireServiceProject/php/class.sqlHandler.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/fire/FireServiceProject/php/class.functionLib.php');
 
@@ -21,6 +17,7 @@ $results = sqlHandler::getDB()->select($query);
 if($results)
 {
     ?>
+<div class="span3">
     <input type="hidden" name="stationName" value="<?php echo $in['stationName'] ?>">
     <label>Bags at Station</label>
     <select class="input-large uneditable-input" multiple="multiple" size="20"><?php
@@ -51,6 +48,7 @@ if($results)
     
 ?>
     </select>
+</div>
 <?php
 }
 else

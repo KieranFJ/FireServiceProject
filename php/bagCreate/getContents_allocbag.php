@@ -29,8 +29,7 @@ if($bagID)
 }
 else
 {
-    //@TODO Remove commented code
-       
+
     $query = "SELECT BagID FROM bag;";
     
     $bags = sqlHandler::getDB()->select($query);

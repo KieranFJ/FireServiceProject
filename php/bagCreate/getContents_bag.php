@@ -29,31 +29,14 @@ if($bagID)
 }
 else
 {
-    //@TODO Remove commented code
-    //if bag is null find out what bagids there are and 
-       
+
     $query = "SELECT BagID FROM bag;";
     
     $bags = sqlHandler::getDB()->select($query);
-    
-    
-//
-//    $low = min($bags);
+
     $high = max($bags);
     $bagID[0]['BagID'] = $high['BagID'] + 1;
-//    $outArray = array();
-//
-//    for($i=0; $i < count($bags); $i++)
-//    {
-//        $outArray[$i] = $bags[$i]['BagID'];
-//    }
-//
-//    $missing = array_values(
-//            array_diff(
-//                    range($low['BagID'], $high['BagID']), $outArray));
-//    
-//    
-//    $bagID[0]['BagID'] = $missing[0];
+
 }
 
 

@@ -1,7 +1,7 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'].'/fire/FireServiceProject/php/class.sqlHandler.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/fire/FireServiceProject/php/class.functionLib.php');
-// @TODO only display serial numbers that are not condemned or quarentined
+
 $in = $_POST;
 
 $query = "SELECT SerialNo FROM items            

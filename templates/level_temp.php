@@ -49,7 +49,7 @@ $result = sqlHandler::getDB()->select($query);
                 <label>Level</label>
                 <input class="required" maxlength="10" minlength="1" type="text" name="level" placeholder="Level">
                 <label>Number of Items</label>
-                <input class="required" maxlength="5" minlength="1" type="text" name="noItems" placeholder="Number of items to contained">
+                <input class="required digits" maxlength="5" minlength="1" type="text" name="noItems" placeholder="Number of items to contained">
                 <label>Description</label>
                 <textarea class="required" name="description"  rows="3" placeholder="Description of level type"></textarea>  
                 </div>
