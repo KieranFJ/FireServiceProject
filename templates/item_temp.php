@@ -26,9 +26,9 @@ $result = sqlHandler::getDB()->select($query);
                     </div>       
                     <div class="message span4"> 
                     </div>                            
-                </div>
+                </div>                                     
                 <div class="form-actions">
-                    <button class="btn btn-primary btn-large" type="submit">Update Item</button>
+                    <button id="dis" class="btn btn-primary btn-large" type="submit">Update Item</button>
                 </div>                        
             </form>    
         </div> 

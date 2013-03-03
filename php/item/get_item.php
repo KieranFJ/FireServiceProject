@@ -24,84 +24,64 @@ if(isset($input))
                     WHERE ItemTypeID = '.$results[0]['ItemTypeID'].";";
 
         $itemCatResults = sqlHandler::getDB()->select($query);
+        
+        $disabled = "";
+        if($results[0]['Flag'] == 'D' || $results[0]['Flag'] == 'L')
+        {
+            $disabled = 'disabled';
+        }
         ?>
         <div class="span3">
             <input type="hidden" name="itemID" value="<?php echo $results[0]['ItemID']; ?>">
             <label>Item Type</label>
-            <input class="required" type="text" name="itemCat" value="<?php echo $itemCatResults[0]['Name']; ?>">
+            <input class="required" type="text" name="itemCat" value="<?php echo $itemCatResults[0]['Name']; ?>" <?php echo $disabled ?>>
             <label>Serial Number</label>
-            <input class="required" type="text" name="serialNumber" value="<?php echo $results[0]['SerialNo']; ?>">
+            <input class="required" type="text" name="serialNumber" value="<?php echo $results[0]['SerialNo']; ?>" <?php echo $disabled ?>>
             <div class="row">
                 <div class="span1">
                     <label>Flag</label>
-                    <select class="input-mini" name="flag" value="<?php echo $results[0]['Flag']?>">
-                        <?php 
-                        if($results[0]['Flag'] == 'S')
-                        {
-                            echo "<option selected=\"selected\">S</option><option>Q</option><option>C</option>";
-                        }
-                        elseif($results[0]['Flag'] == 'Q')
-                        {
-                            echo "<option>S</option><option selected=\"selected\">Q</option><option>C</option>";
-                        }
-                        elseif($results[0]['Flag'] == 'C')
-                        {
-                            echo "<option>S</option><option>Q</option><option selected=\"selected\">C</option>";
-                        }
-                        ?>
+                    <select class="input-mini" name="flag" value="<?php echo $results[0]['Flag']?>" disabled> 
+                        <option select="selected"><?php echo $results[0]['Flag']?></option>
                     </select>
                 </div>
                 <div class="span1">
                     <label>Points</label>
-                    <select class="input-mini" name="points" value="<?php echo $results[0]['Points']?>">
-                        <?php
-                        if($results[0]['Points'] == '0')
-                        {
-                            echo "<option selected=\"selected\">0</option><option>5</option><option>10</option><option>15</option>";
-                        }
-                        elseif($results[0]['Points'] == '5')
-                        {
-                            echo "<option>0</option><option selected=\"selected\">5</option><option>10</option><option>15</option>";
-                        }
-                        elseif($results[0]['Points'] == '10')
-                        {
-                            echo "<option>0</option><option>5</option><option selected=\"selected\">10</option><option>15</option>";
-                        }
-                        elseif($results[0]['Points'] == '15')
-                        {
-                            echo "<option>0</option><option>5</option><option>10</option><option selected=\"selected\">15</option>";
-                        }
-                        ?>
+                    <select class="input-mini" name="points" value="<?php echo $results[0]['Points']?>" disabled>
+                        <option select="selected"><?php echo $results[0]['Points']?></option>                        
                     </select>
                 </div>
             </div>
             <label>Conformity Certificate Number</label>
-            <input class="required" type="text" name="ccn" value="<?php echo $results[0]['CCN']?>">
+            <input class="required" type="text" name="ccn" value="<?php echo $results[0]['CCN']?>" <?php echo $disabled ?>>
             <label>Comments</label>
-            <textarea class="" rows="3" type="text" name="comments"><?php echo $results[0]['Comments']; ?></textarea>           
+            <textarea class="" rows="3" type="text" name="comments" <?php echo $disabled ?>><?php echo $results[0]['Comments']; ?></textarea>           
         </div>
         <div class="span3">
             <label>First Use Date</label>
-            <input class="datepicker required" id="dp4" type="text" name="firstUseDate" value="<?php echo $results[0]['FirstUseDate']; ?>">   
+            <input class="datepicker required" id="dp4" type="text" name="firstUseDate" value="<?php echo $results[0]['FirstUseDate']; ?>" <?php echo $disabled ?>>   
             <label>Purchase Date</label>
-            <input class="datepicker required" id="dp1" type="text" name="purchDate" value="<?php echo $results[0]['PurchDate']; ?>">
+            <input class="datepicker required" id="dp1" type="text" name="purchDate" value="<?php echo $results[0]['PurchDate']; ?>" <?php echo $disabled ?>>
             <label>Manufacture Date</label>
-            <input class="datepicker required" id="dp2" type="text" name="manuDate" value="<?php echo $results[0]['ManuDate']; ?>">
+            <input class="datepicker required" id="dp2" type="text" name="manuDate" value="<?php echo $results[0]['ManuDate']; ?>" <?php echo $disabled ?>>
             <label>End of Life Date</label>
-            <input class="datepicker required" id="dp3" type="text" name="endLifeDate" value="<?php echo $results[0]['EndLifeDate']; ?>">
+            <input class="datepicker required" id="dp3" type="text" name="endLifeDate" value="<?php echo $results[0]['EndLifeDate']; ?>" <?php echo $disabled ?>>
             <label>Next Test Date</label>
-            <input class="datepicker required" id="dp5" type="text" name="nextTestDate" value="<?php echo $results[0]['NextTestDate']; ?>">
-        </div>
-
+            <input class="datepicker required" id="dp5" type="text" name="nextTestDate" value="<?php echo $results[0]['NextTestDate']; ?>" <?php echo $disabled ?>>
+        </div>        
         <script type="text/javascript">
-        $('.datepicker').datepicker({
-            format: 'dd-mm-yyyy',
-            todayHighlight: 'true',
-            todayBtn: 'linked',
-            forceParse: 'true'
-        });
+            $('#dis').each(function () {
+                $(this).prop('disabled', <?php echo ($disabled == "" ? "false" : "true") ?>);
+            })
+            $('.datepicker').datepicker({
+                format: 'dd-mm-yyyy',
+                todayHighlight: 'true',
+                todayBtn: 'linked',
+                forceParse: 'true'
+            });
         </script>                    
     <?php    
+    
+    //@TODO button disable not working in IE7
     }
     else
     {

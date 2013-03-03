@@ -20,7 +20,6 @@ $query = "SELECT station.Address, station.Contact, bag.DateAssigned, bag.BagNumb
 
 $res = sqlHandler::getDB()->select($query);
 
-$numRows = count($res);
 $i = 0;
 ?>
 <html lang="en">

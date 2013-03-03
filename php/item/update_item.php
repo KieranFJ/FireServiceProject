@@ -71,7 +71,7 @@ else
         $date = new DateTime($results[0]['NextTestDate']);
         $results[0]['NextTestDate'] = $results[0]['NextTestDate'] = $date->format("y/m/d");
         
-        
+        //@TODO check this validation is occuring when no changes are made, entry updated is  currently returned
         $a = array_keys($results[0]);
         $a = array_map('strtolower', $a);
         $b = array_values($results[0]);
@@ -101,9 +101,7 @@ else
                         FirstUseDate = '".$input['firstUseDate']."',
                         NextTestDate = '".$input['nextTestDate']."',
                         CCN = '".$input['ccn']."',
-                        Comments = '".$input['comments']."',
-                        Flag = '".$input['flag']."',
-                        Points = '".$input['points']."'
+                        Comments = '".$input['comments']."'
                     WHERE
                      ItemID = '".$input['itemID']."';";
             sqlHandler::getDB()->update($query);
@@ -116,7 +114,7 @@ else
             
             $query = "INSERT INTO itemhistory (ItemID, StationID, BagID, ItemFlag, TestID, Points, IssueBagDate, HistoryType)
                 VALUES ('".$input['itemID']."', '".$results[0]['StationID']."', 
-                    '".$results[0]['StationID']."', '".$input['flag']."', 0, '".$input['points']."', '".$results[0]['IssueDate']."', 'Item Updated');";
+                    '".$results[0]['StationID']."', (SELECT Flag FROM items WHERE ItemID = '".$input['itemID']."'), 0, (SELECT Points FROM items WHERE ItemID = '".$input['itemID']."'), '".$results[0]['IssueDate']."', 'Item Updated');";
             
             sqlHandler::getDB()->insert($query);
             
