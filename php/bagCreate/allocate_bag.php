@@ -11,7 +11,7 @@ $query = "UPDATE bag
             JOIN station ON (station.StationID = bag.StationID)
             SET 
             bag.StationID = 
-                (SELECT StationID FROM station WHERE Name = '".$input['stationName']."')
+                (SELECT StationID FROM station WHERE StationName = '".$input['stationName']."')
             WHERE bag.BagID = '".$input['bagID']."';";
 
 $results = sqlHandler::getDB()->update($query);
@@ -25,7 +25,7 @@ foreach($items as $row)
 {
     $query = "INSERT INTO itemhistory (ItemID, StationID, BagID, ItemFlag, TestID, Points, IssueBagDate, HistoryType)
                 VALUES ('".$row['ItemID']."', 
-                        (SELECT StationID FROM station WHERE Name = '".$input['stationName']."'),
+                        (SELECT StationID FROM station WHERE StationName = '".$input['stationName']."'),
                         '".$input['bagID']."',
                         '".$row['Flag']."',
                         0,

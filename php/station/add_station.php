@@ -11,7 +11,7 @@ $query = "SELECT * FROM station WHERE
                 OR  StationNumber = '".$input['stationNumber']."'                
                 OR  Address = '".$input['address']."'
                 OR  StationNo = '".$input['stationNo']."'
-                OR  Name = '".$input['stationName']."'
+                OR  StationName = '".$input['stationName']."'
                 OR  MobileNo = '".$input['mobileNo']."';";
 
 $results = sqlHandler::getDB()->select($query);
@@ -31,7 +31,7 @@ try {
             {
                 alert("Station Number Already Exists", 0);
             }    
-            if($row['Name'] == $input['stationName'])
+            if($row['StationName'] == $input['stationName'])
             {
                 alert("Station Name Already Exists", 0);
             }    
@@ -55,7 +55,7 @@ try {
     }
     else 
     {                                        
-        $query = "INSERT INTO station (Name, Contact, StationNo, Address, MobileNo, StationNumber, StationLevel)
+        $query = "INSERT INTO station (StationName, Contact, StationNo, Address, MobileNo, StationNumber, StationLevel)
         VALUES ('".$input['stationName']."','".$input['contactName']."',
                 '".$input['stationNo']."','".$input['address']."', 
                 '".$input['mobileNo']."','".$input['stationNumber']."','".$input['stationLevel']."');";

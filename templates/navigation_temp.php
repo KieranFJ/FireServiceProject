@@ -13,7 +13,8 @@
               <li class="dropdown">
                   <a id="drop1" role="button "class="dropdown-toggle" data-toggle="dropdown" href="#">Reports</a>
                   <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
-                      <li><a href="bag_contents_report.php">Bag Contents</a></li>                      
+                      <li><a href="bag_contents_report.php">Bag Contents</a></li>
+                      <li><a href="item_report.php">Item Report</a></li>
                   </ul>                  
               <li><a href="bag.php">Bag Management</a></li>
               <li><a href="bag_station_allocation.php">Allocate Bag</a></li>

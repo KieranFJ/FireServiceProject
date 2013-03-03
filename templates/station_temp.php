@@ -5,7 +5,7 @@
 require_once($_SERVER['DOCUMENT_ROOT'].'/fire/FireServiceProject/php/class.sqlHandler.php');
 
 
-$query = "SELECT Name FROM station;";
+$query = "SELECT StationName FROM station;";
 
 $result = sqlHandler::getDB()->select($query);
 
@@ -26,7 +26,7 @@ $result = sqlHandler::getDB()->select($query);
                     <?php
                         foreach($result as $row)
                         {?>
-                            <option><?php echo $row['Name'] ?></option>
+                            <option><?php echo $row['StationName'] ?></option>
                         <?php
                         }
                         ?>

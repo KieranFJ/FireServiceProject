@@ -18,7 +18,7 @@ try {
                 OR  StationNumber = '".$input['stationNumber']."'                
                 OR  Address = '".$input['address']."'
                 OR  StationNo = '".$input['stationNo']."'
-                OR  Name = '".$input['stationName']."'
+                OR  StationName = '".$input['stationName']."'
                 OR  MobileNo = '".$input['mobileNo']."';";
 
         $results = sqlHandler::getDB()->select($query);
@@ -38,7 +38,7 @@ try {
                     {
                         alert("Contact Name Already Exists", 0);
                     }
-                    if($row['Name'] == $input['stationName'])
+                    if($row['StationName'] == $input['stationName'])
                     {
                         alert("Station Name Already Exists", 0);
                     }
@@ -62,7 +62,7 @@ try {
             $query = "UPDATE station SET 
                     StationNumber = '".$input['stationNumber']."',
                     StationLevel = '".$input['stationLevel']."',
-                    Name = '".$input['stationName']."',
+                    StationName = '".$input['stationName']."',
                     Contact = '".$input['contactName']."',
                     StationNo = '".$input['stationNo']."',
                     MobileNo = '".$input['mobileNo']."',

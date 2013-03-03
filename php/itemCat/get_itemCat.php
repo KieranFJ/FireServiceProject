@@ -11,8 +11,8 @@ $result = sqlHandler::getDB()->select($query);
 ?>
 
 <div class="span3">
-    <label>Name</label>
-    <input class="required" name="name" type="text" placeholder="Name of Item" value="<?php echo $result[0]['Name']; ?>"></input>
+    <label>Category Name</label>
+    <input class="required" name="name" type="text" placeholder="Category Name of Item" value="<?php echo $result[0]['CatName']; ?>"></input>
     <label>Description</label>
     <textarea class="required" rows="3" name="description" placeholder="Description of Item"><?php echo $result[0]['Description']; ?></textarea>
     <label>Make/Model</label>

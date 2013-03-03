@@ -6,7 +6,7 @@ $in = $_POST;
 
 $input = clean($in);
 
-
+alert("pageloaded", 0);
 ?>
 <script type="text/javascript">
 $('#myModal').modal('hide');

@@ -20,7 +20,7 @@ if(isset($input))
     $results = sqlHandler::getDB()->select($query);
     if(isset($results))
     {
-        $query = 'SELECT Name FROM itemcategories
+        $query = 'SELECT CatName FROM itemcategories
                     WHERE ItemTypeID = '.$results[0]['ItemTypeID'].";";
 
         $itemCatResults = sqlHandler::getDB()->select($query);
@@ -34,7 +34,7 @@ if(isset($input))
         <div class="span3">
             <input type="hidden" name="itemID" value="<?php echo $results[0]['ItemID']; ?>">
             <label>Item Type</label>
-            <input class="required" type="text" name="itemCat" value="<?php echo $itemCatResults[0]['Name']; ?>" <?php echo $disabled ?>>
+            <input class="required" type="text" name="itemCat" value="<?php echo $itemCatResults[0]['CatName']; ?>" <?php echo $disabled ?>>
             <label>Serial Number</label>
             <input class="required" type="text" name="serialNumber" value="<?php echo $results[0]['SerialNo']; ?>" <?php echo $disabled ?>>
             <div class="row">
@@ -81,7 +81,6 @@ if(isset($input))
         </script>                    
     <?php    
     
-    //@TODO button disable not working in IE7
     }
     else
     {

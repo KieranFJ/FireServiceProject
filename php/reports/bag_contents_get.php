@@ -13,7 +13,7 @@ $bagID = sqlHandler::getDB()->select($query);
 
 $query = "SELECT station.Address, station.Contact, bag.DateAssigned, 
                 items.SerialNo, items.Points, items.IssueDate, items.NextTestDate,
-                itemcategories.Name
+                itemcategories.CatName
             FROM items                  
             LEFT JOIN bag
             ON bag.BagID = items.BagID  
@@ -26,7 +26,6 @@ $query = "SELECT station.Address, station.Contact, bag.DateAssigned,
 $results = sqlHandler::getDB()->select($query);
 
 
-//Station Name, Station Contact, Item Type, Item Serials, Test Date, Bag Number, Bag Level
 ?>
 <script type="text/javascript">
     $('#bagid').each(function() {  
@@ -41,7 +40,7 @@ $results = sqlHandler::getDB()->select($query);
     <?php
     if($results)
     {   
-        aasort($results, "Name");
+        aasort($results, "CatName");
         $i = 1;
         
         foreach($results as $row)
@@ -49,7 +48,7 @@ $results = sqlHandler::getDB()->select($query);
         <tr>
             <td><?php echo $i ?></td>
             <td><?php echo $row['SerialNo']; ?></td>
-            <td><?php echo $row['Name']; ?></td>
+            <td><?php echo $row['CatName']; ?></td>
             <td><?php echo $row['Points']; ?></td>
             <td><?php echo $row['NextTestDate']; ?></td>
         </tr>

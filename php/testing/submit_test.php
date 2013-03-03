@@ -29,7 +29,7 @@ if($input)
             {   
                 $query = "INSERT INTO test (ItemID, Tester, Comment, TestType, StationID, Originator)
                         VALUES ('".$input['itemID']."', '".$input['tester']."', '".$input['comments']."',
-                                '".$input['testType']."', (SELECT StationID FROM station WHERE Name = '".$input['station']."'),
+                                '".$input['testType']."', (SELECT StationID FROM station WHERE StationName = '".$input['station']."'),
                                 '".$input['originator']."');";
 
                 $sqlRes = sqlHandler::getDB()->insert($query);
@@ -46,7 +46,7 @@ if($input)
 
                 $query = "INSERT INTO itemhistory (ItemID, StationID, BagID, ItemFlag, TestID, Points, IssueBagDate, HistoryType)
                             VALUES ('".$input['itemID']."',
-                                    (SELECT StationID FROM station WHERE Name = '".$input['station']."'),
+                                    (SELECT StationID FROM station WHERE StationName = '".$input['station']."'),
                                     (SELECT BagID FROM items WHERE ItemID = '".$input['itemID']."'),
                                     '".$input['flag']."',
                                     '".$sqlRes."',
@@ -99,7 +99,7 @@ if($input)
                          //bag change
                          $query = "INSERT INTO itemhistory (ItemID, StationID, BagID, ItemFlag, TestID, Points, IssueBagDate, HistoryType)
                                     VALUES ('".$input['itemID']."',
-                                    (SELECT StationID FROM station WHERE Name = '".$input['station']."'),
+                                    (SELECT StationID FROM station WHERE StationName = '".$input['station']."'),
                                     (SELECT BagID FROM items WHERE ItemID = '".$input['itemID']."'),
                                     '".$input['flag']."',
                                     '".$sqlRes."',
@@ -119,7 +119,7 @@ if($input)
                     // flag change
                     $query = "INSERT INTO itemhistory (ItemID, StationID, BagID, ItemFlag, TestID, Points, IssueBagDate, HistoryType)
                                VALUES ('".$input['itemID']."',
-                               (SELECT StationID FROM station WHERE Name = '".$input['station']."'),
+                               (SELECT StationID FROM station WHERE StationName = '".$input['station']."'),
                                (SELECT BagID FROM items WHERE ItemID = '".$input['itemID']."'),
                                '".$input['flag']."',
                                '".$sqlRes."',

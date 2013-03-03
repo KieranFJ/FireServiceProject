@@ -5,7 +5,7 @@ $query = "SELECT Level FROM level LIMIT 1,18446744073709551615;";
 
 $result = sqlHandler::getDB()->select($query);
 
-$query = "SELECT Name FROM itemcategories;";
+$query = "SELECT CatName FROM itemcategories;";
 
 $itemTypeResult = sqlHandler::getDB()->select($query);
 
@@ -36,7 +36,7 @@ $itemTypeResult = sqlHandler::getDB()->select($query);
                     <?php
                     foreach($itemTypeResult as $row)
                     {?>
-                    <option><?php echo $row['Name']; ?></option> 
+                    <option><?php echo $row['CatName']; ?></option> 
                     <?php 
                     }?>                    
                 </select>

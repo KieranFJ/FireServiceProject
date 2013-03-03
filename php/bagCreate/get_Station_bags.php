@@ -10,7 +10,7 @@ $query = "SELECT level.Level, bag.BagNumber FROM bag
             ON bag.LevelID = level.LevelID
             JOIN station 
             ON bag.StationID = station.StationID
-            WHERE station.Name = '".$in['stationName']."';";
+            WHERE station.StationName = '".$in['stationName']."';";
 
 $results = sqlHandler::getDB()->select($query);
         

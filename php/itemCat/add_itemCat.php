@@ -6,7 +6,7 @@ $in = $_POST;
 $input = clean($in);
 
 $query = "SELECT * FROM itemcategories WHERE 
-                Name = '".$input['name']."'
+                CatName = '".$input['name']."'
             OR  Model = '".$input['model']."'";
 
 $results = sqlHandler::getDB()->select($query);
@@ -25,9 +25,9 @@ else
         if($results)
         {
             foreach($results as $row)
-            if($row['Name'] == $input['name'])
+            if($row['CatName'] == $input['name'])
             {
-                alert("Duplicate Item Name exists. No changes made", 0);
+                alert("Duplicate Category Name exists. No changes made", 0);
             }
             if($row['Model'] == $input['model'])
             {
@@ -36,7 +36,7 @@ else
         }
         else 
         {                                        
-            $query = "INSERT INTO itemcategories (Name, Description, Model, Manufacturer, ContactNo, Address)
+            $query = "INSERT INTO itemcategories (CatName, Description, Model, Manufacturer, ContactNo, Address)
                         VALUES ('".$input['name']."',
                                 '".$input['description']."',
                                 '".$input['model']."',

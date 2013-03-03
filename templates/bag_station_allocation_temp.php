@@ -5,7 +5,7 @@ $query = "SELECT Level from level LIMIT 1,18446744073709551615";
 
 $results = sqlHandler::getDB()->select($query);
 
-$query = "SELECT Name FROM station;";
+$query = "SELECT StationName FROM station;";
 
 $stationResults = sqlHandler::getDB()->select($query);
 ?>
@@ -39,7 +39,7 @@ $stationResults = sqlHandler::getDB()->select($query);
                     <?php
                         foreach($stationResults as $row)
                         {?>
-                            <option><?php echo $row['Name'] ?></option>
+                            <option><?php echo $row['StationName'] ?></option>
                         <?php
                         }
                         ?>

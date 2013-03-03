@@ -10,7 +10,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/fire/FireServiceProject/php/class.sqlHa
 $input = $_POST;
 
 $query = 'SELECT * FROM station
-            WHERE Name = "'.$input['contactSelect'].'";';
+            WHERE StationName = "'.$input['contactSelect'].'";';
 
 $result = sqlHandler::getDB()->select($query);
 
@@ -20,7 +20,7 @@ $result = sqlHandler::getDB()->select($query);
     <label>Station Number</label>
     <input class="required" name="stationNumber" type="text" value="<?php echo $result[0]['StationNumber']; ?>">                      
     <label>Station Name</label>
-    <input type="text" class="required" minlength="1" name="stationName" value="<?php echo $result[0]['Name']; ?>"></input>
+    <input type="text" class="required" minlength="1" name="stationName" value="<?php echo $result[0]['StationName']; ?>"></input>
     <label>Station Level</label>
     <input class="required" name="stationLevel" type="text" value="<?php echo $result[0]['StationLevel']; ?>">                                   
     <label>Address</label>

@@ -6,7 +6,7 @@ $in = $_GET;
 
 $query = "SELECT station.Address, station.Contact, bag.DateAssigned, bag.BagNumber,
                 items.SerialNo, items.Points, items.IssueDate, items.NextTestDate,
-                itemcategories.Name, level.Level, items.Flag
+                itemcategories.CatName, level.Level, items.Flag
             FROM items                  
             LEFT JOIN bag
             ON bag.BagID = items.BagID  
@@ -21,6 +21,8 @@ $query = "SELECT station.Address, station.Contact, bag.DateAssigned, bag.BagNumb
 $res = sqlHandler::getDB()->select($query);
 
 $i = 0;
+
+//@TODO add station details to first page
 ?>
 <html lang="en">
     <head>
@@ -66,7 +68,7 @@ $i = 0;
             {?>
                 <tr>
                     <td width="30px"><?php echo $i+1 ?></td>
-                    <td width="200px"><?php echo $row['Name']?></td>
+                    <td width="200px"><?php echo $row['CatName']?></td>
                     <td width="150px"><?php echo $row['SerialNo']?></td>
                     <td width="50px"><?php echo $row['Flag']?></td>
                     <td width="50px"><?php echo $row['Points']?></td>

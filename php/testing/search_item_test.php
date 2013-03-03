@@ -11,7 +11,7 @@ if(isset($in))
 
     $result = sqlHandler::getDB()->select($query);
 
-    $query = "SELECT Name FROM station;";
+    $query = "SELECT StationName FROM station;";
 
     $stations = sqlHandler::getDB()->select($query);
     
@@ -78,7 +78,7 @@ if(isset($in))
             <?php 
                 foreach($stations as $row)
                 {
-                    echo "<option>".$row['Name']."</option>";
+                    echo "<option>".$row['StationName']."</option>";
                 }
             ?>
         </select>

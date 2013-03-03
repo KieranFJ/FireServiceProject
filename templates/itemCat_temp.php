@@ -2,7 +2,7 @@
 require_once($_SERVER['DOCUMENT_ROOT'].'/fire/FireServiceProject/php/class.sqlHandler.php');
 
 
-$query = "SELECT Name FROM itemcategories";
+$query = "SELECT CatName FROM itemcategories";
 
 $result = sqlHandler::getDB()->select($query);
 
@@ -23,7 +23,7 @@ $result = sqlHandler::getDB()->select($query);
                     <?php
                         foreach($result as $row)
                         {?>
-                            <option><?php echo $row['Name'] ?></option>
+                            <option><?php echo $row['CatName'] ?></option>
                         <?php
                         }
                         ?>
@@ -46,8 +46,8 @@ $result = sqlHandler::getDB()->select($query);
                 <h2>Add Category</h2>
                 <div class="row">
                     <div class="span3">
-                        <label>Name</label>                
-                        <input class="required" name="name" type="text" placeholder="Name of Item">              
+                        <label>Category Name</label>                
+                        <input class="required" name="name" type="text" placeholder="Category Name of Item">              
                         <label>Description</label>
                         <textarea class="required" rows="3" name="description" placeholder="Description of Item"></textarea>
                         <label>Make/Model</label>

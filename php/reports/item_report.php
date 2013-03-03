@@ -2,13 +2,21 @@
 require_once($_SERVER['DOCUMENT_ROOT'].'/fire/FireServiceProject/php/class.sqlHandler.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/fire/FireServiceProject/php/class.functionLib.php');
 
-$in = $_POST;
+if(@!$in)
+{
+    $in = $_POST;
+}
+//if(isset($_POST))
+//{
+//    $in = $_POST;
+//}
 
 $input = clean($in);
 
 if(isset($input))
 {
-    $query = "SELECT items.SerialNo, items.ItemID, bag.BagNumber, level.Level, 
+    
+   $query = "SELECT items.SerialNo, items.ItemID, bag.BagNumber, level.Level, 
                      station.Address, station.Contact, station.StationNo, 
                      station.MobileNo, itemcategories.CatName                
                 FROM items
@@ -24,9 +32,8 @@ if(isset($input))
     
 
     $results = sqlHandler::getDB()->select($query);
-    if(isset($results))
-    {        
-        ?>
+    if($results)
+    {?>
         <div class="span5">
             <dl class="dl-horizontal">
                 <dt>Serial Number</dt>
@@ -40,8 +47,8 @@ if(isset($input))
                 <dt>Station Mob.</dt><dd><?php echo $results[0]['MobileNo']?></dd>
             </dl>                   
             <a class="btn btn-success" href="item_report.php?ItemID=<?php echo $results[0]['ItemID']?>">Full Details</a>
-        </div>              
-    <?php    
+        </div>  
+    <?php
     }
     else
     {

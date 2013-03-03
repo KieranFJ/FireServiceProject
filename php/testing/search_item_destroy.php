@@ -11,7 +11,7 @@ if(isset($in))
 
     $result = sqlHandler::getDB()->select($query);
 
-    $query = "SELECT Name FROM station;";
+    $query = "SELECT StationName FROM station;";
 
     $stations = sqlHandler::getDB()->select($query);
     
@@ -55,7 +55,7 @@ if(isset($in))
             <?php 
                 foreach($stations as $row)
                 {
-                    echo "<option>".$row['Name']."</option>";
+                    echo "<option>".$row['StationName']."</option>";
                 }
             ?>
         </select>
@@ -87,7 +87,7 @@ if(isset($in))
             </div>
             <div class="modal-footer">
               <button class="btn btn-success" data-dismiss="modal" aria-hidden="true">Go Back</button>
-              <button class="btn btn-danger">Destroy Item</button>
+              <input type="submit" class="btn btn-danger" value="Destroy Item">              
             </div>
         </div>
     <?php

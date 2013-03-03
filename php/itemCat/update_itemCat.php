@@ -20,7 +20,7 @@ else
     try
     {    
         $query = "SELECT * FROM itemcategories WHERE
-                    Name = '".$input['name']."'
+                    CatName = '".$input['name']."'
                 OR  Model = '".$input['model']."';";
 
         $results = sqlHandler::getDB()->select($query);
@@ -33,9 +33,9 @@ else
             {
                 if($row['ItemTypeID'] != $input['itemTypeID'])
                 {
-                    if($row['Name'] == $input['name'])
+                    if($row['CatName'] == $input['name'])
                     {
-                        alert("Duplicate Item Name exists. No changes made", 0);                
+                        alert("Duplicate Category Name exists. No changes made", 0);                
                     }
                     if($row['Model'] == $input['model'])
                     {
@@ -59,7 +59,7 @@ else
             else
             {
                 $query = "UPDATE itemcategories SET 
-                        Name = '".$input['name']."',                    
+                        CatName = '".$input['name']."',                    
                         Description = '".$input['description']."',
                         Model = '".$input['model']."',
                         Manufacturer = '".$input['manufacturer']."',
@@ -76,44 +76,5 @@ else
     {
         alert($e, 2);
     }    
-}        
-        
-        
-//        if(count($results) >= 1)
-//        {
-//            foreach($results as $row)
-//            {
-//                if($row['ItemTypeID'] != $input['itemTypeID'])
-//                {
-//                    if($row['Name'] == $input['name'])
-//                    {
-//                        alert("Name Already Exists!", 0);                
-//                    }
-//                    if($row['Model'] == $input['model'])
-//                    {
-//                        alert("Model Already Exists!", 0);
-//                    }                    
-//                }
-//                else
-//                {
-//                    alert("No new changes made", 1);
-//                }
-//
-//            }
-//        }
-//        else
-//        {
-//            $query = "UPDATE itemcategories SET 
-//                        Name = '".$input['name']."',                    
-//                        Description = '".$input['description']."',
-//                        Model = '".$input['model']."',
-//                        Manufacturer = '".$input['manufacturer']."',
-//                        ContactNo = '".$input['contactNo']."',
-//                        Address = '".$input['address']."'                    
-//                    WHERE ItemTypeID = '".$input['itemTypeID']."';";
-//
-//            $results = sqlHandler::getDB()->update($query);
-//            alert($results." Entries Updated", 1);
-//        }
-
+}      
 ?>

@@ -18,7 +18,7 @@ $levelID = sqlHandler::getDB()->select($query);
 //select all items with that level
 if($bagID)
 {
-    $query = "SELECT SerialNo, itemcategories.Name FROM items 
+    $query = "SELECT SerialNo, itemcategories.CatName FROM items 
                 LEFT JOIN bag
                 ON bag.BagID = items.BagID
                 LEFT OUTER JOIN itemcategories
@@ -58,15 +58,15 @@ if(isset($results))
     
     if(isset($results))
     {
-        aasort($results, "Name");
+        aasort($results, "CatName");
         $oldName = "";
         foreach($results as $row)
         {
-            $newName = $row['Name'];
+            $newName = $row['CatName'];
             
             if($newName != $oldName)
             {
-                echo "<optgroup label=\"".$row['Name']."\">";
+                echo "<optgroup label=\"".$row['CatName']."\">";
                 echo "<option>".$row['SerialNo']."</option>";   
                 $oldName = $newName;
             }
