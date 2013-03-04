@@ -3,8 +3,19 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/fire/FireServiceProject/php/class.sqlHa
 require_once($_SERVER['DOCUMENT_ROOT'].'/fire/FireServiceProject/php/class.functionLib.php');
 
 if(@!$in)
-{
-    $in = $_POST;
+{    
+    if(isset($_POST))
+    {
+        
+        $in = $_POST;
+    }
+    elseif(isser($_GET))
+    {
+        
+        $in = $_GET;
+    }
+    
+    //(isset($_POST) == true? $in = $_POST: $in = $_GET); 
 }
 
 $input = clean($in);

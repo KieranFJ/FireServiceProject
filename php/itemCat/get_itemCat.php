@@ -3,7 +3,7 @@
 require_once($_SERVER['DOCUMENT_ROOT'].'/fire/FireServiceProject/php/class.sqlHandler.php');
 
 $query = 'SELECT * FROM itemcategories
-            WHERE name = "'.$_POST['name'].'";';
+            WHERE CatName = "'.$_POST['name'].'";';
 
 $result = sqlHandler::getDB()->select($query);
 

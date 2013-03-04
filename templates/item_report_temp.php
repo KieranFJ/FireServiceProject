@@ -3,7 +3,7 @@
 require_once($_SERVER['DOCUMENT_ROOT'].'/fire/FireServiceProject/php/class.sqlHandler.php');
 
 if(isset($_GET))
-{
+{    
     $in = $_GET;
     $query = "SELECT * FROM items WHERE ItemID = '".$in['ItemID']."';";
 
@@ -25,8 +25,8 @@ if(isset($_GET))
     <div id="searchUpForm">
         <?php 
         if(isset($result))
-        {
-            @include($_SERVER['DOCUMENT_ROOT'].'\fire\FireServiceProject\php\reports\item_report.php');            
+        {            
+            include($_SERVER['DOCUMENT_ROOT'].'/fire/FireServiceProject/php/reports/item_report.php');            
         }
         ?>
     </div>       
