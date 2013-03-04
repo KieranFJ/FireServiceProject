@@ -4,7 +4,7 @@
 
 $in = $_GET;
 
-$query = "SELECT station.Address, station.Contact, bag.DateAssigned, bag.BagNumber,
+$query = "SELECT station.StationAddress, station.Contact, bag.DateAssigned, bag.BagNumber,
                 items.SerialNo, items.Points, items.IssueDate, items.NextTestDate,
                 itemcategories.CatName, level.Level, items.Flag
             FROM items                  

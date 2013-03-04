@@ -9,7 +9,7 @@ $input = clean($in);
 $query = "SELECT * FROM station WHERE
                     Contact = '".$input['contactName']."'
                 OR  StationNumber = '".$input['stationNumber']."'                
-                OR  Address = '".$input['address']."'
+                OR  StationAddress = '".$input['address']."'
                 OR  StationNo = '".$input['stationNo']."'
                 OR  StationName = '".$input['stationName']."'
                 OR  MobileNo = '".$input['mobileNo']."';";
@@ -39,9 +39,9 @@ try {
             {
                 alert("Contact Already Exists", 0);
             }    
-            if($row['Address'] == $input['address'])
+            if($row['StationAddress'] == $input['address'])
             {
-                alert("Address already Exists", 0);
+                alert("Station Address already Exists", 0);
             }
             if($row['StationNo'] == $input['stationNo'])
             {
@@ -55,7 +55,7 @@ try {
     }
     else 
     {                                        
-        $query = "INSERT INTO station (StationName, Contact, StationNo, Address, MobileNo, StationNumber, StationLevel)
+        $query = "INSERT INTO station (StationName, Contact, StationNo, StationAddress, MobileNo, StationNumber, StationLevel)
         VALUES ('".$input['stationName']."','".$input['contactName']."',
                 '".$input['stationNo']."','".$input['address']."', 
                 '".$input['mobileNo']."','".$input['stationNumber']."','".$input['stationLevel']."');";

@@ -14,7 +14,7 @@ $result = sqlHandler::getDB()->select($query);
 <label>Number of Items</label>
 <input class="required digits" maxlength="5" minlength="1" type="text" name="noItems" value="<?php echo $result[0]['NoItems']; ?>">
 <label>Description</label>
-<textarea rows="4" name="description" class="required"><?php echo $result[0]['Description']; ?></textarea><label></label>
+<textarea rows="4" name="description" class="required"><?php echo $result[0]['LevDescription']; ?></textarea><label></label>
 <input type="hidden" name="levelID" value="<?php echo $result[0]['LevelID']; ?>">
 </div>
 

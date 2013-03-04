@@ -18,7 +18,7 @@ else
 {
     $query = "SELECT * FROM level WHERE
                 Level = '".$input['level']."'
-            OR  Description = '".$input['description']."';";
+            OR  LevDescription = '".$input['description']."';";
     
     $results = sqlHandler::getDB()->select($query);
    
@@ -33,7 +33,7 @@ else
                 {
                     alert("Level Already Exists!", 0);                
                 }
-                if($row['Description'] == $input['description'])
+                if($row['LevDescription'] == $input['description'])
                 {
                     alert("Description Already Exists. Bag Level: ".$row['Level'], 0);
                 }                
@@ -44,7 +44,7 @@ else
     else
     {
         $query = "UPDATE level SET 
-                Description = '".$input['description']."',
+                LevDescription = '".$input['description']."',
                 Level = '".$input['level']."',
                 NoItems= '".$input['noItems']."'
                 WHERE LevelID = '".$input['levelID']."';";

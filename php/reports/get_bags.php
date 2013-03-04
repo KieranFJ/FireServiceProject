@@ -63,7 +63,9 @@ if(isset($results))
             </div>
             <div class="modal-footer">
               <button class="btn btn-success" data-dismiss="modal" aria-hidden="true">Go Back</button>
-              <!-- @TODO validation does not work using <input type=submit> <button> in this sense does not work in IE7 (modal issue) no work around atm -->
+              <!-- @TODO validation does not work using <input type=submit> <button> in this sense does not work in IE7 (modal issue) no work around atm 
+              http://rommelsantor.com/clog/2012/03/12/fixing-the-ie7-submit-value/
+              -->
               <input type="submit" class="btn btn-primary" value="Next">
             </div>
         </div>

@@ -10,7 +10,7 @@ $input = clean($in);
 
 $query = "SELECT * FROM level WHERE 
                 Level = '".$input['level']."'
-            OR  Description = '".$input['description']."'";
+            OR  LevDescription = '".$input['description']."'";
 
 $results = sqlHandler::getDB()->select($query);
 
@@ -32,7 +32,7 @@ try
             {
                 alert("Level Already Exists", 0);
             } 
-            if($row['Description'] == $input['description'])
+            if($row['LevDescription'] == $input['description'])
             {
                 alert("Description already Exists", 0);
             }            
@@ -40,7 +40,7 @@ try
     }
     else 
     {                                        
-        $query = "INSERT INTO level (Level, Description, NoItems)
+        $query = "INSERT INTO level (Level, LevDescription, NoItems)
         VALUES ('".$input['level']."','".$input['description']."', '".$input['noItems']."');";
 
         $results = sqlHandler::getDB()->insert($query);

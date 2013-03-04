@@ -17,13 +17,15 @@
     </style>
     <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
     <link href="assets/css/fire.css" rel="stylesheet">
+    
+    <script  type="text/javascript" src="assets/js/jquery-1.8.2.js"></script>
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
-    <!-- Le fav and touch icons -->   
+    <!-- Le fav and touch icons --   @TODO get local version of html5shim -->   
     
 
   </head>

@@ -36,7 +36,7 @@ else
         }
         else 
         {                                        
-            $query = "INSERT INTO itemcategories (CatName, Description, Model, Manufacturer, ContactNo, Address)
+            $query = "INSERT INTO itemcategories (CatName, CatDescription, Model, Manufacturer, ContactNo, CatAddress)
                         VALUES ('".$input['name']."',
                                 '".$input['description']."',
                                 '".$input['model']."',

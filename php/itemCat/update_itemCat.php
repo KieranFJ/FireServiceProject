@@ -60,11 +60,11 @@ else
             {
                 $query = "UPDATE itemcategories SET 
                         CatName = '".$input['name']."',                    
-                        Description = '".$input['description']."',
+                        CatDescription = '".$input['description']."',
                         Model = '".$input['model']."',
                         Manufacturer = '".$input['manufacturer']."',
                         ContactNo = '".$input['contactNo']."',
-                        Address = '".$input['address']."'                    
+                        CatAddress = '".$input['address']."'                    
                     WHERE ItemTypeID = '".$input['itemTypeID']."';";
 
                 $results = sqlHandler::getDB()->update($query);

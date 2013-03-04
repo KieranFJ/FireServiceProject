@@ -14,7 +14,7 @@ $result = sqlHandler::getDB()->select($query);
     <label>Category Name</label>
     <input class="required" name="name" type="text" placeholder="Category Name of Item" value="<?php echo $result[0]['CatName']; ?>"></input>
     <label>Description</label>
-    <textarea class="required" rows="3" name="description" placeholder="Description of Item"><?php echo $result[0]['Description']; ?></textarea>
+    <textarea class="required" rows="3" name="description" placeholder="Description of Item"><?php echo $result[0]['CatDescription']; ?></textarea>
     <label>Make/Model</label>
     <input class="required" type="text" name="model" placeholder="Make/Model" value="<?php echo $result[0]['Model']; ?>"></input>
 </div>
@@ -24,6 +24,6 @@ $result = sqlHandler::getDB()->select($query);
     <label>Contact Number</label>
     <input class="required" name="contactNo" type="text" placeholder="Contact Number" value="<?php echo $result[0]['ContactNo']; ?>"></input>
     <label>Address</label>                
-    <textarea class="required" rows="3" name="address" placeholder="Address"><?php echo $result[0]['Address']; ?></textarea>
+    <textarea class="required" rows="3" name="address" placeholder="Address"><?php echo $result[0]['CatAddress']; ?></textarea>
     <input type="hidden" name="itemTypeID" value="<?php echo $result[0]['ItemTypeID']; ?>">
 </div>

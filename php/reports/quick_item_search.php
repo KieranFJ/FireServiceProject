@@ -9,7 +9,7 @@ $input = clean($in);
 if(isset($input))
 {
     $query = "SELECT items.SerialNo, items.ItemID, bag.BagNumber, level.Level, 
-                     station.Address, station.Contact, station.StationNo, 
+                     station.StationAddress, station.Contact, station.StationNo, 
                      station.MobileNo, itemcategories.CatName                
                 FROM items
                 LEFT OUTER JOIN itemcategories
@@ -34,7 +34,7 @@ if(isset($input))
                 <dt>Item Type</dt><dd><?php echo $results[0]['CatName']?></dd>
                 <dt>Bag Level</dt><dd><?php echo $results[0]['Level']?></dd>
                 <dt>Bag Number</dt><dd><?php echo ($results[0]['BagNumber'] == '0'? 'Store' : $results[0]['BagNumber'] )?></dd>
-                <dt>Station</dt><dd><?php echo $results[0]['Address']?></dd>
+                <dt>Station</dt><dd><?php echo $results[0]['StationAddress']?></dd>
                 <dt>Contact</dt><dd><?php echo $results[0]['Contact']?></dd>
                 <dt>Station No.</dt><dd><?php echo $results[0]['StationNo']?></dd>
                 <dt>Station Mob.</dt><dd><?php echo $results[0]['MobileNo']?></dd>

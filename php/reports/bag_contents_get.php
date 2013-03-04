@@ -11,7 +11,7 @@ $query = "SELECT bag.BagID FROM bag
 
 $bagID = sqlHandler::getDB()->select($query);
 
-$query = "SELECT station.Address, station.Contact, bag.DateAssigned, 
+$query = "SELECT station.StationAddress, station.Contact, bag.DateAssigned, 
                 items.SerialNo, items.Points, items.IssueDate, items.NextTestDate,
                 itemcategories.CatName
             FROM items                  

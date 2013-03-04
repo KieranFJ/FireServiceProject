@@ -24,7 +24,7 @@ $result = sqlHandler::getDB()->select($query);
     <label>Station Level</label>
     <input class="required" name="stationLevel" type="text" value="<?php echo $result[0]['StationLevel']; ?>">                                   
     <label>Address</label>
-<textarea rows="4" name="address" class="required"><?php echo $result[0]['Address']; ?></textarea>  
+<textarea rows="4" name="address" class="required"><?php echo $result[0]['StationAddress']; ?></textarea>  
 </div>
 <div class="span3">
     <label>Contact Name</label>
