@@ -27,9 +27,28 @@ if(isset($input))
 
     $results = sqlHandler::getDB()->select($query);
     
-    $query = "SELECT * FROM itemhistory WHERE ItemID = '".$results[0]['ItemID']."'";
+    $query = "SELECT test.*, station.StationName
+                FROM test 
+                JOIN station
+                ON station.StationID = test.StationID
+                WHERE ItemID = '".$results[0]['ItemID']."'";
+    //@TODO testrest needs sorting by entrydate
+    $testRes = sqlHandler::getDB()->select($query);
+    
+    $query = "SELECT itemhistory.*, station.StationName, bag.BagNumber, level.Level 
+                FROM itemhistory 
+                JOIN station
+                ON station.StationID = itemhistory.StationID
+                JOIN bag
+                ON bag.BagID = itemhistory.BagID
+                JOIN level
+                ON bag.LevelID = level.LevelID
+                WHERE ItemID = '".$results[0]['ItemID']."'";
     
     $histRes = sqlHandler::getDB()->select($query);
+    
+    usort($histRes, 'hist_compare');
+    
     if($results)
     {?>
 <script type="text/javascript">
@@ -52,8 +71,7 @@ if(isset($input))
             <dt>End Life Date</dt><dd><?php echo $results[0]['EndLifeDate'] ?></dd>            
             <dt></br></dt><dd></br></dd>
             <dt>Comments</dt><dd><?php echo ($results[0]['Comments'] == '' ? 'N/A' : $results[0]['Comments'] ) ?></dd> 
-        </dl>                   
-        <a class="btn btn-success" href="item_report.php?ItemID=<?php echo $results[0]['ItemID']?>">Full Details</a>
+        </dl>                           
     </div>  
     <div class="span4">
         <h4>Location Details</h4>
@@ -85,10 +103,81 @@ if(isset($input))
     </div>  
 </div>
 <div class="row">
-    <div class="span8">
+    <div class="span10">
+        <div class="row">
+            <div class="span2">
+                <h4>Test History</h4>
+            </div>
+            <div class="span2">
+                <a class="btn btn-success" href="#item_report.php?ItemID=<?php echo $results[0]['ItemID']?>">Print Test History</a>
+            </div>
+        </div>
+        <table class="table table-condensed">
+            <tr>
+                <td><b>#</b></td>
+                <td><b>Test Type</b></td>
+                <td><b>Station</b></td>
+                <td><b>Tester</b></td>
+                <td><b>Originator</b></td>
+                <td><b>Comment</b></td>
+                <td><b>Test Date</b></td>
+            </tr>
         <?php 
-        //foreach($results)
+        $i = 1;
+        foreach($testRes as $row)
+        {?>
+        <tr><td><?php echo $i; ?></td>
+            <td><?php echo $row['TestType']; ?></td>
+            <td><?php echo $row['StationName']; ?></td>
+            <td><?php echo $row['Tester']; ?></td>
+            <td><?php echo $row['Originator']; ?></td>
+            <td><?php echo $row['Comment']; ?></td>
+            <td><?php echo $row['TestDate']; ?></td>
+        </tr>
+        <?php    
+        $i++;
+        }
         ?>
+        </table>
+    </div>
+</div>
+<div class="row">
+    <div class="span10">
+        <div class="row">
+            <div class="span2">
+                <h4>Item History</h4>
+            </div>
+            <div class="span2">
+                <a class="btn btn-success" href="#item_report.php?ItemID=<?php echo $results[0]['ItemID']?>">Print Item History</a>
+            </div>
+        </div>
+        <table class="table table-condensed">
+            <tr>
+                <td><b>#</b></td>
+                <td><b>Type</b></td>
+                <td><b>Station</b></td>
+                <td><b>Bag No.</b></td>
+                <td><b>Flag</b></td>
+                <td><b>Points</b></td>
+                <td><b>Entry Date</b></td>
+            </tr>
+        <?php 
+        $i = 1;
+        foreach($histRes as $row)
+        {?>
+        <tr><td><?php echo $i; ?></td>
+            <td><?php echo $row['HistoryType']; ?></td>
+            <td><?php echo $row['StationName']; ?></td>
+            <td><?php echo $row['BagNumber']; ?></td>
+            <td><?php echo $row['ItemFlag']; ?></td>
+            <td><?php echo $row['Points']; ?></td>
+            <td><?php echo $row['HistEntryDate']; ?></td>
+        </tr>
+        <?php    
+        $i++;
+        }
+        ?>
+        </table>
     </div>
 </div>
 <div class="row">

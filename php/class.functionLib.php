@@ -105,6 +105,13 @@ function date_compare($a, $b)
     $t1 = strtotime($a['NextTestDate']);
     $t2 = strtotime($b['NextTestDate']);
     return $t1 - $t2;
-}    
+}   
+
+function hist_compare($a, $b)
+{
+    $t1 = strtotime($b['HistEntryDate']);
+    $t2 = strtotime($a['HistEntryDate']);
+    return $t1 - $t2;
+}
 ?>
 
