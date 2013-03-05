@@ -14,7 +14,8 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/fire/FireServiceProject/php/class.funct
 
 $query = "SELECT SerialNo, NextTestDate FROM items 
             WHERE NextTestDate BETWEEN (DATE_SUB(CURDATE(), INTERVAL 2 MONTH))
-            AND (DATE_ADD(CURDATE(), INTERVAL 1 MONTH))";
+            AND (DATE_ADD(CURDATE(), INTERVAL 1 MONTH))
+            AND Flag NOT IN ('D', 'L');";
 
 $results = sqlHandler::getDB()->select($query);
 

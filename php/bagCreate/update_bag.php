@@ -43,6 +43,20 @@ if(array_key_exists('serialArr', $in))
 
         sqlHandler::getDB()->insert($query);
     }
+    
+    $query = "SELECT items.ItemID, level.NoItems FROM items 
+        JOIN bag 
+        ON items.BagID = bag.BagID 
+        JOIN level 
+        ON level.LevelID = bag.LevelID 
+        WHERE items.BagID = '".$in['bagID']."'";
+    
+    $results = sqlHandler::getDB()->select($query);
+    ?>
+    <script type="text/javascript">
+        $('#bagAmount').text("<?php echo count($results)."/".$results[0]['NoItems']?> Items in Bag")
+    </script>
+    <?php
     alert("Items added to Bag", 1);
     
 }
