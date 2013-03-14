@@ -16,15 +16,24 @@ if(isset($in))
     $stations = sqlHandler::getDB()->select($query);
     
     if(isset($result))
-    {?>     
+    {    
+        if($result[0]['Flag'] == 'D' || $result[0]['Flag'] == 'L')
+        {
+            $disabled = 'disabled';
+        }
+        else
+        {
+            $disabled = '';
+        }
+    ?>     
     <div class="span3">    
         <input type="hidden" name="itemID" value="<?php echo $result[0]['ItemID'] ?>">
         <label>Name of Tester</label>
-        <input class="required" type="text" name="tester" placeholder="Name of Tester">
+        <input class="required" type="text" name="tester" placeholder="Name of Tester" <?php echo $disabled?>>
         <div class="row">
             <div class="span1">
                 <label>Flag</label>
-                <select class="input-mini" name="flag" value="<?php echo $result[0]['Flag']?>">
+                <select class="input-mini" name="flag" value="<?php echo $result[0]['Flag']?>" <?php echo $disabled?>>
                     <?php 
                     if($result[0]['Flag'] == 'S')
                     {
@@ -38,12 +47,20 @@ if(isset($in))
                     {
                         echo "<option>S</option><option>Q</option><option selected=\"selected\">C</option>";
                     }
+                    elseif($result[0]['Flag'] == 'D')
+                    {
+                        echo "<option selected=\"selected\">D</option>";
+                    }
+                    elseif($result[0]['Flag'] == 'L')
+                    {
+                        echo "<option selected=\"selected\">L</option>";
+                    }
                     ?>
                 </select>
             </div>
             <div class="span1">
                 <label>Points</label>
-                <select class="input-mini" name="points" value="<?php echo $result[0]['Points']?>">
+                <select class="input-mini" name="points" value="<?php echo $result[0]['Points']?>" <?php echo $disabled?>>
                     <?php
                     if($result[0]['Points'] == '0')
                     {
@@ -66,15 +83,15 @@ if(isset($in))
             </div>
         </div>
         <label>Test Type</label>
-        <select class="" name="testType">
+        <select class="" name="testType" <?php echo $disabled?>>
             <option>Checkup</option><option>Wear and Tear</option><option>Damages</option><option>Other</option>
         </select>
         <label>Testing Comment</label>
-        <textarea class="required" type="text" name="comments" rows="3" placeholder="Testing Comment"></textarea>
+        <textarea class="required" type="text" name="comments" rows="3" placeholder="Testing Comment" <?php echo $disabled?>></textarea>
     </div>
     <div class="span3">
         <label>Station of Origin</label>
-        <select class="" name="station">
+        <select class="" name="station" <?php echo $disabled?>>
             <?php 
                 foreach($stations as $row)
                 {
@@ -83,12 +100,15 @@ if(isset($in))
             ?>
         </select>
         <label>Originator</label>
-        <input class="required" type="text" name="originator" placeholder="Person who requested Test">
+        <input class="required" type="text" name="originator" placeholder="Person who requested Test" <?php echo $disabled?>>
         <label>Next Test Date</label>
-        <input class="datepicker required" id="dp1" type="text" name="nextTestDate" placeholder="Date of Next Test">                
+        <input class="datepicker required" id="dp1" type="text" name="nextTestDate" placeholder="Date of Next Test" <?php echo $disabled?>>                
     </div>
         
     <script type="text/javascript">
+        $('#dis').each(function () {
+                $(this).prop('disabled', <?php echo ($disabled == "" ? "false" : "true") ?>);
+            })
         $('.datepicker').datepicker({
             format: 'dd-mm-yyyy',
             todayHighlight: 'true',

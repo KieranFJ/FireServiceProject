@@ -24,7 +24,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/fire/FireServiceProject/php/class.sqlHa
                 </div>  
             </div>
             <div class="form-actions">
-            <button type="submit" class="btn btn-primary">Submit Test</button>
+            <button id="dis" type="submit" class="btn btn-primary">Submit Test</button>
         </div>
         </form>                                        
         </div>
