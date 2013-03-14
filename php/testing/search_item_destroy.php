@@ -66,7 +66,7 @@ if(isset($in))
         <label>Originator</label>
         <input class="required" type="text" name="originator" placeholder="Person who Requested Destruction" <?php echo $disabled?>>
         <label>Destruction Date</label>
-        <input class="datepicker required" id="dp1" type="text" name="destructionDate" value="<?php print(Date("d-m-Y"));?>" <?php echo $disabled?>>                
+        <input class="datepicker required" id="dp1" type="text" name="destructionDate" value="<?php print(Date("d-m-Y"));?>" disabled>                
     </div>
         
     <script type="text/javascript">        
