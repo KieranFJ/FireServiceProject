@@ -15,6 +15,7 @@
                   <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
                       <li><a href="bag_contents_report.php">Bag Contents</a></li>
                       <li><a href="item_report.php">Item Report</a></li>
+                      <li><a href="bag_location_report.php">Bag Location Report</a></li>
                   </ul>                  
               <li><a href="bag.php">Bag Management</a></li>
               <li><a href="bag_station_allocation.php">Allocate Bag</a></li>

@@ -25,7 +25,6 @@ if($results)
     
     if(isset($results))
     {
-        aasort($results, "Level");
         $oldName = "";
         foreach($results as $row)
         {
