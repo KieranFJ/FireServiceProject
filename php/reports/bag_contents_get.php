@@ -13,7 +13,7 @@ $bagID = sqlHandler::getDB()->select($query);
 
 $query = "SELECT station.StationAddress, station.Contact, bag.DateAssigned, 
                 items.SerialNo, items.Points, items.IssueDate, items.NextTestDate,
-                itemcategories.CatName
+                items.Flag, items.Comments, itemcategories.CatName
             FROM items                  
             LEFT JOIN bag
             ON bag.BagID = items.BagID  
@@ -31,11 +31,14 @@ $results = sqlHandler::getDB()->select($query);
     $('#bagid').each(function() {  
         $(this).attr('value', '<?php echo $bagID[0]['BagID']; ?>')
     })
+    $('#ticksheet').each(function() {
+        $(this).attr('href', 'ticksheet.php?BagID=<?php echo $bagID[0]['BagID']; ?>')
+    })
     </script>
 
 <table class="table">
     <tr>        
-        <th>#</th><th>Serial Number</th><th>Item Type</th><th>Points</th><th>Next Test Date</th>   
+        <th>#</th><th>Serial Number</th><th>Item Type</th><th>Flag</th><th>Points</th><th>Next Test Date</th><th>Comment</th>   
     </tr>
     <?php
     if($results)
@@ -46,11 +49,13 @@ $results = sqlHandler::getDB()->select($query);
         foreach($results as $row)
         {?>
         <tr>
-            <td><?php echo $i ?></td>
-            <td><?php echo $row['SerialNo']; ?></td>
-            <td><?php echo $row['CatName']; ?></td>
-            <td><?php echo $row['Points']; ?></td>
-            <td><?php echo $row['NextTestDate']; ?></td>
+            <td width="5%"><?php echo $i ?></td>
+            <td width="15%"><?php echo $row['SerialNo']; ?></td>
+            <td width="20%"><?php echo $row['CatName']; ?></td>
+            <td width="5%"><?php echo $row['Flag']; ?></td>
+            <td width="5%"><?php echo $row['Points']; ?></td>
+            <td width="15%"><?php echo $row['NextTestDate']; ?></td>
+            <td><?php echo $row['Comments']; ?></td>
         </tr>
         <?php
         $i++;

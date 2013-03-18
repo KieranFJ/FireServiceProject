@@ -45,7 +45,7 @@ if(isset($results))
 </form>
 </div>
     <!-- @TODO create the printable version of the bag contents report -->
-<div class="span2 offset6">
+<div class="span4 offset5">
     <form class="validate" action="php/print/print_bag_contents_report.php" method="get">
         <input id="bagid" type="hidden" name="BagID" value="">
         <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -69,7 +69,7 @@ if(isset($results))
               <input type="submit" class="btn btn-primary" value="Next">
             </div>
         </div>
-    
+        <a id="ticksheet" class="btn btn-success btn-large" role="button" href="/php/reports/tick_sheet.php?BagID=<?php ?>">Print Ticksheet <i class="icon-print icon-white"></i></a>
         <a class="btn btn-success btn-large" role="button" data-toggle="modal" href="#myModal">Print Report <i class="icon-print icon-white"></i></a>
         <div class="message"></div>
     </form>    
