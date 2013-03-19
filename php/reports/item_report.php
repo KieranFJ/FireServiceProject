@@ -58,7 +58,10 @@ if(isset($input))
     
     $histRes = sqlHandler::getDB()->select($query);
     
-    usort($histRes, 'hist_compare');
+    if($histRes)
+    {
+        usort($histRes, 'hist_compare');
+    }
     
     if($results)
     {?>
@@ -134,19 +137,25 @@ if(isset($input))
                 <td><b>Test Date</b></td>
             </tr>
         <?php 
-        $i = 1;
-        foreach($testRes as $row)
-        {?>
-        <tr><td><?php echo $i; ?></td>
-            <td><?php echo $row['TestType']; ?></td>
-            <td><?php echo $row['StationName']; ?></td>
-            <td><?php echo $row['Tester']; ?></td>
-            <td><?php echo $row['Originator']; ?></td>
-            <td><?php echo $row['Comment']; ?></td>
-            <td><?php echo $row['TestDate']; ?></td>
-        </tr>
-        <?php    
-        $i++;
+        if($testRes)
+        {
+            $i = 1;
+            foreach($testRes as $row)
+            {?>
+            <tr><td><?php echo $i++; ?></td>
+                <td><?php echo $row['TestType']; ?></td>
+                <td><?php echo $row['StationName']; ?></td>
+                <td><?php echo $row['Tester']; ?></td>
+                <td><?php echo $row['Originator']; ?></td>
+                <td><?php echo $row['Comment']; ?></td>
+                <td><?php echo $row['TestDate']; ?></td>
+            </tr>
+            <?php           
+            }
+        }
+        else
+        {
+            echo "<h4>There are test entries for this Item</h4>";
         }
         ?>
         </table>
@@ -173,19 +182,25 @@ if(isset($input))
                 <td><b>Entry Date</b></td>
             </tr>
         <?php 
-        $i = 1;
-        foreach($histRes as $row)
-        {?>
-        <tr><td><?php echo $i; ?></td>
-            <td><?php echo $row['HistoryType']; ?></td>
-            <td><?php echo $row['StationName']; ?></td>
-            <td><?php echo $row['BagNumber']; ?></td>
-            <td><?php echo $row['ItemFlag']; ?></td>
-            <td><?php echo $row['Points']; ?></td>
-            <td><?php echo $row['HistEntryDate']; ?></td>
-        </tr>
-        <?php    
-        $i++;
+        if($histRes)
+        {
+            $i = 1;
+            foreach($histRes as $row)
+            {?>
+            <tr><td><?php echo $i++; ?></td>
+                <td><?php echo $row['HistoryType']; ?></td>
+                <td><?php echo $row['StationName']; ?></td>
+                <td><?php echo $row['BagNumber']; ?></td>
+                <td><?php echo $row['ItemFlag']; ?></td>
+                <td><?php echo $row['Points']; ?></td>
+                <td><?php echo $row['HistEntryDate']; ?></td>
+            </tr>
+        <?php
+            }
+        }
+        else
+        {
+            echo "<h4>There are no history entries for this Item</h4>";
         }
         ?>
         </table>

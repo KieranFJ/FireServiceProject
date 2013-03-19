@@ -4,8 +4,6 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/fire/FireServiceProject/php/class.funct
 
 $in = $_POST;
 
-//@TODO Bug - can add items from store into store bag, or a new store bag. Stop store bag from appearing in bag number dropdown
-
 if(array_key_exists('serialArr', $in))
 {
     $input = clean($in['serialArr']);

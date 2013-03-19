@@ -16,6 +16,12 @@ $(document).ready(function(){
     });
 });
 
+//$(document).ajaxStart(function(){ 
+//  $('#bagAmount').text('busy'); 
+//}).ajaxStop(function(){ 
+//  $('#bagAmount').text('notbusy');
+//});
+
 function fillSearchForm(action)
 {          
     $('#searchUpForm').load(action, $('.searchGet').serializeArray());
