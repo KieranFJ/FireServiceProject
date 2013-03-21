@@ -18,10 +18,13 @@ if(isset($in))
 
     $stations = sqlHandler::getDB()->select($query);
     
-    
-    
-    if(isset($result))
+    if($result[0]['Flag'] == 'S' || $result[0]['Flag'] == 'Q' || $result[0]['Flag'] == 'M')
     {
+        alert('Item has not been Condemned! Test and Condemn first!', 0);
+    }    
+    elseif(isset($result))
+    {
+        
         if($result[0]['Flag'] == 'D' || $result[0]['Flag'] == 'L')
         {
             $disabled = 'disabled';

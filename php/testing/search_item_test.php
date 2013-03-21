@@ -37,15 +37,19 @@ if(isset($in))
                     <?php 
                     if($result[0]['Flag'] == 'S')
                     {
-                        echo "<option selected=\"selected\">S</option><option>Q</option><option>C</option>";
+                        echo "<option selected=\"selected\">S</option><option>M</option><option>Q</option><option>C</option>";
+                    }
+                    if($result[0]['Flag'] == 'M')
+                    {
+                        echo "<option>S</option><option selected=\"selected\">M</option><option>Q</option><option>C</option>";
                     }
                     elseif($result[0]['Flag'] == 'Q')
                     {
-                        echo "<option>S</option><option selected=\"selected\">Q</option><option>C</option>";
+                        echo "<option>S</option><option>M</option><option selected=\"selected\">Q</option><option>C</option>";
                     }
                     elseif($result[0]['Flag'] == 'C')
                     {
-                        echo "<option>S</option><option>Q</option><option selected=\"selected\">C</option>";
+                        echo "<option>S</option><option>M</option><option>Q</option><option selected=\"selected\">C</option>";
                     }
                     elseif($result[0]['Flag'] == 'D')
                     {

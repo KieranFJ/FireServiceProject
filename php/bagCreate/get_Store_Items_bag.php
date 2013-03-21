@@ -9,7 +9,7 @@ $query = "SELECT SerialNo FROM items
             ON items.ItemTypeID = itemcategories.ItemTypeID
             WHERE items.BagID = '0'
             AND itemcategories.CatName = '".$in['itemName']."'
-            AND items.Flag = 'S';";
+            AND items.Flag IN('S', 'M');";
 
 $results = sqlhandler::getDB()->select($query);
 

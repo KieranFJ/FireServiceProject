@@ -97,13 +97,20 @@ function safe($var, $type = 'string')
     foreach ($sorter as $ii => $va) {
         $ret[$ii]=$array[$ii];
     }
-    $array=$ret;
+    $array = $ret;
 }
 
 function date_compare($a, $b)
 {
     $t1 = strtotime($a['NextTestDate']);
     $t2 = strtotime($b['NextTestDate']);
+    return $t1 - $t2;
+}   
+
+function end_compare($a, $b)
+{
+    $t1 = strtotime($a['EndLifeDate']);
+    $t2 = strtotime($b['EndLifeDate']);
     return $t1 - $t2;
 }   
 

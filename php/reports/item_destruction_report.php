@@ -5,16 +5,6 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/fire/FireServiceProject/php/class.sqlHa
 
 $in = $_POST;
 
-//$query = "SELECT items.* FROM items 
-//            JOIN bag
-//            ON bag.BagID = items.BagID
-//            JOIN station
-//            ON station.StationID = bag.StationID
-//            WHERE station.StationName = '".$in['stationName']."'
-//            AND items.Flag IN ('D', 'L');";
-
-
-//@TODO specify which fields
 $query = "SELECT items.*, test.* FROM test
             JOIN items
             ON items.ItemID = test.ItemID

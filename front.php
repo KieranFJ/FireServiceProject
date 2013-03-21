@@ -20,6 +20,15 @@ $query = "SELECT SerialNo, NextTestDate FROM items
 $results = sqlHandler::getDB()->select($query);
 
 usort($results, 'date_compare');
+
+$query = "SELECT SerialNo, EndLifeDate FROM items
+            WHERE EndLifeDate BETWEEN (DATE_SUB(CURDATE(), INTERVAL 2 MONTH))
+           AND (DATE_ADD(CURDATE(), INTERVAL 1 MONTH))
+            AND Flag NOT IN ('D', 'L');";
+    
+$endLifeRes = sqlHandler::getDB()->select($query);
+
+usort($endLifeRes, 'end_compare');
 ?>
 
 <div class="container">
@@ -37,49 +46,79 @@ usort($results, 'date_compare');
                 </div>                            
             </div>
         </div>
-
         <div class="span5">
-            <h3>Upcoming Tests (30 Days)</h3>
-            <table class="table table-bordered">
-                <tr>
-                    <th>Serial Number</th><th>Next Test Date</th>
-                </tr>
-                <tr>
-                    <?php 
-                    foreach($results as $row)
-                    {
-                        $date = strtotime($row['NextTestDate']);
-                        
-                        if($date < strtotime('+7days'))
-                        {
-                            echo "<tr class=\"error\"><td>".$row['SerialNo']."</td><td>".$row['NextTestDate']."</td></tr>";
-                        }
-                        elseif($date > strtotime('+7days') && $date < strtotime('+14days'))
-                        {
-                            echo "<tr class=\"warning\"><td>".$row['SerialNo']."</td><td>".$row['NextTestDate']."</td></tr>";
-                        }
-                        elseif($date > strtotime('+14days') && $date < strtotime('+21days'))
-                        {
-                            echo "<tr class=\"info\"><td>".$row['SerialNo']."</td><td>".$row['NextTestDate']."</td></tr>";
-                        }
-                        else
-                        {
-                            echo "<tr><td>".$row['SerialNo']."</td><td>".$row['NextTestDate']."</td></tr>";
-                        }
-                        
-                        //if 7 days red
-                        
-                        //else if 14 days yellow
-                        
-                        //else if 21 green
-                        
-                        //else white
-                    }
-                    ?>
-                    
-                </tr>
-            </table>
-        </div>    
+                <div class="row">
+                <div class="span5">
+                    <h3>Upcoming End of Life (30 Days)</h3>
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>Serial Number</th><th>Next Test Date</th>
+                        </tr>
+                        <tr>
+                            <?php 
+                            foreach($endLifeRes as $row)
+                            {
+                                $date = strtotime($row['EndLifeDate']);
+
+                                if($date < strtotime('+7days'))
+                                {
+                                    echo "<tr class=\"error\"><td>".$row['SerialNo']."</td><td>".$row['EndLifeDate']."</td></tr>";
+                                }
+                                elseif($date > strtotime('+7days') && $date < strtotime('+14days'))
+                                {
+                                    echo "<tr class=\"warning\"><td>".$row['SerialNo']."</td><td>".$row['EndLifeDate']."</td></tr>";
+                                }
+                                elseif($date > strtotime('+14days') && $date < strtotime('+21days'))
+                                {
+                                    echo "<tr class=\"info\"><td>".$row['SerialNo']."</td><td>".$row['EndLifeDate']."</td></tr>";
+                                }
+                                else
+                                {
+                                    echo "<tr><td>".$row['SerialNo']."</td><td>".$row['EndLifeDate']."</td></tr>";
+                                }
+                            }
+                            ?>
+
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="span5">
+                    <h3>Upcoming Tests (30 Days)</h3>
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>Serial Number</th><th>Next Test Date</th>
+                        </tr>
+                        <tr>
+                            <?php 
+                            foreach($results as $row)
+                            {
+                                $date = strtotime($row['NextTestDate']);
+
+                                if($date < strtotime('+7days'))
+                                {
+                                    echo "<tr class=\"error\"><td>".$row['SerialNo']."</td><td>".$row['NextTestDate']."</td></tr>";
+                                }
+                                elseif($date > strtotime('+7days') && $date < strtotime('+14days'))
+                                {
+                                    echo "<tr class=\"warning\"><td>".$row['SerialNo']."</td><td>".$row['NextTestDate']."</td></tr>";
+                                }
+                                elseif($date > strtotime('+14days') && $date < strtotime('+21days'))
+                                {
+                                    echo "<tr class=\"info\"><td>".$row['SerialNo']."</td><td>".$row['NextTestDate']."</td></tr>";
+                                }
+                                else
+                                {
+                                    echo "<tr><td>".$row['SerialNo']."</td><td>".$row['NextTestDate']."</td></tr>";
+                                }
+                            }
+                            ?>
+
+                        </tr>
+                    </table>
+                </div>    
+            </div>
+        </div>
     </div>
 </div> <!-- /container -->
     
