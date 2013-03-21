@@ -44,8 +44,11 @@ if(isset($results))
 </select>        
 </form>
 </div>
+    <div id="noItems" class="span4">
+        
+    </div>
     <!-- @TODO create the printable version of the bag contents report -->
-<div class="span4 offset5">
+<div class="span4">
     <form class="validate" action="php/print/print_bag_contents_report.php" method="get">
         <input id="bagid" type="hidden" name="BagID" value="">
         <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

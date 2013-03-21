@@ -13,7 +13,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/fire/FireServiceProject/php/class.sqlHa
 require_once($_SERVER['DOCUMENT_ROOT'].'/fire/FireServiceProject/php/class.functionLib.php');
 
 $query = "SELECT SerialNo, NextTestDate FROM items 
-            WHERE NextTestDate BETWEEN (DATE_SUB(CURDATE(), INTERVAL 2 MONTH))
+            WHERE NextTestDate BETWEEN (DATE_SUB(CURDATE(), INTERVAL 12 MONTH))
             AND (DATE_ADD(CURDATE(), INTERVAL 1 MONTH))
             AND Flag NOT IN ('D', 'L');";
 
@@ -22,7 +22,7 @@ $results = sqlHandler::getDB()->select($query);
 usort($results, 'date_compare');
 
 $query = "SELECT SerialNo, EndLifeDate FROM items
-            WHERE EndLifeDate BETWEEN (DATE_SUB(CURDATE(), INTERVAL 2 MONTH))
+            WHERE EndLifeDate BETWEEN (DATE_SUB(CURDATE(), INTERVAL 12 MONTH))
            AND (DATE_ADD(CURDATE(), INTERVAL 1 MONTH))
             AND Flag NOT IN ('D', 'L');";
     

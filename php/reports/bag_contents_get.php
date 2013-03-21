@@ -14,20 +14,25 @@ $bagID = sqlHandler::getDB()->select($query);
 $query = "SELECT station.StationAddress, station.Contact, bag.DateAssigned, 
                 items.SerialNo, items.Points, items.IssueDate, items.NextTestDate,
                 items.Flag, items.Comments, itemcategories.CatName
-            FROM items                  
+            FROM items                 
             LEFT JOIN bag
             ON bag.BagID = items.BagID  
             LEFT JOIN station
             ON bag.StationID = station.StationID  
             LEFT OUTER JOIN itemcategories
-            ON itemcategories.ItemTypeID = items.ItemTypeID 
+            ON itemcategories.ItemTypeID = items.ItemTypeID             
             WHERE items.BagID = '".$bagID[0]['BagID']."';";
 
 $results = sqlHandler::getDB()->select($query);
 
+$query = "SELECT NoItems FROM level JOIN bag ON bag.LevelID = level.LevelID WHERE bag.BagID = '".$bagID[0]['BagID']."';";
 
+$noItems = sqlHandler::getDB()->select($query);
 ?>
 <script type="text/javascript">
+    $('#noItems').each(function() {
+       $(this).text('<?php echo count($results).'/'.$noItems[0]['NoItems']; ?> Items in this Bag'); 
+    });
     $('#bagid').each(function() {  
         $(this).attr('value', '<?php echo $bagID[0]['BagID']; ?>')
     })
@@ -51,7 +56,7 @@ $results = sqlHandler::getDB()->select($query);
         <tr>
             <td width="5%"><?php echo $i ?></td>
             <td width="15%"><?php echo $row['SerialNo']; ?></td>
-            <td width="20%"><?php echo $row['CatName']; ?></td>
+            <td width="15%"><?php echo $row['CatName']; ?></td>
             <td width="5%"><?php echo $row['Flag']; ?></td>
             <td width="5%"><?php echo $row['Points']; ?></td>
             <td width="15%"><?php echo $row['NextTestDate']; ?></td>
