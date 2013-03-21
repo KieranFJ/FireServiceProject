@@ -19,7 +19,11 @@ $query = "SELECT SerialNo, NextTestDate FROM items
 
 $results = sqlHandler::getDB()->select($query);
 
-usort($results, 'date_compare');
+if($results)
+{
+    usort($results, 'date_compare');
+}
+
 
 $query = "SELECT SerialNo, EndLifeDate FROM items
             WHERE EndLifeDate BETWEEN (DATE_SUB(CURDATE(), INTERVAL 12 MONTH))
@@ -28,7 +32,11 @@ $query = "SELECT SerialNo, EndLifeDate FROM items
     
 $endLifeRes = sqlHandler::getDB()->select($query);
 
-usort($endLifeRes, 'end_compare');
+if($endLifeRes)
+{
+  usort($endLifeRes, 'end_compare');  
+}
+
 ?>
 
 <div class="container">
@@ -50,41 +58,59 @@ usort($endLifeRes, 'end_compare');
                 <div class="row">
                 <div class="span5">
                     <h3>Upcoming End of Life (30 Days)</h3>
+                    <?php 
+                    if($endLifeRes)
+                    {
+                    ?>
                     <table class="table table-bordered">
                         <tr>
                             <th>Serial Number</th><th>Next Test Date</th>
                         </tr>
                         <tr>
                             <?php 
-                            foreach($endLifeRes as $row)
-                            {
-                                $date = strtotime($row['EndLifeDate']);
+                            
+                                foreach($endLifeRes as $row)
+                                {
+                                    $date = strtotime($row['EndLifeDate']);
 
-                                if($date < strtotime('+7days'))
-                                {
-                                    echo "<tr class=\"error\"><td>".$row['SerialNo']."</td><td>".$row['EndLifeDate']."</td></tr>";
+                                    if($date < strtotime('+7days'))
+                                    {
+                                        echo "<tr class=\"error\"><td>".$row['SerialNo']."</td><td>".$row['EndLifeDate']."</td></tr>";
+                                    }
+                                    elseif($date > strtotime('+7days') && $date < strtotime('+14days'))
+                                    {
+                                        echo "<tr class=\"warning\"><td>".$row['SerialNo']."</td><td>".$row['EndLifeDate']."</td></tr>";
+                                    }
+                                    elseif($date > strtotime('+14days') && $date < strtotime('+21days'))
+                                    {
+                                        echo "<tr class=\"info\"><td>".$row['SerialNo']."</td><td>".$row['EndLifeDate']."</td></tr>";
+                                    }
+                                    else
+                                    {
+                                        echo "<tr><td>".$row['SerialNo']."</td><td>".$row['EndLifeDate']."</td></tr>";
+                                    }
                                 }
-                                elseif($date > strtotime('+7days') && $date < strtotime('+14days'))
-                                {
-                                    echo "<tr class=\"warning\"><td>".$row['SerialNo']."</td><td>".$row['EndLifeDate']."</td></tr>";
-                                }
-                                elseif($date > strtotime('+14days') && $date < strtotime('+21days'))
-                                {
-                                    echo "<tr class=\"info\"><td>".$row['SerialNo']."</td><td>".$row['EndLifeDate']."</td></tr>";
-                                }
-                                else
-                                {
-                                    echo "<tr><td>".$row['SerialNo']."</td><td>".$row['EndLifeDate']."</td></tr>";
-                                }
-                            }
+                                                        
                             ?>
 
                         </tr>
                     </table>
+                    <?php 
+                    }
+                    else 
+                    { 
+                        echo "<h4>No Items current approaching their End of Life</h4>";
+                    }
+                    ?>
+                    
                 </div>
 
                 <div class="span5">
                     <h3>Upcoming Tests (30 Days)</h3>
+                    <?php 
+                    if($results)
+                    {
+                    ?>
                     <table class="table table-bordered">
                         <tr>
                             <th>Serial Number</th><th>Next Test Date</th>
@@ -116,6 +142,13 @@ usort($endLifeRes, 'end_compare');
 
                         </tr>
                     </table>
+                    <?php 
+                    }
+                    else 
+                    { 
+                        echo "<h4>No Items current approaching their Next Test Dates</h4>";
+                    }
+                    ?>
                 </div>    
             </div>
         </div>
