@@ -155,7 +155,7 @@ if(isset($input))
         }
         else
         {
-            echo "<h4>There are test entries for this Item</h4>";
+            echo "<h4>There are no test entries for this Item</h4>";
         }
         ?>
         </table>
