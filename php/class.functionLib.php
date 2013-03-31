@@ -17,8 +17,6 @@
 
 function alert($message, $type)
 {
-    
-
     $out = "<script type=\"text/javascript\">
             $(\".alert\").alert();
             </script>";    
@@ -39,7 +37,10 @@ function alert($message, $type)
     } 
     $out .= "<button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button>
         <Strong>".$message."</Strong></div>";
-
+        
+    $out .= "<script type=\"text/javascript\">
+                $('.alert').fadeOut(3000);  
+            </script>";
     echo $out;
 }
 
@@ -60,33 +61,7 @@ function clean($arr)
     return $arr;
 }
 
-
-
-
-function safe($var, $type = 'string')
-{
-    switch ($type)
-    { 
-    case 'string':
-            return "'".mysql_escape_string($var)."'";
-            break;
-
-    case 'int':
-            return (int)$var;
-            break;
-
-    case 'float':
-            return (float)$var;
-            break; 
-
-    default:
-            return "'".mysql_escape_string($var)."'";
-            break;
-    } 
-}
-
-
-    function aasort (&$array, $key) {
+function aasort (&$array, $key) {
     $sorter=array();
     $ret=array();
     reset($array);

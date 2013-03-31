@@ -123,7 +123,7 @@ if(isset($input))
                 <h4>Test History</h4>
             </div>
             <div class="span2">
-                <a class="btn btn-success" href="#item_report.php?ItemID=<?php echo $results[0]['ItemID']?>">Print Test History</a>
+                <a class="btn btn-success" href="php/print/test_history_print.php?ItemID=<?php echo $results[0]['ItemID']?>">Print Test History</a>
             </div>
         </div>
         <table class="table table-condensed">

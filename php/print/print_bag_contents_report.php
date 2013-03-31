@@ -77,32 +77,33 @@ $i = 0;
                 <?php 
                 $i++;
                 
-                if($i == 20 || $i==40 || $i==60)
+                if($i % 20 == 0)
                 {?>
-                    </table>
-            <table class="table main">
-                <tr>
-                    <td width="200px"><h5>Competent Person</h5></td>
-                    <td width="200px"><h5><?php echo $in['competentPerson']?></h5></td>
-                    <td style="border-bottom:0px"></td>
-                </tr>
-                <tr>
-                    <td width="200px"><h5>Brigade Number</h5></td>
-                    <td width="200px"><h5><?php echo $in['brigadeNo']?></h5></td>
-                    <td style="border-top:0px">Signed __________________________________________</td>
-                </tr>
-            </table><div class="page-break"></div> 
-                    <table class="table main">
-                <tr><td><h3>Fire And Rescue Service</h3></td><td><h5><?php echo date("d-m-Y"); ?></h5></td></tr>
-                <tr><td><h5>Safe Working At Height</h5></td><td><h5><?php echo $res[0]['Level']?></h5></td></tr>
-                <tr><td><h5>Bag Number</h5></td><td><h5><?php echo $res[0]['BagNumber']?></h5></td></tr>
-                <tr><td><h5>Vehicle Fleet</h5></td><td><h5><?php echo $in['vehicleFleet'] ?></h5></td>
-            </table>
-                    <table class="table main">
+                </table>
+                <table class="table main">
+                    <tr>
+                        <td width="200px"><h5>Competent Person</h5></td>
+                        <td width="200px"><h5><?php echo $in['competentPerson']?></h5></td>
+                        <td style="border-bottom:0px"></td>
+                    </tr>
+                    <tr>
+                        <td width="200px"><h5>Brigade Number</h5></td>
+                        <td width="200px"><h5><?php echo $in['brigadeNo']?></h5></td>
+                        <td style="border-top:0px">Signed __________________________________________</td>
+                    </tr>
+                </table>
+                <div class="page-break"></div> 
+                <table class="table main">
+                    <tr><td><h3>Fire And Rescue Service</h3></td><td><h5><?php echo date("d-m-Y"); ?></h5></td></tr>
+                    <tr><td><h5>Safe Working At Height</h5></td><td><h5><?php echo $res[0]['Level']?></h5></td></tr>
+                    <tr><td><h5>Bag Number</h5></td><td><h5><?php echo $res[0]['BagNumber']?></h5></td></tr>
+                    <tr><td><h5>Vehicle Fleet</h5></td><td><h5><?php echo $in['vehicleFleet'] ?></h5></td>
+                </table>
+                <table class="table main">
                 <?php        
                 }
                 
-                }?>
+            }?>
             </table>            
             <table class="table main">
                 <tr>
