@@ -4,7 +4,7 @@
 
 $in = $_GET;
 
-$query = "SELECT station.StationAddress, station.Contact, bag.DateAssigned, bag.BagNumber,
+$query = "SELECT station.StationName, station.Contact, bag.DateAssigned, bag.BagNumber,
                 items.SerialNo, items.Points, items.IssueDate, items.NextTestDate,
                 itemcategories.CatName, level.Level, items.Flag
             FROM items                  
@@ -22,7 +22,6 @@ $res = sqlHandler::getDB()->select($query);
 
 $i = 0;
 
-//@TODO add station details to first page
 ?>
 <html lang="en">
     <head>
@@ -51,7 +50,9 @@ $i = 0;
                 <tr><td><h3>Fire And Rescue Service</h3></td><td><h5><?php echo date("d-m-Y"); ?></h5></td></tr>
                 <tr><td><h5>Safe Working At Height</h5></td><td><h5><?php echo $res[0]['Level']?></h5></td></tr>
                 <tr><td><h5>Bag Number</h5></td><td><h5><?php echo $res[0]['BagNumber']?></h5></td></tr>
-                <tr><td><h5>Vehicle Fleet</h5></td><td><h5><?php echo $in['vehicleFleet'] ?></h5></td>
+                <tr><td><h5>Vehicle Fleet</h5></td><td><h5><?php echo $in['vehicleFleet'] ?></h5></td></tr>
+                <tr><td><h5>Station</h5></td><td><h5><?php echo $res[0]['StationName'] ?></h5></td>
+                
             </table>   
             
             <table class="table main">    
@@ -97,7 +98,8 @@ $i = 0;
                     <tr><td><h3>Fire And Rescue Service</h3></td><td><h5><?php echo date("d-m-Y"); ?></h5></td></tr>
                     <tr><td><h5>Safe Working At Height</h5></td><td><h5><?php echo $res[0]['Level']?></h5></td></tr>
                     <tr><td><h5>Bag Number</h5></td><td><h5><?php echo $res[0]['BagNumber']?></h5></td></tr>
-                    <tr><td><h5>Vehicle Fleet</h5></td><td><h5><?php echo $in['vehicleFleet'] ?></h5></td>
+                    <tr><td><h5>Vehicle Fleet</h5></td><td><h5><?php echo $in['vehicleFleet'] ?></h5></td>                        
+                <tr><td><h5>Station</h5></td><td><h5><?php echo $res[0]['StationName'] ?></h5></td>
                 </table>
                 <table class="table main">
                 <?php        

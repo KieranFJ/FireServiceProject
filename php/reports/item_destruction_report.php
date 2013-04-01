@@ -1,6 +1,7 @@
 <?php
 
 require_once($_SERVER['DOCUMENT_ROOT'].'/fire/FireServiceProject/php/class.sqlHandler.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/fire/FireServiceProject/php/class.functionLib.php');
 
 
 $in = $_POST;
@@ -19,16 +20,10 @@ $i = 1;
 
 
 
-
-usort($results, function($a, $b){
-    return strtotime($b['TestDate']) - strtotime($a['TestDate']);
-});
-
+if($results)
+{
+    usort($results, compare('TestDate', 'newtop'));
 ?>
-
-
-
-
 <table class="table table-condensed">
     <tr>
         <th>#</th>
@@ -40,8 +35,7 @@ usort($results, function($a, $b){
         <th>Test Comment</th>
     </tr>
     <?php 
-    if($results)
-    {
+    
     foreach($results as $row)
     {
     ?>
@@ -59,7 +53,7 @@ usort($results, function($a, $b){
     }
     else
     {
-        echo "<h4>No Destroyed Items for this Station</h4>";
+        echo "<h3>No Destroyed Items for this Station</h3>";
     }
     ?>
 </table>

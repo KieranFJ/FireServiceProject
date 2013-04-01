@@ -1,7 +1,4 @@
 <?php
-
-//@TODO validation for number, letters causes mysql error
-
 require_once($_SERVER['DOCUMENT_ROOT'].'/fire/FireServiceProject/php/class.sqlHandler.php');
 
 

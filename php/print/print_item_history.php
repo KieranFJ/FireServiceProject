@@ -26,14 +26,19 @@ if($_GET['ItemID'] != "")
     }
     else
     {
-        $query = "SELECT test.*, station.StationName
-                FROM test 
+        $query = "SELECT itemhistory.*, station.StationName, bag.BagNumber, level.Level 
+                FROM itemhistory 
                 JOIN station
-                ON station.StationID = test.StationID
+                ON station.StationID = itemhistory.StationID
+                JOIN bag
+                ON bag.BagID = itemhistory.BagID
+                JOIN level
+                ON bag.LevelID = level.LevelID
                 WHERE ItemID = '".$results[0]['ItemID']."'";
-
-        $testRes = sqlHandler::getDB()->select($query);
-
+    
+        $histRes = sqlHandler::getDB()->select($query);
+        
+        usort($histRes, compare('HistEntryDate', 'newtop'));
         ?>
 <html lang="en">
     <head>
@@ -71,32 +76,32 @@ if($_GET['ItemID'] != "")
                 </tr>
             </table>
             <?php 
-            if($testRes)
+            if($histRes)
             {
                 $i = 1;
             ?>
             <table class="table main">
                 <tr>
-                    <td width="5%"><b>#</b></td>
+                    <td><b>#</b></td>
                     <td><b>Test Type</b></td>
                     <td><b>Station</b></td>
-                    <td><b>Tester</b></td>
-                    <td><b>Originator</b></td>
-                    <td><b>Comment</b></td>
-                    <td><b>Test Date</b></td>
+                    <td><b>Bag No</b></td>
+                    <td><b>Flag</b></td>
+                    <td><b>Points</b></td>
+                    <td><b>Entry Date</b></td>
                 </tr>
                 <?php    
-                    foreach($testRes as $row)
+                    foreach($histRes as $row)
                     {
                     ?>
                         <tr>
-                            <td width="5%"><?php echo $i++; ?></td>
-                            <td width="10%"><?php echo $row['TestType']; ?></td>
+                            <td width="4%"><?php echo $i++; ?></td>
+                            <td width="15%"><?php echo $row['HistoryType']; ?></td>
                             <td width="10%"><?php echo $row['StationName']; ?></td>
-                            <td width="15%"><?php echo $row['Tester']; ?></td>
-                            <td width="15%"><?php echo $row['Originator']; ?></td>
-                            <td><?php echo $row['Comment']; ?></td>
-                            <td width="20%"><?php echo $row['TestDate']; ?></td>
+                            <td width="5%"><?php echo $row['BagNumber']; ?></td>
+                            <td width="5%"><?php echo $row['ItemFlag']; ?></td>
+                            <td width="5%"><?php echo $row['Points']; ?></td>  
+                            <td width="15%"><?php echo $row['HistEntryDate']; ?></td>
                         </tr>
                         <?php  
                     
@@ -106,13 +111,13 @@ if($_GET['ItemID'] != "")
                         <div class="page-break"></div>
                         <table class="table main">
                              <tr>
-                                <td width="5%"><b>#</b></td>
+                                <td><b>#</b></td>
                                 <td><b>Test Type</b></td>
                                 <td><b>Station</b></td>
-                                <td><b>Tester</b></td>
-                                <td><b>Originator</b></td>
-                                <td><b>Comment</b></td>
-                                <td><b>Test Date</b></td>
+                                <td><b>Bag No</b></td>
+                                <td><b>Flag</b></td>
+                                <td><b>Points</b></td>
+                                <td><b>Entry Date</b></td>
                             </tr>
                         <?php
                         }

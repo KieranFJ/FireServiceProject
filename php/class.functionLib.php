@@ -75,25 +75,62 @@ function aasort (&$array, $key) {
     $array = $ret;
 }
 
-function date_compare($a, $b)
-{
-    $t1 = strtotime($a['NextTestDate']);
-    $t2 = strtotime($b['NextTestDate']);
-    return $t1 - $t2;
-}   
+//@TODO remove this code if no breaks
+//function date_compare($a, $b)
+//{
+//    $t1 = strtotime($a['NextTestDate']);
+//    $t2 = strtotime($b['NextTestDate']);
+//    return $t1 - $t2;
+//}   
+//
+//function testdate_compare($a, $b)
+//{
+//    $t1 = strtotime($a['TestDate']);
+//    $t2 = strtotime($b['TestDate']);
+//    return $t1 - $t2;
+//}   
+//
+//function end_compare($a, $b)
+//{
+//    $t1 = strtotime($a['EndLifeDate']);
+//    $t2 = strtotime($b['EndLifeDate']);
+//    return $t1 - $t2;
+//}   
+//
+//function hist_compare($a, $b)
+//{
+//    $t1 = strtotime($b['HistEntryDate']);
+//    $t2 = strtotime($a['HistEntryDate']);
+//    return $t1 - $t2;
+//}
 
-function end_compare($a, $b)
+/* function compare
+ * 
+ * Date sorter function to be used with usort() $key is the array key to sort by
+ * 
+ * $order is the order 
+ * 'newtop' newest date on top oldest bottom 
+ * 'oldtop' oldest date on top newest bottom
+ * 
+ * @param $key - String
+ * @param $order - String
+ * @return array
+ * 
+ */
+function  compare($key, $order)
 {
-    $t1 = strtotime($a['EndLifeDate']);
-    $t2 = strtotime($b['EndLifeDate']);
-    return $t1 - $t2;
-}   
-
-function hist_compare($a, $b)
-{
-    $t1 = strtotime($b['HistEntryDate']);
-    $t2 = strtotime($a['HistEntryDate']);
-    return $t1 - $t2;
+    return function($a, $b) use ($key, $order){
+        $t1 = strtotime($a[$key]);
+        $t2 = strtotime($b[$key]);
+        if($order == 'newtop')
+        {
+            return $t2 - $t1;
+        }
+        elseif($order == 'oldtop')
+        {
+            return $t1 - $t2;
+        }       
+    };    
 }
 ?>
 

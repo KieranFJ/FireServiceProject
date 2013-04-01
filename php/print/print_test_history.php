@@ -33,7 +33,8 @@ if($_GET['ItemID'] != "")
                 WHERE ItemID = '".$results[0]['ItemID']."'";
 
         $testRes = sqlHandler::getDB()->select($query);
-
+        
+        usort($testRes, compare('TestDate', 'newtop'));
         ?>
 <html lang="en">
     <head>
@@ -57,7 +58,7 @@ if($_GET['ItemID'] != "")
     </head>
     <body>
         <div class="container">              
-            <h4>Item History Report</h4>
+            <h4>Test History Report</h4>
             <table class="table main">
                 <tr>
                     <td><b>Serial No</b></td>

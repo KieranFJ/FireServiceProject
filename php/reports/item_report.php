@@ -58,9 +58,14 @@ if(isset($input))
     
     $histRes = sqlHandler::getDB()->select($query);
     
+    if($testRes)
+    {
+        usort($testRes, compare('TestDate', 'newtop'));
+    }
     if($histRes)
     {
-        usort($histRes, 'hist_compare');
+        usort($histRes, compare('HistEntryDate', 'newtop'));
+        
     }
     
     if($results)
@@ -123,7 +128,7 @@ if(isset($input))
                 <h4>Test History</h4>
             </div>
             <div class="span2">
-                <a class="btn btn-success" href="php/print/test_history_print.php?ItemID=<?php echo $results[0]['ItemID']?>">Print Test History</a>
+                <a class="btn btn-success" href="php/print/print_test_history.php?ItemID=<?php echo $results[0]['ItemID']?>">Print Test History</a>
             </div>
         </div>
         <table class="table table-condensed">
@@ -168,7 +173,7 @@ if(isset($input))
                 <h4>Item History</h4>
             </div>
             <div class="span2">
-                <a class="btn btn-success" href="#item_report.php?ItemID=<?php echo $results[0]['ItemID']?>">Print Item History</a>
+                <a class="btn btn-success" href="php/print/print_item_history.php?ItemID=<?php echo $results[0]['ItemID']?>">Print Item History</a>
             </div>
         </div>
         <table class="table table-condensed">

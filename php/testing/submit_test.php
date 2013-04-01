@@ -66,7 +66,6 @@ if($input)
                 
                 alert('Test Entry created', 1);
                 
-                //@TODO history update when an item is removed from bag when flag is changed (Entry reason - flag change)
                 if($itemRes[0]['Flag'] != $input['flag'] || $itemRes[0]['Points'] != $input['points'] )
                 {
                     if( $input['flag'] == 'S')
