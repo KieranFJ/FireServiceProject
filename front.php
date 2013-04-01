@@ -8,6 +8,7 @@ if (!isset($_SESSION['username']))
 
 @include_once 'templates/header_temp.php';
 @include_once 'templates/navigation_temp.php'; 
+@include_once '/assets/help.php';
 
 require_once($_SERVER['DOCUMENT_ROOT'].'/fire/FireServiceProject/php/class.sqlHandler.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/fire/FireServiceProject/php/class.functionLib.php');

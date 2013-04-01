@@ -37,6 +37,7 @@
                   </ul>                
               </li>
               <li><a href="php/logout.php">Logout</a></li>
+              <li><a href="#helpModal" data-toggle="modal">Help</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
