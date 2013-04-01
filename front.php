@@ -21,7 +21,7 @@ $results = sqlHandler::getDB()->select($query);
 
 if($results)
 {
-    usort($results, 'date_compare');
+     usort($results, compare('NextTestDate', 'oldtop'));
 }
 
 
@@ -34,7 +34,7 @@ $endLifeRes = sqlHandler::getDB()->select($query);
 
 if($endLifeRes)
 {
-  usort($endLifeRes, 'end_compare');  
+    usort($endLifeRes, compare('EndLifeDate', 'oldtop'));
 }
 
 ?>

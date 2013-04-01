@@ -1,7 +1,7 @@
 <?php
 
 @include_once 'templates/sessionstart.php';
-@include_once 'templates/header_temp.php';
+
 
 
 
@@ -30,45 +30,76 @@ if($in)
     
     $i = 1;
     ?>
-<div class="container">
-    <div class="row">
-        <div class="span4">
-            <h4>Firefighter Check List</h4>
-        </div>
-    </div>
-    <div class="row">        
-        <div class="span3">            
-            <h4>SWAH Level: <?php echo $results[0]['Level'] ?></h4>
-        </div>
-        <div>
-            <h4>Station: <?php echo $results[0]['StationName'] ?></h4>
-        </div>
-    </div>
-    <div class="row">
-        <div class="span4">
-            <table class="table table-condensed">
-                <tr>
-                    <th>#</th><th>Item Type</th><th>Serial No</th><th>Tick</th>
-                </tr>
-
-            <?php
-            foreach($results as $row)
-            {?>               
-
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Gloucestershire Fire Service</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link href="print.css" rel="stylesheet">
+        <style type="text/css">
+            .main {
                 
-                <tr>
-                    <td width="1%"><?php echo $i++?></td>
-                    <td width="20%"><?php echo $row['CatName']?></td>
-                    <td width="10%"><?php echo $row['SerialNo']?></td>            
-                    <td width="5%"></td>
-                    
-                </tr>
-            <?php 
+                border-collapse: separate;
             }
-            ?>   
-            </table>
-        </div>
-    </div>
+            .main td {
+                padding: 5px;
+                border: 1px solid #dddddd;
+            }
+            .page-break  { display: block; page-break-before: always; }
+        </style>
+    </head>
+    <body>
+<div class="container">
+    <h3>Firefighter Check List</h3>
+    <table class="table main">
+        <tr>
+            <td>SWAH Level</td>
+            <td>Station</td>
+        </tr>
+        <tr>
+            <td><?php echo $results[0]['Level'] ?></td>
+            <td><?php echo $results[0]['StationName'] ?></td>
+        </tr>
+    </table>    
+    <table class="table main">
+        <tr>
+            <th>#</th><th>Item Type</th><th>Serial No</th><th>Tick</th>
+        </tr>
+
+    <?php    
+    foreach($results as $row)
+        
+    {?>               
+
+
+        <tr>
+            <td width="100px"><?php echo $i++?></td>
+            <td width="200px"><?php echo $row['CatName']?></td>
+            <td width="100px"><?php echo $row['SerialNo']?></td>            
+            <td width="50px"></td>
+
+        </tr>
+    <?php 
+        if($i % 15 == 0)
+        {?>
+        </table>
+        <div class="page-break"></div>
+        <table class="table main">
+            <tr>
+                <td width="100px"><?php echo $i++?></td>
+                <td width="200px"><?php echo $row['CatName']?></td>
+                <td width="100px"><?php echo $row['SerialNo']?></td>            
+                <td width="50px"></td>
+
+            </tr>
+        <?php 
+        }
+    }
+    ?>   
+    </table>
+
 </div>
 <?php
     
