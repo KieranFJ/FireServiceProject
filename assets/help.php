@@ -15,7 +15,7 @@ $img = "/helpimg/".$parts[0].".png";
     <h3 id="myModalLabel">Help</h3>
   </div>
   <div class="modal-body">
-    <img src="<?php echo 'http://'.$_SERVER['SERVER_ADDR'].'/fire/FireServiceProject/assets'.$img?>"></img>
+    <img src="<?php echo 'http://'.$_SERVER['HTTP_HOST'].'/fire/FireServiceProject/assets'.$img?>"></img>
   </div>
   <div class="modal-footer">
     <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
