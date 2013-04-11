@@ -38,7 +38,8 @@ if($_GET['ItemID'] != "")
     
         $histRes = sqlHandler::getDB()->select($query);
         
-        usort($histRes, compare('HistEntryDate', 'newtop'));
+        if($histRes)
+            usort($histRes, compare('HistEntryDate', 'newtop'));
         ?>
 <html lang="en">
     <head>

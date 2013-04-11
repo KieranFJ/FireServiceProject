@@ -34,7 +34,8 @@ if($_GET['ItemID'] != "")
 
         $testRes = sqlHandler::getDB()->select($query);
         
-        usort($testRes, compare('TestDate', 'newtop'));
+        if($testRes)
+            usort($testRes, compare('TestDate', 'newtop'));
         ?>
 <html lang="en">
     <head>
