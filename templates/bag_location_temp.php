@@ -1,5 +1,6 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'].'/fire/FireServiceProject/php/class.sqlHandler.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/fire/FireServiceProject/php/class.functionLib.php');
 
 $query = "SELECT level.Level, level.NoItems, station.StationName, 
             bag.BagNumber, COUNT(items.ItemID) 
@@ -12,16 +13,28 @@ $query = "SELECT level.Level, level.NoItems, station.StationName,
             ON bag.BagID = items.BagID
             GROUP BY bag.BagID
             ORDER BY station.StationName
-            LIMIT 1,18446744073709551615;";
+            LIMIT 0,18446744073709551615;";
 
-$results = sqlHandler::getDB()->select($query);    
-    
+$results = sqlHandler::getDB()->select($query);
+
+
+foreach($results as $subKey => $subArray)
+{
+    if($subArray['Level'] == 'Store')
+    {
+        unset($results[$subKey]);
+    }
+}     
+
+$results = array_values($results);
+
 $i = 1;
 $lastRow = $results[0]['Level'];
 ?>
 
 <div class="container">
     <h2>Bag Locations</h2>
+    <div class="row">
     <div class="span4">
     <table class="table table-striped">
         <tr>
@@ -29,7 +42,7 @@ $lastRow = $results[0]['Level'];
             <th>Level</th>
             <th>Bag Number</th>
             <th>Station</th>
-            <th>Item Amount</th>
+            <th>No. Items</th>
         </tr>
             <?php
             foreach($results as $row)
@@ -44,7 +57,7 @@ $lastRow = $results[0]['Level'];
             <th>Level</th>
             <th>Bag Number</th>
             <th>Station</th>
-            <th>Item Amount</th>
+            <th>No. Items</th>
         </tr>
                 <?php
                 }                
@@ -61,5 +74,6 @@ $lastRow = $results[0]['Level'];
             }
             ?>        
     </table>
+    </div>
     </div>
 </div>

@@ -1,8 +1,4 @@
 <?php
-/**
- * @TODO Number validation for contact number
- * @TODO JS number validation for contact number
- */
 require_once($_SERVER['DOCUMENT_ROOT'].'/fire/FireServiceProject/php/class.sqlHandler.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/fire/FireServiceProject/php/class.functionLib.php');
 
